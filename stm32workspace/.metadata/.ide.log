@@ -2234,3 +2234,153 @@
 2023-10-28 17:32:27,840 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 1187mS.
 2023-10-28 17:32:27,841 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 1mS.
 2023-10-28 17:32:27,841 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-10-28 17:39:48,873 [INFO] DocFrame:73 - Open Documents window for Board NUCLEO-L073RZ
+2023-10-28 17:39:51,736 [INFO] ServerAccessManage:473 - Download File 18656.zip
+2023-10-28 17:39:51,781 [INFO] FileExtend:240 - Unzip File : 18656.zip
+2023-10-28 17:39:51,782 [INFO] FileExtend:255 - Standard Zip Deflate
+2023-10-28 17:39:51,898 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:40:07,480 [INFO] ServerAccessManage:473 - Download File 18843.zip
+2023-10-28 17:40:07,620 [INFO] FileExtend:240 - Unzip File : 18843.zip
+2023-10-28 17:40:07,620 [INFO] FileExtend:255 - Standard Zip Deflate
+2023-10-28 17:40:07,759 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:40:10,943 [INFO] ServerAccessManage:473 - Download File 18844.zip
+2023-10-28 17:40:11,043 [INFO] FileExtend:240 - Unzip File : 18844.zip
+2023-10-28 17:40:11,043 [INFO] FileExtend:255 - Standard Zip Deflate
+2023-10-28 17:40:11,172 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:40:13,899 [INFO] ServerAccessManage:473 - Download File 13355.pdf
+2023-10-28 17:40:14,050 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:40:22,407 [INFO] ServerAccessManage:473 - Download File 18400.pdf
+2023-10-28 17:40:23,073 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:40:33,541 [INFO] ServerAccessManage:473 - Download File 16773.pdf
+2023-10-28 17:40:33,650 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:40:41,979 [INFO] ServerAccessManage:473 - Download File 13376.pdf
+2023-10-28 17:40:42,124 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:41:03,270 [INFO] ServerAccessManage:473 - Download File 13295.pdf
+2023-10-28 17:41:03,376 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:41:08,953 [INFO] ServerAccessManage:473 - Download File 13329.pdf
+2023-10-28 17:41:09,329 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:41:19,115 [INFO] ServerAccessManage:473 - Download File DB2196.pdf
+2023-10-28 17:41:19,270 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:41:27,991 [INFO] ServerAccessManage:473 - Download File 19167.pdf
+2023-10-28 17:41:28,208 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:41:39,722 [INFO] ServerAccessManage:473 - Download File TN1235.pdf
+2023-10-28 17:41:39,896 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:42:17,548 [INFO] ServerAccessManage:473 - Download File TN1163.pdf
+2023-10-28 17:42:17,754 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:42:50,907 [INFO] ServerAccessManage:473 - Download File DS10685.pdf
+2023-10-28 17:42:51,218 [INFO] LoadUrlFilesThread:156 - End of LoadUrlFiles Thread
+2023-10-28 17:46:07,200 [INFO] DocFrame:73 - Open Documents window for Board NUCLEO-L073RZ
+2023-10-28 17:52:39,741 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,502x266,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 17:52:40,713 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:00:11,329 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:00:35,633 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:01:05,404 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:01:06,735 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 359262296 Bytes (940572672)
+2023-10-28 18:01:07,678 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 435415176 Bytes (940572672)
+2023-10-28 18:01:09,636 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 537520216 Bytes (940572672)
+2023-10-28 18:01:09,760 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-10-28 18:01:09,760 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8L0
+2023-10-28 18:01:09,761 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-10-28 18:01:09,761 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-10-28 18:01:09,761 [INFO] CodeGenerator:799 - code generatio: config db path: /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.common.mx_6.9.2.202309101412//db/
+2023-10-28 18:01:09,872 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/license.tmp_save
+2023-10-28 18:01:09,958 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/license.tmp
+2023-10-28 18:01:09,980 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/gpio.tmp_save
+2023-10-28 18:01:10,048 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/gpio.tmp
+2023-10-28 18:01:10,133 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_it.c_save
+2023-10-28 18:01:10,331 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_it.c
+2023-10-28 18:01:10,333 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_it.h_save
+2023-10-28 18:01:10,384 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_it.h
+2023-10-28 18:01:10,398 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_hal_msp.c_save
+2023-10-28 18:01:10,475 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_hal_msp.c
+2023-10-28 18:01:10,476 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/system.tmp_save
+2023-10-28 18:01:10,524 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/system.tmp
+2023-10-28 18:01:10,526 [INFO] CodeEngine:311 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_hal_conf.h_save
+2023-10-28 18:01:10,581 [INFO] CodeEngine:335 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_hal_conf.h
+2023-10-28 18:01:10,597 [WARN] IPConfigManager:3431 - IP not found : TIM
+2023-10-28 18:01:10,597 [WARN] CodeGenerator:3764 - IP not found : null
+2023-10-28 18:01:10,599 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/main.h_save
+2023-10-28 18:01:10,659 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/main.h
+2023-10-28 18:01:10,660 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/main.c_save
+2023-10-28 18:01:10,736 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/main.c
+2023-10-28 18:01:11,062 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 34mS.
+2023-10-28 18:01:11,064 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-10-28 18:01:11,208 [INFO] ConfigFileManager:1457 - The Die is : DIE447
+2023-10-28 18:01:12,178 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 1114mS.
+2023-10-28 18:01:12,179 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 1mS.
+2023-10-28 18:01:12,180 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-10-28 18:13:23,798 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:13:28,053 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 341700928 Bytes (1023410176)
+2023-10-28 18:13:45,446 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:13:46,886 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:13:48,431 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 331465408 Bytes (1023410176)
+2023-10-28 18:13:49,281 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 499668080 Bytes (1023410176)
+2023-10-28 18:13:50,686 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 552096880 Bytes (1023410176)
+2023-10-28 18:13:50,859 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-10-28 18:13:50,859 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8L0
+2023-10-28 18:13:50,859 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-10-28 18:13:50,859 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-10-28 18:13:50,860 [INFO] CodeGenerator:799 - code generatio: config db path: /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.common.mx_6.9.2.202309101412//db/
+2023-10-28 18:13:50,990 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/license.tmp_save
+2023-10-28 18:13:51,049 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/license.tmp
+2023-10-28 18:13:51,066 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/gpio.tmp_save
+2023-10-28 18:13:51,120 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/gpio.tmp
+2023-10-28 18:13:51,198 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_it.c_save
+2023-10-28 18:13:51,305 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_it.c
+2023-10-28 18:13:51,307 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_it.h_save
+2023-10-28 18:13:51,356 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_it.h
+2023-10-28 18:13:51,369 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_hal_msp.c_save
+2023-10-28 18:13:51,442 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_hal_msp.c
+2023-10-28 18:13:51,442 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/system.tmp_save
+2023-10-28 18:13:51,491 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/system.tmp
+2023-10-28 18:13:51,493 [INFO] CodeEngine:311 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_hal_conf.h_save
+2023-10-28 18:13:51,545 [INFO] CodeEngine:335 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_hal_conf.h
+2023-10-28 18:13:51,558 [WARN] IPConfigManager:3431 - IP not found : TIM
+2023-10-28 18:13:51,558 [WARN] CodeGenerator:3764 - IP not found : null
+2023-10-28 18:13:51,560 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/main.h_save
+2023-10-28 18:13:51,618 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/main.h
+2023-10-28 18:13:51,619 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/main.c_save
+2023-10-28 18:13:51,691 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/main.c
+2023-10-28 18:13:52,050 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 24mS.
+2023-10-28 18:13:52,051 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-10-28 18:13:52,204 [INFO] ConfigFileManager:1457 - The Die is : DIE447
+2023-10-28 18:13:53,059 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 1008mS.
+2023-10-28 18:13:53,059 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-10-28 18:13:53,060 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-10-28 18:15:51,877 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:15:55,125 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 501956672 Bytes (1044381696)
+2023-10-28 18:15:59,009 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-10-28 18:16:02,733 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 362883456 Bytes (1044381696)
+2023-10-28 18:16:03,420 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 389620096 Bytes (1044381696)
+2023-10-28 18:16:04,299 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 503392640 Bytes (1044381696)
+2023-10-28 18:16:04,435 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-10-28 18:16:04,436 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8L0
+2023-10-28 18:16:04,436 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-10-28 18:16:04,436 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-10-28 18:16:04,436 [INFO] CodeGenerator:799 - code generatio: config db path: /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.common.mx_6.9.2.202309101412//db/
+2023-10-28 18:16:04,528 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/license.tmp_save
+2023-10-28 18:16:04,576 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/license.tmp
+2023-10-28 18:16:04,592 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/gpio.tmp_save
+2023-10-28 18:16:04,642 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/gpio.tmp
+2023-10-28 18:16:04,719 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_it.c_save
+2023-10-28 18:16:04,778 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_it.c
+2023-10-28 18:16:04,780 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_it.h_save
+2023-10-28 18:16:04,827 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_it.h
+2023-10-28 18:16:04,840 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_hal_msp.c_save
+2023-10-28 18:16:04,907 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/stm32l0xx_hal_msp.c
+2023-10-28 18:16:04,908 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/system.tmp_save
+2023-10-28 18:16:04,956 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/MXTmpFiles/system.tmp
+2023-10-28 18:16:04,959 [INFO] CodeEngine:311 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_hal_conf.h_save
+2023-10-28 18:16:05,029 [INFO] CodeEngine:335 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/stm32l0xx_hal_conf.h
+2023-10-28 18:16:05,043 [WARN] IPConfigManager:3431 - IP not found : TIM
+2023-10-28 18:16:05,044 [WARN] CodeGenerator:3764 - IP not found : null
+2023-10-28 18:16:05,045 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/main.h_save
+2023-10-28 18:16:05,162 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Inc/main.h
+2023-10-28 18:16:05,164 [INFO] CodeEngine:255 - oldGeneratedFile, /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/main.c_save
+2023-10-28 18:16:05,234 [INFO] CodeEngine:279 - Generated code: /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Core/Src/main.c
+2023-10-28 18:16:05,545 [INFO] ProjectBuilder:3064 - Time for Copy HAL[1] : 22mS.
+2023-10-28 18:16:05,546 [INFO] ProjectBuilder:4404 - Project Generator version: 4.1.0
+2023-10-28 18:16:05,685 [INFO] ConfigFileManager:1457 - The Die is : DIE447
+2023-10-28 18:16:06,449 [INFO] ProjectBuilder:4626 - Time for Generating toolchain IDE Files: 903mS.
+2023-10-28 18:16:06,450 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
+2023-10-28 18:16:06,450 [INFO] ProjectBuilder:2935 - Time for Copy CMSIS : 0mS.
