@@ -1,14 +1,35 @@
-18:16:15 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
+21:06:12 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ZEGAR_PMIK.elf" @"objects.list"  -lrdimon -mcpu=cortex-m0plus -T"C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace\ZEGAR_PMIK\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ZEGAR_PMIK.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ZEGAR_PMIK.elf
+ 
 arm-none-eabi-size   ZEGAR_PMIK.elf 
+arm-none-eabi-objdump -h -S  ZEGAR_PMIK.elf  > "ZEGAR_PMIK.list"
    text	   data	    bss	    dec	    hex	filename
-  12548	    120	   2144	  14812	   39dc	ZEGAR_PMIK.elf
+  13696	    120	   2152	  15968	   3e60	ZEGAR_PMIK.elf
 Finished building: default.size.stdout
  
-18:16:17 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
+Finished building: ZEGAR_PMIK.list
+ 
+21:06:14 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
 make -j12 all 
 arm-none-eabi-size   ZEGAR_PMIK.elf 
    text	   data	    bss	    dec	    hex	filename
-  12548	    120	   2144	  14812	   39dc	ZEGAR_PMIK.elf
+  13696	    120	   2152	  15968	   3e60	ZEGAR_PMIK.elf
 Finished building: default.size.stdout
+ 
+21:07:19 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ZEGAR_PMIK.elf" @"objects.list"  -lrdimon -mcpu=cortex-m0plus -T"C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace\ZEGAR_PMIK\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ZEGAR_PMIK.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ZEGAR_PMIK.elf
+ 
+arm-none-eabi-size   ZEGAR_PMIK.elf 
+arm-none-eabi-objdump -h -S  ZEGAR_PMIK.elf  > "ZEGAR_PMIK.list"
+   text	   data	    bss	    dec	    hex	filename
+  13676	    120	   2152	  15948	   3e4c	ZEGAR_PMIK.elf
+Finished building: default.size.stdout
+ 
+Finished building: ZEGAR_PMIK.list
  
