@@ -22,7 +22,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
-#include "tm1637.h"
+
+#include "../../Devices/Inc/TM1637.h"
+#include "../../Devices/Inc/clock.h"
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,14 +58,13 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
-uint8_t CurrentDisplay[4] = {0};
-uint8_t Min [2]= {0};
-uint8_t Godz[2] = {0};
-uint8_t Godzina[4] = {0};
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+struct Clock ourClock;
 
 /* USER CODE END 0 */
 
@@ -103,7 +105,7 @@ int main(void)
   HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
 
-  tm1637_DisplayHandle(7, CurrentDisplay);
+  //tm1637_DisplayHandle(7, CurrentDisplay);
 
   uint8_t Godzina[] = "0000";
 	for (uint8_t i = 0; i<sizeof(Godzina); i++)
@@ -188,7 +190,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 32000-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 500;
+  htim2.Init.Period = 1000;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -270,52 +272,8 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	int m = 1;
-	int g = 1;
-    for (int i = 0; i<4; i++)
-	{
-		if (i < 2)
-		{
-
-					Godzina[i] =Godz[i] + '0';
-					if(Godz[i] == 9 && Min[i-1] == 5 && Min[i] == 9 && i == 1)
-							{
-							Godz[i-1]++;
-							Godz[i] = 0;
-							g = 0;
-							}
-					if(Min[i-1] == 5 && Min[i] == 9 && i == 1 && g == 1)
-					{
-							Godz[i]++;
-							if (Godz[i-1] == 2 && Godz[i] == 4 && i == 1)
-									{
-										Godz[i-1] = 0;
-										Godz[i] = 0;
-									}
-					}
-					if(Min[i-1] == 6 && i == 1)
-						{
-							Min[i-1] = 0;
-						}
-
-		}
-		else
-		{
-				Godzina[i] = Min[i-2] + '0' ;
-				if(Min[i-2] == 9 && i == 3)
-						{
-							Min[i-3]++;
-							Min[i-2] = 0;
-							m = 0;
-						}
-				if(i == 3 && m == 1)
-						{
-						Min[i-2]++;
-						}
-		}
-		Godzina[i] = char2segments(Godzina[i]);
-	}
-	tm1637_DisplayHandle(4, Godzina);
+	static uint8_t x[4] = {0x6d, 0x6d, 0x6d, 0x6d};
+	tm1637_DisplayHandle(4, x);
 
 }
 /* USER CODE END 4 */
