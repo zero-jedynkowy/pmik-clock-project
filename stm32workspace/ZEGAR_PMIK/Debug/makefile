@@ -10,6 +10,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Drivers/STM32L0xx_HAL_Driver/Src/subdir.mk
+-include Devices/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
@@ -60,8 +61,8 @@ all: main-build
 main-build: ZEGAR_PMIK.elf secondary-outputs
 
 # Tool invocations
-ZEGAR_PMIK.elf ZEGAR_PMIK.map: $(OBJS) $(USER_OBJS) C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace\ZEGAR_PMIK\STM32L073RZTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ZEGAR_PMIK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace\ZEGAR_PMIK\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ZEGAR_PMIK.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ZEGAR_PMIK.elf ZEGAR_PMIK.map: $(OBJS) $(USER_OBJS) /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/STM32L073RZTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ZEGAR_PMIK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"/home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ZEGAR_PMIK.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

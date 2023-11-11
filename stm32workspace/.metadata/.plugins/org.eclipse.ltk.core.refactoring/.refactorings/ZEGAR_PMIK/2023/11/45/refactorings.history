@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ZEGAR_PMIK/Devies&apos; to &apos;Devices&apos;" description="Rename resource &apos;Devies&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Devies" name="Devices" stamp="1699724843721" updateReferences="true"/>
+</session>
