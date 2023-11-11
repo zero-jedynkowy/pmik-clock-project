@@ -1,0 +1,33 @@
+/*
+ * clock.c
+ *
+ *  Created on: Nov 11, 2023
+ *      Author: zero-jedynkowy
+ */
+#include <stdint.h>
+#include "clock.h"
+
+void setTime(struct Clock * myClock, uint8_t newHour, uint8_t newMinutes)
+{
+	(*myClock).hour = newHour;
+	(*myClock).minutes = newMinutes;
+	(*myClock).allTimeInSeconds = newHour*HOUR_IN_SECONDS;
+	(*myClock).allTimeInSeconds += MINUTE_IN_SECONDS*newMinutes;
+}
+
+void updateTime(struct Clock *myClock)
+{
+	(*myClock).allTimeInSeconds++;
+	if((*myClock).allTimeInSeconds == 86400) (*myClock).allTimeInSeconds = 0;
+	(*myClock).hour = (*myClock).allTimeInSeconds / HOUR_IN_SECONDS;
+	(*myClock).minutes = ((*myClock).allTimeInSeconds / MINUTE_IN_SECONDS) % MINUTE_IN_SECONDS;
+	(*myClock).timeToShow[0] = int2int((*myClock).hour / 10);
+	(*myClock).timeToShow[1] = int2int((*myClock).hour % 10);
+	(*myClock).timeToShow[2] = int2int((*myClock).minutes / 10);
+	(*myClock).timeToShow[3] = int2int((*myClock).minutes % 10);
+}
+
+uint8_t int2int(uint8_t c)
+{
+
+}

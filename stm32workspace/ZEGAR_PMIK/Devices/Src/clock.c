@@ -5,44 +5,42 @@
  *      Author: zero-jedynkowy
  */
 #include <stdint.h>
+#include "clock.h"
 
-enum CLOCK_DEFINES
+void setTime(struct Clock * myClock, uint8_t newHour, uint8_t newMinutes)
 {
-	HOUR_IN_SECONDS = 60*60,
-	MINUTE_IN_SECONDS = 60
-};
+	(*myClock).hour = newHour;
+	(*myClock).minutes = newMinutes;
+	(*myClock).allTimeInSeconds = newHour*HOUR_IN_SECONDS;
+	(*myClock).allTimeInSeconds += MINUTE_IN_SECONDS*newMinutes;
+}
 
-struct Clock
+void updateTime(struct Clock *myClock)
 {
-	uint32_t allTimeInSeconds ;
-	uint8_t hour;
-	uint8_t minutes;
-};
+	(*myClock).allTimeInSeconds++;
+	if((*myClock).allTimeInSeconds == 86400) (*myClock).allTimeInSeconds = 0;
+	(*myClock).hour = (*myClock).allTimeInSeconds / HOUR_IN_SECONDS;
+	(*myClock).minutes = ((*myClock).allTimeInSeconds / MINUTE_IN_SECONDS) % MINUTE_IN_SECONDS;
+	(*myClock).timeToShow[0] = int2int((*myClock).hour / 10);
+	(*myClock).timeToShow[1] = int2int((*myClock).hour % 10);
+	(*myClock).timeToShow[2] = int2int((*myClock).minutes / 10);
+	(*myClock).timeToShow[3] = int2int((*myClock).minutes % 10);
+}
 
-
-
-//void setTime(struct Clock myClock)
-//{
-//
-////	(*myClock).hour = newHour;
-////	(*myClock).minutes = newMinutes;
-////	(*myClock).allTimeInSeconds = newHour*HOUR_IN_SECONDS;
-////	(*myClock).allTimeInSeconds += MINUTE_IN_SECONDS*newMinutes;
-//}
-//
-//void updateTime(Clock *myClock)
-//{
-//	(*myClock).allTimeInSeconds++;
-//	(*myClock).hour = (*myClock).allTimeInSeconds / HOUR_IN_SECONDS;
-//	(*myClock).minutes = ((*myClock).allTimeInSeconds / MINUTE_IN_SECONDS) % MINUTE_IN_SECONDS;
-//}
-//
-//uint8_t * getHour(Clock * myClock)
-//{
-//	return &(*myClock).hour;
-//}
-//
-//uint8_t * getMinutes(Clock * myClock)
-//{
-//	return &(*myClock).minutes;
-//}
+uint8_t int2int(uint8_t c)
+{
+	switch(c)
+	{
+		case 0 : return 0x3f;
+		case 1 : return 0x06;
+		case 2 : return 0x5b;
+		case 3 : return 0x4f;
+		case 4 : return 0x66;
+		case 5 : return 0x6d;
+		case 6 : return 0x7d;
+		case 7 : return 0x07;
+		case 8 : return 0x7f;
+		case 9 : return 0x6f;
+	}
+	return 0x3f;
+}

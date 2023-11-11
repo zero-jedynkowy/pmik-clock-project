@@ -21,14 +21,11 @@ struct Clock
 	uint32_t allTimeInSeconds ;
 	uint8_t hour;
 	uint8_t minutes;
+	uint8_t timeToShow[4];
 };
 
-
+void setTime(struct Clock * myClock, uint8_t newHour, uint8_t newMinutes);
+void updateTime(struct Clock *myClock);
+uint8_t int2int(uint8_t c);
 
 #endif /* INC_CLOCK_H_ */
-
-
-
-//void updateTime(Clock *);
-//uint8_t * getHour(Clock *);
-//uint8_t * getMinutes(Clock *);

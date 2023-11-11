@@ -22,7 +22,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
-
 #include "../../Devices/Inc/TM1637.h"
 #include "../../Devices/Inc/clock.h"
 #include <stdint.h>
@@ -47,7 +46,7 @@
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
-#ifdef SEMIHOSTING_MODE
+#if SEMIHOSTING_MODE == 1
 	extern void initialise_monitor_handles(void);
 #endif
 /* USER CODE END PV */
@@ -63,9 +62,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 struct Clock ourClock;
-
 /* USER CODE END 0 */
 
 /**
@@ -75,7 +72,7 @@ struct Clock ourClock;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	#ifdef SEMIHOSTING_MODE
+	#if SEMIHOSTING_MODE == 1
 		initialise_monitor_handles();
 	#endif
   /* USER CODE END 1 */
@@ -101,18 +98,17 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-
   HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
 
-  //tm1637_DisplayHandle(7, CurrentDisplay);
 
-  uint8_t Godzina[] = "0000";
-	for (uint8_t i = 0; i<sizeof(Godzina); i++)
-	  {
-		  Godzina[i] = char2segments(Godzina[i]);
-	  }
-	 tm1637_DisplayHandle(7, Godzina);
+  uint8_t tempHour[] = "0000";
+  for (uint8_t i = 0; i<sizeof(tempHour); i++)
+  {
+	  tempHour[i] = char2segments(tempHour[i]);
+  }
+  tm1637_DisplayHandle(7, tempHour);
+  setTime(&ourClock, 23, 59);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -272,9 +268,8 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	static uint8_t x[4] = {0x6d, 0x6d, 0x6d, 0x6d};
-	tm1637_DisplayHandle(4, x);
-
+	updateTime(&ourClock);
+	tm1637_DisplayHandle(7, ourClock.timeToShow);
 }
 /* USER CODE END 4 */
 

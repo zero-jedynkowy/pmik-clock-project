@@ -2230,3 +2230,6 @@ java.lang.Exception: The project description file (.project) for 'ZEGAR_PMIK' is
 
 !ENTRY org.eclipse.cdt.dsf 4 10001 2023-11-11 19:40:16.538
 !MESSAGE Target not available.
+
+!ENTRY org.eclipse.cdt.dsf 4 10001 2023-11-11 21:48:23.460
+!MESSAGE Target not available.
