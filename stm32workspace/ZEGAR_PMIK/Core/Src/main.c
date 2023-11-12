@@ -21,10 +21,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 #include <stdio.h>
-#include "../../Devices/Inc/TM1637.h"
-#include "../../Devices/Inc/clock.h"
 #include <stdint.h>
+#include "TM1637.h"
+#include "clock.h"
+#include "LCD1602.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,7 +37,14 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 #define SEMIHOSTING_MODE 1
+
+#ifdef SEMIHOSTING_MODE
+	extern void initialise_monitor_handles(void);
+#endif
+
+struct Clock ourClock;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -44,17 +54,16 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
-#if SEMIHOSTING_MODE == 1
-	extern void initialise_monitor_handles(void);
-#endif
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 
@@ -62,7 +71,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-struct Clock ourClock;
+
 /* USER CODE END 0 */
 
 /**
@@ -72,7 +81,7 @@ struct Clock ourClock;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	#if SEMIHOSTING_MODE == 1
+	#ifdef SEMIHOSTING_MODE
 		initialise_monitor_handles();
 	#endif
   /* USER CODE END 1 */
@@ -96,25 +105,37 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+
   HAL_TIM_Base_Start_IT(&htim2);
+  HAL_TIM_Base_Start(&htim3);
   HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
-
-
-  uint8_t tempHour[] = "0000";
-  for (uint8_t i = 0; i<sizeof(tempHour); i++)
-  {
-	  tempHour[i] = char2segments(tempHour[i]);
-  }
-  tm1637_DisplayHandle(7, tempHour);
   setTime(&ourClock, 23, 59);
+  lcd_init ();
+  lcd_clear();
+
+
+  char * content[6][2] = {{"POGODA", ""}, {"25 st. C", "SNIEG"},
+    {"CISNIENIE", ""}, {"1000 hPa", ""},
+    {"DATA", "AKTUALIZACJI"}, {"12.09.2023", "GODZ: 23:41"}};
   /* USER CODE END 2 */
+
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  for(int i=0; i<6; i++)
+	  {
+		  lcd_put_cur(0, 0);
+		  lcd_send_string(content[i][0]);
+		  lcd_put_cur(1, 0);
+		  lcd_send_string(content[i][1]);
+		  HAL_Delay(3000);
+		  lcd_clear();
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -211,6 +232,51 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 32-1;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 0xffff-1;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -228,10 +294,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, R_S_Pin|R_W_Pin|E_N_Pin|D_7_Pin
+                          |D_6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SCLK_Pin|SDO_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(D_5_GPIO_Port, D_5_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, D_4_Pin|SCLK_Pin|SDO_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -247,15 +317,24 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF4_USART2;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
+  /*Configure GPIO pins : R_S_Pin R_W_Pin E_N_Pin D_7_Pin
+                           D_6_Pin */
+  GPIO_InitStruct.Pin = R_S_Pin|R_W_Pin|E_N_Pin|D_7_Pin
+                          |D_6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SCLK_Pin SDO_Pin */
-  GPIO_InitStruct.Pin = SCLK_Pin|SDO_Pin;
+  /*Configure GPIO pin : D_5_Pin */
+  GPIO_InitStruct.Pin = D_5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(D_5_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : D_4_Pin SCLK_Pin SDO_Pin */
+  GPIO_InitStruct.Pin = D_4_Pin|SCLK_Pin|SDO_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

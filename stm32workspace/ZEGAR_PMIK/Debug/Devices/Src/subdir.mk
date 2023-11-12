@@ -5,14 +5,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Devices/Src/LCD1602.c \
 ../Devices/Src/TM1637.c \
 ../Devices/Src/clock.c 
 
 OBJS += \
+./Devices/Src/LCD1602.o \
 ./Devices/Src/TM1637.o \
 ./Devices/Src/clock.o 
 
 C_DEPS += \
+./Devices/Src/LCD1602.d \
 ./Devices/Src/TM1637.d \
 ./Devices/Src/clock.d 
 
@@ -24,7 +27,7 @@ Devices/Src/%.o Devices/Src/%.su Devices/Src/%.cyclo: ../Devices/Src/%.c Devices
 clean: clean-Devices-2f-Src
 
 clean-Devices-2f-Src:
-	-$(RM) ./Devices/Src/TM1637.cyclo ./Devices/Src/TM1637.d ./Devices/Src/TM1637.o ./Devices/Src/TM1637.su ./Devices/Src/clock.cyclo ./Devices/Src/clock.d ./Devices/Src/clock.o ./Devices/Src/clock.su
+	-$(RM) ./Devices/Src/LCD1602.cyclo ./Devices/Src/LCD1602.d ./Devices/Src/LCD1602.o ./Devices/Src/LCD1602.su ./Devices/Src/TM1637.cyclo ./Devices/Src/TM1637.d ./Devices/Src/TM1637.o ./Devices/Src/TM1637.su ./Devices/Src/clock.cyclo ./Devices/Src/clock.d ./Devices/Src/clock.o ./Devices/Src/clock.su
 
 .PHONY: clean-Devices-2f-Src
 
