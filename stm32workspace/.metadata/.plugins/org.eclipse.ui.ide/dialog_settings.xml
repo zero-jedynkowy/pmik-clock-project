@@ -9,6 +9,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace\ZEGAR_PMIK"/>
 			<item value="C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace"/>
 		</list>
 	</section>

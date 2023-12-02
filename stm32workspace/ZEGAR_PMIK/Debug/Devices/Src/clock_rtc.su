@@ -1,0 +1,3 @@
+../Devices/Src/clock_rtc.c:12:6:setTime_RTC	16	static
+../Devices/Src/clock_rtc.c:22:6:updateTime_RTC	32	static
+../Devices/Src/clock_rtc.c:33:9:int2inta	16	static

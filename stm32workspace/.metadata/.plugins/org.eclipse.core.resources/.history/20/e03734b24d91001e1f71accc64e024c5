@@ -1,0 +1,19 @@
+/*
+ * clock_rtc.h
+ *
+ *  Created on: Dec 2, 2023
+ *      Author: xenon
+ */
+
+#ifndef INC_CLOCK_RTC_H_
+#define INC_CLOCK_RTC_H_
+
+#include "main.h"
+#include "stm32l0xx_hal_rtc.h"
+//#include <stdint.h>
+//
+//  RTC_TimeTypeDef Time = {0};
+//  RTC_DateTypeDef Date = {0};
+
+
+#endif /* INC_CLOCK_RTC_H_ */

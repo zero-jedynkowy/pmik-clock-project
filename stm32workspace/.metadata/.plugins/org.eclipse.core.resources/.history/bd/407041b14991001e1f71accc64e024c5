@@ -1,0 +1,17 @@
+/*
+ * clock_rtc.c
+ *
+ *  Created on: Dec 2, 2023
+ *      Author: xenon
+ */
+#include <stdint.h>
+#include "clock_rtc.h"
+
+void setTime()
+{
+  Time.Hours = 0x4;
+  Time.Minutes = 0x1;
+  Time.Seconds = 0x0;
+  Time.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  Time.StoreOperation = RTC_STOREOPERATION_RESET;
+}
