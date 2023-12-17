@@ -45,5 +45,20 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+    val activity_version = "1.8.2"
+
+    // Java language implementation
+    implementation("androidx.activity:activity:$activity_version")
+    // Kotlin
+    implementation("androidx.activity:activity-ktx:$activity_version")
+
+    val fragment_version = "1.6.2"
+
+    // Java language implementation
+    implementation("androidx.fragment:fragment:$fragment_version")
+    // Kotlin
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
+    // Testing Fragments in Isolation
+    debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
 
 }
