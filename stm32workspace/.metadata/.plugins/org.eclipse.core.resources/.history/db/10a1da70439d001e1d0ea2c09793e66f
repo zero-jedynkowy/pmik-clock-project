@@ -1,0 +1,77 @@
+/*
+ * Clocker.c
+ *
+ *  Created on: Dec 18, 2023
+ *      Author: zero-jedynkowy
+ */
+#include "Clocker.h"
+
+void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle)
+{
+	myClocker->numberOfScreens = 5;
+	myClocker->currentScreen = 1;
+	myClocker->screenTimeChanging = 5;
+	RTC_TimeTypeDef tempStime = {0};
+	myClocker->sTime = &tempStime;
+	RTC_DateTypeDef tempSdate = {0};
+	myClocker->sDate = &tempSdate;
+	myClocker->rtcHandle = rtcHandle;
+}
+
+void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds)
+{
+	printf("%p\n", myClocker->rtcHandle);
+	myClocker->sTime->Hours = newHours;
+	myClocker->sTime->Minutes = newMinutes;
+	myClocker->sTime->Seconds = newSeconds;
+	myClocker->sTime->DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+	myClocker->sTime->StoreOperation = RTC_STOREOPERATION_RESET;
+	HAL_RTC_DST_ClearStoreOperation(myClocker->rtcHandle);
+	printf("%p\n", myClocker->rtcHandle);
+//	HAL_RTC_SetTime(myClocker->rtcHandle, myClocker->sTime, RTC_FORMAT_BIN);
+}
+
+////
+////void Clocker_LCD_Update(struct Clocker * myClocker)
+////{
+////	if(myClocker->currentScreen > myClocker->numberOfScreens) myClocker->currentScreen = 1;
+////
+////	myClocker->currentScreen++;
+////}
+//
+//void Clocker_Segment_Update(struct Clocker * myClocker)
+//{
+//	uint8_t temporaryTime[4];
+//	temporaryTime[0] = Clocker_Convert_Int_to_Segment((myClocker->myTime->Hours)/10);
+//	temporaryTime[1] = Clocker_Convert_Int_to_Segment((myClocker->myTime->Hours)%10);
+//	temporaryTime[2] = Clocker_Convert_Int_to_Segment((myClocker->myTime->Minutes)/10);
+//	temporaryTime[3] = Clocker_Convert_Int_to_Segment((myClocker->myTime->Minutes)%10);
+//	tm1637_DisplayHandle(7, temporaryTime);
+//}
+//
+//void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newMinutes)
+//{
+//	myClocker->myTime->Hours = newHours;
+//	myClocker->myTime->Minutes = newMinutes;
+//	myClocker->myTime->Seconds = 0x0;
+//	myClocker->myTime->DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+//	myClocker->myTime->StoreOperation = RTC_STOREOPERATION_RESET;
+//}
+//
+//uint8_t Clocker_Convert_Int_to_Segment(uint8_t c)
+//{
+//	switch(c)
+//	{
+//		case 0 : return 0x3f;
+//		case 1 : return 0x06;
+//		case 2 : return 0x5b;
+//		case 3 : return 0x4f;
+//		case 4 : return 0x66;
+//		case 5 : return 0x6d;
+//		case 6 : return 0x7d;
+//		case 7 : return 0x07;
+//		case 8 : return 0x7f;
+//		case 9 : return 0x6f;
+//	}
+//	return 0x3f;
+//}

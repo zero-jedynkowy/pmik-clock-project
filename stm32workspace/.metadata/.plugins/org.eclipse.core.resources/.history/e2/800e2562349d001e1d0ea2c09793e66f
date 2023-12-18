@@ -1,0 +1,21 @@
+/*
+ * Clocker.h
+ *
+ *  Created on: Dec 18, 2023
+ *      Author: zero-jedynkowy
+ */
+
+
+#define MAX_SCREENS 10
+
+struct Clocker
+{
+	RTC_TimeTypeDef * myTime;
+	char ** tableOfScreens;
+
+};
+
+void segmentUpdate(struct Clocker * myClocker)
+{
+
+}

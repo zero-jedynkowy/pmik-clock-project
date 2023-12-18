@@ -25,10 +25,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "TM1637.h"
-#include "clock.h"
-#include "clock_rtc.h"
 #include "LCD1602.h"
-
+#include "Clocker.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,20 +36,16 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 #define SEMIHOSTING_MODE 1
 
 #ifdef SEMIHOSTING_MODE
 	extern void initialise_monitor_handles(void);
 #endif
-
-struct Clock ourClock;
-RTC_TimeTypeDef sTime = {0};
-RTC_DateTypeDef sDate = {0};
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+
 
 /* USER CODE END PM */
 
@@ -71,8 +65,7 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_RTC_Init(void);
 /* USER CODE BEGIN PFP */
-
-
+struct Clocker ourClocker;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -115,41 +108,22 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_TIM_Base_Start_IT(&htim2);
-  HAL_TIM_Base_Start(&htim3);
+
   HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
-  //setTime(&ourClock, 23, 59);
-  //uint8_t time [4];
-  //HAL_RTC_SetTime(&hrtc, sTime, RTC_FORMAT_BCD);
-  // Ustawianie czasu
-  uint8_t Godziny = 12;
-  uint8_t Minuty = 25;
-  setTime_RTC(&sTime, Godziny, Minuty);
-  HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-  //Inicjalizacja LCD
-  lcd_init ();
-  lcd_clear();
 
+  Clocker_Init(&ourClocker, &hrtc);
+  Clocker_Set_Time(&ourClocker, 22, 35, 00);
 
-  char * content[6][2] = {{"POGODA", ""}, {"25 st. C", "SNIEG"},
-    {"CISNIENIE", ""}, {"1000 hPa", ""},
-    {"DATA", "AKTUALIZACJI"}, {"12.09.2023", "GODZ: 23:41"}};
+  HAL_TIM_Base_Start_IT(&htim2);
+  HAL_TIM_Base_Start(&htim3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  for(int i=0; i<6; i++)
-	  {
-		  lcd_put_cur(0, 0);
-		  lcd_send_string(content[i][0]);
-		  lcd_put_cur(1, 0);
-		  lcd_send_string(content[i][1]);
-		  HAL_Delay(3000);
-		  lcd_clear();
-	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -433,12 +407,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-
-//	updateTime(&ourClock);
-//	tm1637_DisplayHandle(7, ourClock.timeToShow);
-	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-	updateTime_RTC(&sTime);
+	if(htim == &htim2) Clocker_Segment_Update(&ourClocker);
 }
 /* USER CODE END 4 */
 
