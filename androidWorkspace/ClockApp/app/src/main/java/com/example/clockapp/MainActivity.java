@@ -25,6 +25,8 @@ import com.example.clockapp.databinding.ActivityMainBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.concurrent.Callable;
+
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener
 {
     private static final int REQUEST_ENABLE_BT = 1;
@@ -56,11 +58,10 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         }
         else
         {
-            new MaterialAlertDialogBuilder(this)
-                    .setTitle("Kwestia Bluetooth")
-                    .setMessage("Aplikacja potrzebuje Bluetooth do poprawnego działania!")
-                    .setNeutralButton("OK", (a,b) -> {requestPermissionLauncher.launch(android.Manifest.permission.BLUETOOTH_CONNECT);}).show();
-
+            String a = "Witaj!";
+            String b = "Aplikacja potrzebuje Bluetooth do poprawnego działania!";
+            String c = "OK";
+            this.createSimpleDialog(a, b).setNeutralButton(c, (x, y) -> {requestPermissionLauncher.launch(android.Manifest.permission.BLUETOOTH_CONNECT);}).show();
         }
     }
 
@@ -70,13 +71,20 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         if(item.getItemId() == R.id.item_1)
         {
             this.changeFragments(this.devicesListFragment);
-            return true;
         }
         else
         {
             this.changeFragments(this.settingsListFragment);
-            return true;
         }
+        return true;
+    }
+
+    private MaterialAlertDialogBuilder createSimpleDialog(String dialogTitle, String dialogMessage)
+    {
+        MaterialAlertDialogBuilder tempDialog = new MaterialAlertDialogBuilder(this);
+        tempDialog.setTitle(dialogTitle);
+        tempDialog.setMessage(dialogMessage);
+        return  tempDialog;
     }
 
     private void changeFragments(Fragment fragment)
@@ -85,55 +93,30 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContent, fragment);
         fragmentTransaction.commit();
-
     }
 
     private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted ->
     {
-                if (isGranted)
-                {
-                    BluetoothManager bluetoothManager = getSystemService(BluetoothManager.class);
-                    BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-                    if (bluetoothAdapter == null)
-                    {
-                        new MaterialAlertDialogBuilder(this)
-                                .setTitle("Kwestia Bluetooth")
-                                .setMessage("Nie wykryto Bluetooth. Aplikacja potrzebuje Bluetooth do poprawnego działania!")
-                                .setNeutralButton("WYJŚCIE", (a,b) -> {this.finishAffinity();}).show();
-
-                    }
-                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                }
-                else
-                {
-                    new MaterialAlertDialogBuilder(this)
-                            .setTitle("Kwestia Bluetooth")
-                            .setMessage("Wykryto brak dostępu do Bluetooth. Aplikacja potrzebuje Bluetooth do poprawnego działania! Nadaj jej uprawnienia w ustawieniach systemowych!")
-                            .setNeutralButton("WYJŚCIE", (a,b) -> {System.exit(0);}).show();
-                }
-    });
-
-    private void getPermission(String permission)
-    {
-        if (ContextCompat.checkSelfPermission(this.getBaseContext(), permission) == PackageManager.PERMISSION_GRANTED)
+        if (isGranted)
         {
-            // You can use the API that requires the permission.
-        }
-        else if(ActivityCompat.shouldShowRequestPermissionRationale(this, permission))
-        {
-            // In an educational UI, explain to the user why your app requires this
-            // permission for a specific feature to behave as expected, and what
-            // features are disabled if it's declined. In this UI, include a
-            // "cancel" or "no thanks" button that lets the user continue
-            // using your app without granting the permission.
-
+            BluetoothManager bluetoothManager = getSystemService(BluetoothManager.class);
+            BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+            if (bluetoothAdapter == null)
+            {
+                String a = "Brak Bluetooth";
+                String b = "Nie wykryto Bluetooth na urządzeniu. Aplikacja potrzebuje Bluetooth do poprawnego działania!";
+                String c = "WYJŚCIE";
+                this.createSimpleDialog(a, b).setNeutralButton(c, (x, y) ->{System.exit(0);}).show();
+            }
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
         else
         {
-            // You can directly ask for the permission.
-            // The registered ActivityResultCallback gets the result of this request.
-            requestPermissionLauncher.launch(permission);
+            String a = "Dostep do Bluetooth";
+            String b = "Wykryto brak dostępu do Bluetooth. Aplikacja potrzebuje Bluetooth do poprawnego działania! Nadaj jej uprawnienia w ustawieniach systemowych.";
+            String c = "WYJŚCIE";
+            this.createSimpleDialog(a, b).setNeutralButton(c, (x, y) -> {System.exit(0);}).show();
         }
-    }
+    });
 }

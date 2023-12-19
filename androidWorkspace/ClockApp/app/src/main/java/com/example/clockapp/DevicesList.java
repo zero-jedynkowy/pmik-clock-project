@@ -1,5 +1,10 @@
 package com.example.clockapp;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +12,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +34,8 @@ public class DevicesList extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
 
     public DevicesList()
     {
@@ -61,10 +73,22 @@ public class DevicesList extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_devices_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_devices_list, container, false);
+
+        view.findViewById(R.id.extended_fab).setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Toast.makeText(getActivity().getBaseContext(), "Zbyszek", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return view;
+    }
+
+    public void addDevicesButtonAction()
+    {
+
     }
 }
