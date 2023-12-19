@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DevicesList">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,8 +13,20 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:fontFamily="@font/lato_bold"
-        android:padding="20dp"
-        android:textSize="30dp"
+        android:padding="30dp"
+        android:textSize="40dp"
         android:text="Urządzenia" />
+
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/extended_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:contentDescription="sss"
+            android:text="Dodaj"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            app:icon="@drawable/plus_icon"/>
 
 </RelativeLayout>
