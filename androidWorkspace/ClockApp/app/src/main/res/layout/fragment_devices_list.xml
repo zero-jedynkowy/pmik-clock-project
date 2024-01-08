@@ -6,16 +6,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DevicesList">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/lato_bold"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:text="Brak urządzeń"
+
+
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:fontFamily="@font/lato_bold"
-        android:padding="30dp"
-        android:textSize="40dp"
-        android:text="Urządzenia" />
+
+    android:padding="30dp"
+        android:textSize="40sp"
+        android:text="Urządzenia"
+
+
+        />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dividerInsetStart="16dp"
+        app:dividerInsetEnd="16dp"
+        android:layout_below="@id/title"
+        android:id="@+id/divider"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/divider"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="9dp">
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

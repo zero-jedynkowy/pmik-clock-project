@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     val activity_version = "1.8.2"
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     // Java language implementation
     implementation("androidx.activity:activity:$activity_version")

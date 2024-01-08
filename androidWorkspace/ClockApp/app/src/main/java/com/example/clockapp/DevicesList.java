@@ -1,14 +1,21 @@
 package com.example.clockapp;
 
 import static androidx.core.content.ContextCompat.getSystemService;
+import static androidx.core.content.ContextCompat.startActivities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -39,7 +48,7 @@ public class DevicesList extends Fragment
 
     public DevicesList()
     {
-        // Required empty public constructor
+
     }
 
     /**
@@ -58,6 +67,7 @@ public class DevicesList extends Fragment
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -81,14 +91,28 @@ public class DevicesList extends Fragment
         {
             public void onClick(View v)
             {
-                Toast.makeText(getActivity().getBaseContext(), "Zbyszek", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
             }
         });
+
         return view;
     }
 
-    public void addDevicesButtonAction()
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-
+        super.onViewCreated(view, savedInstanceState);
+//        RecyclerView x = getActivity().findViewById(R.id.lista);
+//        List<Item> items = new ArrayList<Item>();
+//        items.add(new Item());
+//        items.add(new Item());
+//        items.add(new Item());
+//        items.add(new Item());
+//        items.add(new Item());
+//        items.add(new Item());
+//        items.add(new Item());
+//        items.add(new Item());
+//        x.setLayoutManager(new LinearLayoutManager(view.getContext()));
+//        x.setAdapter(new DevicesListViewAdapter(view.getContext(), items));
     }
 }
