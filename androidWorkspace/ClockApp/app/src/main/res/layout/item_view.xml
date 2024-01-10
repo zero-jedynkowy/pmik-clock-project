@@ -21,16 +21,28 @@ android:layout_margin="8dp"
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nazwa"
+            android:text="Nazwa: %s"
             android:id="@+id/name"
+            android:textSize="25sp"
             android:textAppearance="?attr/textAppearanceTitleMedium"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Adres: "
+            android:text="Model: %s"
+            android:id="@+id/model"
+            android:textSize="18sp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?android:attr/textColorSecondary"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Adres: %s"
             android:id="@+id/address"
+            android:textSize="18sp"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="?android:attr/textColorSecondary"
             />

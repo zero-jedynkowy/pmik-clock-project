@@ -7,10 +7,12 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -43,7 +46,6 @@ public class DevicesList extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
 
 
     public DevicesList()
@@ -102,8 +104,42 @@ public class DevicesList extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-//        RecyclerView x = getActivity().findViewById(R.id.lista);
-//        List<Item> items = new ArrayList<Item>();
+
+        BluetoothManager bluetoothManager = getSystemService(this.getContext(), BluetoothManager.class);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        Set<BluetoothDevice> pairedDevices;
+        RecyclerView x = getActivity().findViewById(R.id.lista);
+        List<Item> items = new ArrayList<Item>();
+        if (bluetoothAdapter != null)
+        {
+            if (bluetoothAdapter.isEnabled())
+            {
+                if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+                {
+                    return;
+                }
+                pairedDevices = bluetoothAdapter.getBondedDevices();
+                if (pairedDevices.size() > 0)
+                {
+                    ((TextView) getActivity().findViewById(R.id.noDevices)).setVisibility(View.INVISIBLE);
+                    for (BluetoothDevice device : pairedDevices)
+                    {
+                        String deviceName = device.getName();
+                        if(deviceName.equals("HC-06"))
+                        {
+                            String deviceHardwareAddress = device.getAddress();
+                            items.add(new Item("NAZWA", "Clocker", deviceHardwareAddress));
+                        }
+                    }
+                    x.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                    x.setAdapter(new DevicesListViewAdapter(view.getContext(), items));
+                }
+            }
+        }
+
+
+
+
 //        items.add(new Item());
 //        items.add(new Item());
 //        items.add(new Item());
@@ -114,5 +150,40 @@ public class DevicesList extends Fragment
 //        items.add(new Item());
 //        x.setLayoutManager(new LinearLayoutManager(view.getContext()));
 //        x.setAdapter(new DevicesListViewAdapter(view.getContext(), items));
+    }
+
+    public void uwu()
+    {
+        BluetoothManager bluetoothManager = getSystemService(this.getContext(), BluetoothManager.class);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        Set<BluetoothDevice> pairedDevices;
+        RecyclerView x = getActivity().findViewById(R.id.lista);
+        List<Item> items = new ArrayList<Item>();
+        if (bluetoothAdapter != null)
+        {
+            if (bluetoothAdapter.isEnabled())
+            {
+                if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+                {
+                    return;
+                }
+                pairedDevices = bluetoothAdapter.getBondedDevices();
+                if (pairedDevices.size() > 0)
+                {
+                    ((TextView) getActivity().findViewById(R.id.noDevices)).setVisibility(View.INVISIBLE);
+                    for (BluetoothDevice device : pairedDevices)
+                    {
+                        String deviceName = device.getName();
+                        if(true) //deviceName.equals("HC-06")
+                        {
+                            String deviceHardwareAddress = device.getAddress();
+                            items.add(new Item("NAZWA", "Clocker", deviceHardwareAddress));
+                        }
+                    }
+                    x.setLayoutManager(new LinearLayoutManager(this.getView().getContext()));
+                    x.setAdapter(new DevicesListViewAdapter(this.getView().getContext(), items));
+                }
+            }
+        }
     }
 }

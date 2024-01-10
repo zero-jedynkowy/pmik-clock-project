@@ -30,8 +30,9 @@ public class DevicesListViewAdapter extends RecyclerView.Adapter<DevicesListView
     @Override
     public void onBindViewHolder(@NonNull DevicesListViewHolder holder, int position)
     {
-        holder.name.setText("Clocker V1");
-        holder.bluetoothAddress.setText("0b:21:0122:bbh");
+        holder.userName.setText(String.format(holder.userName.getText().toString(), items.get(position).getUserName()));
+        holder.modelName.setText(String.format(holder.modelName.getText().toString(), items.get(position).getModelName()));
+        holder.bluetoothAddress.setText(String.format(holder.bluetoothAddress.getText().toString(), items.get(position).getBluetoothAddress()));
     }
 
     @Override

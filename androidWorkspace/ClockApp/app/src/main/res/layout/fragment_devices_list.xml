@@ -13,6 +13,7 @@
         android:fontFamily="@font/lato_bold"
         android:layout_centerHorizontal="true"
         android:padding="30dp"
+        android:id="@+id/noDevices"
         android:text="Brak urządzeń"
 
 

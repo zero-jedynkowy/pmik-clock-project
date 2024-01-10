@@ -18,13 +18,15 @@ import java.util.Map;
 public class DevicesListViewHolder extends RecyclerView.ViewHolder
 {
     public MaterialCardView cardView;
-    public TextView name;
+    public TextView userName;
+    public TextView modelName;
     public TextView bluetoothAddress;
     public DevicesListViewHolder(@NonNull View itemView)
     {
         super(itemView);
         this.cardView = itemView.findViewById(R.id.card);
-        this.name = itemView.findViewById(R.id.name);
+        this.userName = itemView.findViewById(R.id.name);
+        this.modelName = itemView.findViewById(R.id.model);
         this.bluetoothAddress = itemView.findViewById(R.id.address);
     }
 }

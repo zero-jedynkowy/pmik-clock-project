@@ -2,28 +2,35 @@ package com.example.clockapp;
 
 public class Item
 {
-    private String name;
+    private String userName;
+    private String modelName;
     private String bluetoothAddress;
 
-    public Item(String name, String bluetoothAddress)
+    public Item(String userName, String modelName, String bluetoothAddress)
     {
-        this.name = name;
+        this.userName = userName;
+        this.modelName = modelName;
         this.bluetoothAddress = bluetoothAddress;
     }
 
-    public Item()
+    public String getUserName()
     {
-        this.name = "HC06";
-        this.bluetoothAddress = "B0:123:SDA:123";
-    }
-    public String getName()
-    {
-        return name;
+        return userName;
     }
 
-    public void setName(String name)
+    public void setUserName(String userName)
     {
-        this.name = name;
+        this.userName = userName;
+    }
+
+    public String getModelName()
+    {
+        return modelName;
+    }
+
+    public void setModelName(String modelName)
+    {
+        this.modelName = modelName;
     }
 
     public String getBluetoothAddress()
