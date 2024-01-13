@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             }
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            this.devicesListFragment.uwu();
+            this.devicesListFragment.updateList();
         }
         else
         {
@@ -119,5 +119,13 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             String c = "WYJŚCIE";
             this.createSimpleDialog(a, b).setNeutralButton(c, (x, y) -> {System.exit(0);}).show();
         }
+
     });
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        this.devicesListFragment.updateList();
+    }
 }

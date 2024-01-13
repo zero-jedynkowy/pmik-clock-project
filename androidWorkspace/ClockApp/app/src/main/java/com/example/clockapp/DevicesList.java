@@ -46,6 +46,7 @@ public class DevicesList extends Fragment
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Set<BluetoothDevice> pairedDevices;
 
 
     public DevicesList()
@@ -104,59 +105,13 @@ public class DevicesList extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-
-        BluetoothManager bluetoothManager = getSystemService(this.getContext(), BluetoothManager.class);
-        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-        Set<BluetoothDevice> pairedDevices;
-        RecyclerView x = getActivity().findViewById(R.id.lista);
-        List<Item> items = new ArrayList<Item>();
-        if (bluetoothAdapter != null)
-        {
-            if (bluetoothAdapter.isEnabled())
-            {
-                if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
-                {
-                    return;
-                }
-                pairedDevices = bluetoothAdapter.getBondedDevices();
-                if (pairedDevices.size() > 0)
-                {
-                    ((TextView) getActivity().findViewById(R.id.noDevices)).setVisibility(View.INVISIBLE);
-                    for (BluetoothDevice device : pairedDevices)
-                    {
-                        String deviceName = device.getName();
-                        if(deviceName.equals("HC-06"))
-                        {
-                            String deviceHardwareAddress = device.getAddress();
-                            items.add(new Item("NAZWA", "Clocker", deviceHardwareAddress));
-                        }
-                    }
-                    x.setLayoutManager(new LinearLayoutManager(view.getContext()));
-                    x.setAdapter(new DevicesListViewAdapter(view.getContext(), items));
-                }
-            }
-        }
-
-
-
-
-//        items.add(new Item());
-//        items.add(new Item());
-//        items.add(new Item());
-//        items.add(new Item());
-//        items.add(new Item());
-//        items.add(new Item());
-//        items.add(new Item());
-//        items.add(new Item());
-//        x.setLayoutManager(new LinearLayoutManager(view.getContext()));
-//        x.setAdapter(new DevicesListViewAdapter(view.getContext(), items));
+        this.updateList();
     }
 
-    public void uwu()
+    public void updateList()
     {
         BluetoothManager bluetoothManager = getSystemService(this.getContext(), BluetoothManager.class);
         BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-        Set<BluetoothDevice> pairedDevices;
         RecyclerView x = getActivity().findViewById(R.id.lista);
         List<Item> items = new ArrayList<Item>();
         if (bluetoothAdapter != null)
