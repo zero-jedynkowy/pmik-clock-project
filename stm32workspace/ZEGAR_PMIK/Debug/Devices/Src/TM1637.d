@@ -29,7 +29,9 @@ Devices/Src/TM1637.o: ../Devices/Src/TM1637.c \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rtc.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rtc_ex.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
- ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h
+ ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h \
+ ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h \
+ ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h
 C:/Users/xenon/Downloads/PMiK_Projekt/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/TM1637.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
@@ -62,3 +64,5 @@ C:/Users/xenon/Downloads/PMiK_Projekt/pmik_projekt_ka_jj_zegar/stm32workspace/ZE
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rtc_ex.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h:

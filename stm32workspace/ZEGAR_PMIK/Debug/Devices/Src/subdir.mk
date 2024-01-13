@@ -6,16 +6,19 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Devices/Src/Clocker.c \
+../Devices/Src/DFPLAYER_MINI.c \
 ../Devices/Src/LCD1602.c \
 ../Devices/Src/TM1637.c 
 
 OBJS += \
 ./Devices/Src/Clocker.o \
+./Devices/Src/DFPLAYER_MINI.o \
 ./Devices/Src/LCD1602.o \
 ./Devices/Src/TM1637.o 
 
 C_DEPS += \
 ./Devices/Src/Clocker.d \
+./Devices/Src/DFPLAYER_MINI.d \
 ./Devices/Src/LCD1602.d \
 ./Devices/Src/TM1637.d 
 
@@ -27,7 +30,7 @@ Devices/Src/%.o Devices/Src/%.su Devices/Src/%.cyclo: ../Devices/Src/%.c Devices
 clean: clean-Devices-2f-Src
 
 clean-Devices-2f-Src:
-	-$(RM) ./Devices/Src/Clocker.cyclo ./Devices/Src/Clocker.d ./Devices/Src/Clocker.o ./Devices/Src/Clocker.su ./Devices/Src/LCD1602.cyclo ./Devices/Src/LCD1602.d ./Devices/Src/LCD1602.o ./Devices/Src/LCD1602.su ./Devices/Src/TM1637.cyclo ./Devices/Src/TM1637.d ./Devices/Src/TM1637.o ./Devices/Src/TM1637.su
+	-$(RM) ./Devices/Src/Clocker.cyclo ./Devices/Src/Clocker.d ./Devices/Src/Clocker.o ./Devices/Src/Clocker.su ./Devices/Src/DFPLAYER_MINI.cyclo ./Devices/Src/DFPLAYER_MINI.d ./Devices/Src/DFPLAYER_MINI.o ./Devices/Src/DFPLAYER_MINI.su ./Devices/Src/LCD1602.cyclo ./Devices/Src/LCD1602.d ./Devices/Src/LCD1602.o ./Devices/Src/LCD1602.su ./Devices/Src/TM1637.cyclo ./Devices/Src/TM1637.d ./Devices/Src/TM1637.o ./Devices/Src/TM1637.su
 
 .PHONY: clean-Devices-2f-Src
 

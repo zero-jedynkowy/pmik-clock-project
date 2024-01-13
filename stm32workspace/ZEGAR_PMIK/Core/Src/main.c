@@ -27,6 +27,7 @@
 #include "TM1637.h"
 #include "LCD1602.h"
 #include "Clocker.h"
+#include "DFPLAYER_MINI.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,7 +56,10 @@ RTC_HandleTypeDef hrtc;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
+UART_HandleTypeDef huart4;
+
 /* USER CODE BEGIN PV */
+volatile uint8_t budzik = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,6 +68,7 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_RTC_Init(void);
+static void MX_USART4_UART_Init(void);
 /* USER CODE BEGIN PFP */
 struct Clocker ourClocker;
 /* USER CODE END PFP */
@@ -106,15 +111,21 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_RTC_Init();
+  MX_USART4_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  //Inicjalizacja muzyki głośność od 0-30, ustawiłem wstepnie 20 bo to było w miarę głośne, można ustawić do 15 i też będzie ok, dla 30 już nie.
+  DF_Init(20);
 
+  //Inicjalizacja Wejść do obsługi ekranu 8-segmentowego
   HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
 
+  //Inicjalizacja struktry odpowiedzialnej za czas,datę i czas alarmu
   Clocker_Init(&ourClocker, &hrtc);
   Clocker_Set_Time(&ourClocker, 22, 35, 00);
 
+  //Załączenie Timerów, z czego na ten moment tylko jeden jest z obsługą przerwania w celu aktualizacji ekranu
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_Base_Start(&htim3);
   /* USER CODE END 2 */
@@ -133,9 +144,21 @@ int main(void)
 	  lcd_clear();
 
 	  if(alarm == 1)
-	  	  {
-		  	  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
-	  	  }
+	  {
+		  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
+		  alarm = 0;
+	  }
+	  if(budzik == 1)
+	  {
+		  DF_PlayFromStart(); //Załączenie muzyki jak już budzik odmierzył swój czas.
+		  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A); //Wyłączenie budzika
+		  budzik = 0;
+	  }
+//	  if()
+//	  {
+//		  DF_Pause();          // Tutaj w warunku damy HAL_Read_Pin w celu użycia przycisku jako wyłączenie muzyki z alarmu.
+//
+//	  }
 
     /* USER CODE END WHILE */
 
@@ -366,6 +389,41 @@ static void MX_TIM3_Init(void)
 }
 
 /**
+  * @brief USART4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART4_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART4_Init 0 */
+
+  /* USER CODE END USART4_Init 0 */
+
+  /* USER CODE BEGIN USART4_Init 1 */
+
+  /* USER CODE END USART4_Init 1 */
+  huart4.Instance = USART4;
+  huart4.Init.BaudRate = 9600;
+  huart4.Init.WordLength = UART_WORDLENGTH_8B;
+  huart4.Init.StopBits = UART_STOPBITS_1;
+  huart4.Init.Parity = UART_PARITY_NONE;
+  huart4.Init.Mode = UART_MODE_TX_RX;
+  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART4_Init 2 */
+
+  /* USER CODE END USART4_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -442,6 +500,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 {
 	// Tutaj robimy aktualizację czyli dajemy flagę żeby aktywować muzyczkę.
+	budzik = 1;
 }
 /* USER CODE END 4 */
 

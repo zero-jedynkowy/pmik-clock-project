@@ -5,6 +5,7 @@
 "./Core/Src/system_stm32l0xx.o"
 "./Core/Startup/startup_stm32l073rztx.o"
 "./Devices/Src/Clocker.o"
+"./Devices/Src/DFPLAYER_MINI.o"
 "./Devices/Src/LCD1602.o"
 "./Devices/Src/TM1637.o"
 "./Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o"
@@ -25,3 +26,5 @@
 "./Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rtc_ex.o"
 "./Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.o"
 "./Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.o"
+"./Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.o"
+"./Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.o"
