@@ -13,7 +13,7 @@ public class DevicesListViewAdapter extends RecyclerView.Adapter<DevicesListView
 {
     Context context;
     List<Item> items;
-
+    private OnItemClickListener clickListener;
     public DevicesListViewAdapter(Context context, List<Item> items)
     {
         this.context = context;
@@ -24,7 +24,7 @@ public class DevicesListViewAdapter extends RecyclerView.Adapter<DevicesListView
     @Override
     public DevicesListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        return new DevicesListViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false));
+        return new DevicesListViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false), clickListener);
     }
 
     @Override
@@ -40,4 +40,9 @@ public class DevicesListViewAdapter extends RecyclerView.Adapter<DevicesListView
     {
         return this.items.size();
     }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.clickListener = listener;
+    }
+
 }

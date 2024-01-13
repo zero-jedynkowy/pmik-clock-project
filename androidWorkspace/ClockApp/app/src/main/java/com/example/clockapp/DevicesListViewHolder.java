@@ -21,12 +21,23 @@ public class DevicesListViewHolder extends RecyclerView.ViewHolder
     public TextView userName;
     public TextView modelName;
     public TextView bluetoothAddress;
-    public DevicesListViewHolder(@NonNull View itemView)
+    public DevicesListViewHolder(@NonNull View itemView, OnItemClickListener clickListener)
     {
         super(itemView);
         this.cardView = itemView.findViewById(R.id.card);
         this.userName = itemView.findViewById(R.id.name);
         this.modelName = itemView.findViewById(R.id.model);
         this.bluetoothAddress = itemView.findViewById(R.id.address);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        clickListener.onItemClick(position);
+                    }
+                }
+            }
+        });
     }
 }

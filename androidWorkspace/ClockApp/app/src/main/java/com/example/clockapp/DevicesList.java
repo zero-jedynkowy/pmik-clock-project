@@ -30,12 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DevicesList#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DevicesList extends Fragment
+interface OnItemClickListener {
+    void onItemClick(int position);
+}
+
+public class DevicesList extends Fragment implements OnItemClickListener
 {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -136,9 +135,17 @@ public class DevicesList extends Fragment
                         }
                     }
                     x.setLayoutManager(new LinearLayoutManager(this.getView().getContext()));
-                    x.setAdapter(new DevicesListViewAdapter(this.getView().getContext(), items));
+                    DevicesListViewAdapter y = new DevicesListViewAdapter(this.getView().getContext(), items);
+                    y.setOnItemClickListener(this);
+                    x.setAdapter(y);
                 }
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position)
+    {
+        System.out.println(position);
     }
 }
