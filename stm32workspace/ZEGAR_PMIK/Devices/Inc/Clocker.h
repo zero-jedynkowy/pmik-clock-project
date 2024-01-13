@@ -20,10 +20,12 @@ struct Clocker
 	char ** tableOfScreens;
 	RTC_TimeTypeDef * sTime;
 	RTC_DateTypeDef * sDate;
+	RTC_AlarmTypeDef * sAlarm;
 	RTC_HandleTypeDef * rtcHandle;
 };
 
 void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle);
 void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds);
+void Clocker_Set_Alarm(struct Clocker * myClocker, uint8_t alarmHours, uint8_t alarmMinutes);
 uint8_t Clocker_Convert_Int_to_Segment(uint8_t c);
 void Clocker_Segment_Update(struct Clocker * myClocker);

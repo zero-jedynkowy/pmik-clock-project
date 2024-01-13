@@ -15,6 +15,8 @@ void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle)
 	*myClocker->sTime = (RTC_TimeTypeDef){0};
 	myClocker->sDate = (RTC_DateTypeDef *)malloc(sizeof(RTC_DateTypeDef));
 	*myClocker->sDate = (RTC_DateTypeDef){0};
+	myClocker->sAlarm = (RTC_AlarmTypeDef *)malloc(sizeof(RTC_DateTypeDef));
+	*myClocker->sAlarm = (RTC_AlarmTypeDef){0};
 	myClocker->rtcHandle = rtcHandle;
 }
 
@@ -26,6 +28,22 @@ void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newM
 	myClocker->sTime->DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
 	myClocker->sTime->StoreOperation = RTC_STOREOPERATION_RESET;
 	HAL_RTC_SetTime(myClocker->rtcHandle, myClocker->sTime, RTC_FORMAT_BIN);
+}
+
+void Clocker_Set_Alarm(struct Clocker * myClocker, uint8_t alarmHours, uint8_t alarmMinutes)
+{
+	myClocker->sAlarm->AlarmTime.Hours = alarmHours;
+	myClocker->sAlarm->AlarmTime.Minutes = alarmMinutes;
+	myClocker->sAlarm->AlarmTime.Seconds = 0x0;
+	myClocker->sAlarm->AlarmTime.SubSeconds = 0x0;
+	myClocker->sAlarm->AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+	myClocker->sAlarm->AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
+	myClocker->sAlarm->AlarmMask = RTC_ALARMMASK_DATEWEEKDAY|RTC_ALARMMASK_SECONDS;
+	myClocker->sAlarm->AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+	myClocker->sAlarm->AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+	myClocker->sAlarm->AlarmDateWeekDay = 0x1;
+	myClocker->sAlarm->Alarm = RTC_ALARM_A;
+	HAL_RTC_SetAlarm(myClocker->rtcHandle, myClocker->sAlarm, RTC_FORMAT_BCD);
 }
 
 void Clocker_Segment_Update(struct Clocker * myClocker)

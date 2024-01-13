@@ -1,5 +1,5 @@
 Devices/Src/LCD1602.o: ../Devices/Src/LCD1602.c \
- /home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/LCD1602.h \
+ C:/Users/xenon/Downloads/PMiK_Projekt/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/LCD1602.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
@@ -31,7 +31,7 @@ Devices/Src/LCD1602.o: ../Devices/Src/LCD1602.c \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h \
  ../Core/Inc/main.h
-/home/zero-jedynkowy/Pulpit/PMIK/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/LCD1602.h:
+C:/Users/xenon/Downloads/PMiK_Projekt/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/LCD1602.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 ../Core/Inc/stm32l0xx_hal_conf.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h:

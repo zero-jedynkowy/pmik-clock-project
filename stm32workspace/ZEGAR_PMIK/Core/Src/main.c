@@ -122,19 +122,22 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   lcd_init ();
-    lcd_clear();
-    char * ada = "ssss";
-
+  lcd_clear();
+  char * ada = "ssss";
+  uint8_t alarm = 0; //Tymczasowa wartość
   while (1)
   {
-
-    /* USER CODE END WHILE */
-
 	  lcd_put_cur(0, 0);
 	  lcd_send_string(ada);
 	  HAL_Delay(3000);
 	  lcd_clear();
 
+	  if(alarm == 1)
+	  	  {
+		  	  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
+	  	  }
+
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -203,6 +206,7 @@ static void MX_RTC_Init(void)
 
   RTC_TimeTypeDef sTime = {0};
   RTC_DateTypeDef sDate = {0};
+  RTC_AlarmTypeDef sAlarm = {0};
 
   /* USER CODE BEGIN RTC_Init 1 */
 
@@ -247,8 +251,26 @@ static void MX_RTC_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN RTC_Init 2 */
 
+  /** Enable the Alarm A
+  */
+  sAlarm.AlarmTime.Hours = 0x0;
+  sAlarm.AlarmTime.Minutes = 0x0;
+  sAlarm.AlarmTime.Seconds = 0x0;
+  sAlarm.AlarmTime.SubSeconds = 0x0;
+  sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
+  sAlarm.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY|RTC_ALARMMASK_SECONDS;
+  sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+  sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+  sAlarm.AlarmDateWeekDay = 0x1;
+  sAlarm.Alarm = RTC_ALARM_A;
+  if (HAL_RTC_SetAlarm(&hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN RTC_Init 2 */
+  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A);
   /* USER CODE END RTC_Init 2 */
 
 }
@@ -415,6 +437,11 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim == &htim2) Clocker_Segment_Update(&ourClocker);
+}
+
+void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
+{
+	// Tutaj robimy aktualizację czyli dajemy flagę żeby aktywować muzyczkę.
 }
 /* USER CODE END 4 */
 

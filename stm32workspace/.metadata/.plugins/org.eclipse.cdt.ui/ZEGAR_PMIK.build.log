@@ -1,10 +1,18 @@
-02:43:11 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
+23:19:06 **** Incremental Build of configuration Debug for project ZEGAR_PMIK ****
 make -j12 all 
+arm-none-eabi-gcc "../Devices/Src/Clocker.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/xenon/Downloads/PMiK_Projekt/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Devices/Src/Clocker.d" -MT"Devices/Src/Clocker.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Devices/Src/Clocker.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/xenon/Downloads/PMiK_Projekt/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ZEGAR_PMIK.elf" @"objects.list"  -lrdimon -mcpu=cortex-m0plus -T"C:\Users\xenon\Downloads\PMiK_Projekt\pmik_projekt_ka_jj_zegar\stm32workspace\ZEGAR_PMIK\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ZEGAR_PMIK.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ZEGAR_PMIK.elf
+ 
 arm-none-eabi-size   ZEGAR_PMIK.elf 
+arm-none-eabi-objdump -h -S  ZEGAR_PMIK.elf  > "ZEGAR_PMIK.list"
    text	   data	    bss	    dec	    hex	filename
-  17616	    120	   2264	  20000	   4e20	ZEGAR_PMIK.elf
+  18928	    120	   2264	  21312	   5340	ZEGAR_PMIK.elf
 Finished building: default.size.stdout
  
+Finished building: ZEGAR_PMIK.list
+ 
 
-02:43:12 Build Finished. 0 errors, 0 warnings. (took 443ms)
+23:19:07 Build Finished. 0 errors, 0 warnings. (took 706ms)
 

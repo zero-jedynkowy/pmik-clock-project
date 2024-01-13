@@ -1,0 +1,30 @@
+/*
+ * Clocker.h
+ *
+ *  Created on: Dec 18, 2023
+ *      Author: zero-jedynkowy
+ */
+#include <stdint.h>
+#include "TM1637.h"
+#include "stm32l0xx_hal_rtc.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SCREENS 10
+
+struct Clocker
+{
+	uint8_t numberOfScreens;
+	uint8_t currentScreen;
+	uint8_t screenTimeChanging; //in seconds
+	char ** tableOfScreens;
+	RTC_TimeTypeDef * sTime;
+	RTC_DateTypeDef * sDate;
+	RTC_DateTypeDef * sAlarm;
+	RTC_HandleTypeDef * rtcHandle;
+};
+
+void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle);
+void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds);
+uint8_t Clocker_Convert_Int_to_Segment(uint8_t c);
+void Clocker_Segment_Update(struct Clocker * myClocker);
