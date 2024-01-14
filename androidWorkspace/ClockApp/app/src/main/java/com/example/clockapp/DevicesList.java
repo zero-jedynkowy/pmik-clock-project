@@ -146,6 +146,6 @@ public class DevicesList extends Fragment implements OnItemClickListener
     @Override
     public void onItemClick(int position)
     {
-        System.out.println(position);
+        startActivity(new Intent(this.getContext(), DeviceActivity.class));
     }
 }
