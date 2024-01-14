@@ -133,7 +133,7 @@
                 android:paddingRight="0dp"
                 android:textSize="18dp"
                 android:layout_height="match_parent"
-                android:text="Pobieraj date i czas poprzez W-FI"/>
+                android:text="Pobieraj date i czas poprzez WI-FI"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/datePicker"
@@ -142,6 +142,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="20dp"
+
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
@@ -152,7 +153,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/datePicker2"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -175,7 +179,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/timePicker2"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -226,7 +233,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/alarmDatePicker2"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -248,7 +258,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/alarmTimePicker2"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
