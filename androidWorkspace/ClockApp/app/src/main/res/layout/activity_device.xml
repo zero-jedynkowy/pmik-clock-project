@@ -15,85 +15,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/deviceTitle"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:fontFamily="@font/lato_bold"
+                    android:padding="30dp"
+                    android:ellipsize="none"
+                    android:textSize="40sp"
+                    android:text="Placeholder" />
+
+
+            </HorizontalScrollView>
+
+            <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
+                app:dividerInsetStart="16dp"
+                app:dividerInsetEnd="16dp"
+                android:layout_below="@id/title"
+                android:id="@+id/divider"
+                />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_bold"
-                android:padding="20dp"
-                android:text="Nazwa:"
-                android:textSize="40sp" />
 
         </LinearLayout>
 
