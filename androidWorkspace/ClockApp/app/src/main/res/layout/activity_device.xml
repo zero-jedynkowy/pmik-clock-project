@@ -28,7 +28,7 @@
                     android:fontFamily="@font/lato_bold"
                     android:padding="30dp"
                     android:ellipsize="none"
-                    android:textSize="40sp"
+                    android:textSize="50sp"
                     android:text="Placeholder" />
 
 
@@ -40,12 +40,215 @@
                 app:dividerInsetStart="16dp"
                 app:dividerInsetEnd="16dp"
                 android:layout_below="@id/title"
-                android:id="@+id/divider"
-                />
+                android:id="@+id/divider" />
 
 
+            <TextView
+            android:fontFamily="@font/lato_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="WI-FI" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/wifiSSID"
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+
+                android:layout_height="wrap_content"
+                android:hint="SSID/Nazwa sieci">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/wifiPassword"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                app:endIconMode="password_toggle"
+                android:layout_height="wrap_content"
+                android:hint="Hasło do sieci">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:fontFamily="@font/lato_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="DATA I CZAS" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:textSize="18dp"
+                android:layout_height="match_parent"
+                android:text="Pobieraj date i czas poprzez W-FI"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Data">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Czas">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:fontFamily="@font/lato_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="ALARM" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:textSize="18dp"
+                android:layout_height="match_parent"
+                android:text="Włącz alarm"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/alarmDatePicker"
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Data">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/alarmTimePicker"
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Czas">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
+
 
     </ScrollView>
 
