@@ -65,6 +65,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
+                app:startIconDrawable="@drawable/entry_icon"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:paddingLeft="30dp"
@@ -90,6 +91,7 @@
                 android:layout_marginRight="0dp"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/lock_icon"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 app:endIconMode="password_toggle"
@@ -145,6 +147,7 @@
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/calendar_icon"
                 android:hint="Data">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -156,6 +159,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/timePicker"
+                app:startIconDrawable="@drawable/clock_icon"
                 android:layout_width="match_parent"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="20dp"
@@ -163,6 +167,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
+
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:layout_height="wrap_content"
@@ -216,6 +221,7 @@
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/calendar2_icon"
                 android:hint="Data">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -234,6 +240,7 @@
                 android:layout_marginRight="20dp"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/alarm_icon"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:layout_height="wrap_content"
