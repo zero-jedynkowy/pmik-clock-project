@@ -1,10 +1,15 @@
 package com.example.clockapp;
+
 import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -17,10 +22,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class DeviceActivity extends AppCompatActivity
 {
@@ -72,7 +80,7 @@ public class DeviceActivity extends AppCompatActivity
         {
             public void onClick(View v)
             {
-                sendData();
+                sendData("abcdxx\r\n");
             }
         });
     }
@@ -119,9 +127,42 @@ public class DeviceActivity extends AppCompatActivity
         });
     }
 
-    void sendData()
+    boolean sendData(String dataToSend)
     {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+        BluetoothSocket bluetoothSocket = null;
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+        {
+            return false;
+        }
+        try
+        {
+            bluetoothSocket = this.device.createRfcommSocketToServiceRecord(uuid);
+            bluetoothSocket.connect();
+        } catch (Exception x)
+        {
+            return false;
+        }
 
+
+        if (bluetoothSocket != null)
+        {
+            try
+            {
+                OutputStream outputStream = bluetoothSocket.getOutputStream();
+                byte[] bytes = dataToSend.getBytes();
+                outputStream.write(bytes);
+                bluetoothSocket.close();
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        } else
+        {
+            return false;
+        }
+        return true;
     }
 }
 
