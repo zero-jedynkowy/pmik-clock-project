@@ -65,6 +65,92 @@ public class DeviceActivity extends AppCompatActivity
     TextInputEditText textAlarmTime;
     Map<String, MaterialSwitch> listOfSwitches;
 
+    public String createData()
+    {
+        String a = "WIFI";
+        String b = "DATE";
+        String c = "ALAR";
+        String d = "WEAT";
+
+        boolean wifi = this.listOfSwitches.get("wifiSwitcher").isChecked();
+        boolean dateTime = this.listOfSwitches.get("dateTimeSwitcher").isChecked();
+        boolean alarm = this.listOfSwitches.get("dateTimeSwitcher").isChecked();
+        boolean weather = this.listOfSwitches.get("weatherSwitcher").isChecked();
+
+        if(wifi)
+        {
+            a += "__ONN__";
+            a += ((TextInputEditText)findViewById(R.id.wifiSSID2)).getText().toString();
+            a += "__";
+            a += ((TextInputEditText)findViewById(R.id.wifiPassword2)).getText().toString();
+        }
+        else
+        {
+            a += "__OFF__";
+        }
+        if(wifi && dateTime)
+        {
+            b += "__ONN__";
+            b += "TIME";
+            b += "__ONN__";
+        }
+        else
+        {
+            b += "__OFF__";
+            String temp = ((TextInputEditText)findViewById(R.id.datePicker2)).getText().toString();
+            String x[] = temp.split("/");
+            for(int i=0; i<x.length; i++)
+            {
+                b += x[i];
+                b += "__";
+            }
+            b += "TIME";
+            b += "__OFF__";
+            temp = ((TextInputEditText)findViewById(R.id.timePicker2)).getText().toString();
+            x = temp.split(":");
+            for(int i=0; i<x.length; i++)
+            {
+                b += x[i];
+                b += "__";
+            }
+        }
+        if(alarm)
+        {
+            c += "__ONN__";
+            String temp = ((TextInputEditText)findViewById(R.id.alarmDatePicker2)).getText().toString();
+            String x[] = temp.split("/");
+            for(int i=0; i<x.length; i++)
+            {
+                c += x[i];
+                c += "__";
+            }
+            temp = ((TextInputEditText)findViewById(R.id.alarmTimePicker2)).getText().toString();
+            x = temp.split(":");
+            for(int i=0; i<x.length; i++)
+            {
+                b += x[i];
+                b += "__";
+            }
+        }
+        else
+        {
+            c += "__OFF__";
+        }
+        if(weather && wifi)
+        {
+            d += "__ON__";
+            d += ((TextInputEditText)findViewById(R.id.weatherCityPicker2)).getText().toString();
+        }
+        else
+        {
+            d += "__OFF__";
+        }
+        a += generatePlaceholder(50 - a.length(), "_");
+        b += generatePlaceholder(50 - b.length(), "_");
+        c += generatePlaceholder(50 - c.length(), "_");
+        d += generatePlaceholder(50 - d.length(), "_");
+        return  a + "\n" + b + "\n" + c + "\n" + d + "\n";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -101,7 +187,9 @@ public class DeviceActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(true);
-                BluetoothThread y = new BluetoothThread(DeviceActivity.this.device, "aaaa");
+                String temp = DeviceActivity.this.createData();
+                System.out.println(temp.length());
+                BluetoothThread y = new BluetoothThread(DeviceActivity.this.device, temp);
                 y.start();
 
 
@@ -244,6 +332,18 @@ public class DeviceActivity extends AppCompatActivity
                 materialTimePicker.show(getSupportFragmentManager(), "TIME_PICKER_TAG");
             }
         });
+    }
+
+
+
+    String generatePlaceholder(int len, String holder)
+    {
+        String x = "";
+        for(int i=0; i<len; i++)
+        {
+            x += holder;
+        }
+        return x;
     }
 
     class BluetoothThread extends Thread
