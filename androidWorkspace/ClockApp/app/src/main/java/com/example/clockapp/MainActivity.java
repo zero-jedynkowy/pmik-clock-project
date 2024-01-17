@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         return true;
     }
 
-    private MaterialAlertDialogBuilder createSimpleDialog(String dialogTitle, String dialogMessage)
+    public MaterialAlertDialogBuilder createSimpleDialog(String dialogTitle, String dialogMessage)
     {
         MaterialAlertDialogBuilder tempDialog = new MaterialAlertDialogBuilder(this);
         tempDialog.setTitle(dialogTitle);

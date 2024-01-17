@@ -4,10 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/deviceRelAct"
     tools:context=".DeviceActivity">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:id="@+id/ale"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/deviceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:ellipsize="none"
+            android:fontFamily="@font/lato_bold"
+            android:maxLines="1"
+            android:padding="30dp"
+            android:text="Placeholder"
+            android:textSize="50sp" />
+
+    </HorizontalScrollView>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ale"
+        android:id="@+id/loading"
+        android:indeterminate="false" />
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_below="@id/loading"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -15,69 +43,61 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/deviceTitle"
-                    android:layout_width="match_parent"
-                    android:maxLines="1"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:fontFamily="@font/lato_bold"
-                    android:padding="30dp"
-                    android:ellipsize="none"
-                    android:textSize="50sp"
-                    android:text="Placeholder" />
 
 
-            </HorizontalScrollView>
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerInsetStart="16dp"
-                app:dividerInsetEnd="16dp"
-                android:layout_below="@id/title"
-                android:id="@+id/divider" />
 
 
             <TextView
-            android:fontFamily="@font/lato_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:text="WI-FI" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato_bold"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="WI-FI"
+                android:textSize="25dp" />
+
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/wifiSwitcher"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="Włącz WI-FI"
+                android:textSize="18dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/wifiSSID"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                app:startIconDrawable="@drawable/entry_icon"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-
                 android:layout_height="wrap_content"
-                android:hint="SSID/Nazwa sieci">
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
+                android:enabled="false"
+                android:hint="SSID/Nazwa sieci"
+                android:paddingLeft="30dp"
+                android:paddingTop="0dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/entry_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,189 +105,248 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/wifiPassword"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                app:startIconDrawable="@drawable/lock_icon"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                app:endIconMode="password_toggle"
                 android:layout_height="wrap_content"
-                android:hint="Hasło do sieci">
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
+                android:enabled="false"
+                android:hint="Hasło do sieci"
+                android:paddingLeft="30dp"
+                android:paddingTop="0dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="0dp"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/lock_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:fontFamily="@font/lato_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato_bold"
                 android:paddingLeft="0dp"
+                android:paddingTop="0dp"
                 android:paddingRight="0dp"
-                android:text="DATA I CZAS" />
+                android:paddingBottom="0dp"
+                android:text="DATA I CZAS"
+                android:textSize="25dp" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/dataTimeSwitcher"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:textSize="18dp"
                 android:layout_height="match_parent"
-                android:text="Pobieraj date i czas poprzez WI-FI"/>
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:enabled="false"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="Pobieraj date i czas poprzez WI-FI"
+                android:textSize="18dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/datePicker"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginRight="20dp"
 
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Data"
                 android:paddingLeft="0dp"
+                android:paddingTop="0dp"
                 android:paddingRight="0dp"
-                android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/calendar_icon"
-                android:hint="Data">
+                android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/calendar_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
                     android:id="@+id/datePicker2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/timePicker"
-                app:startIconDrawable="@drawable/clock_icon"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Czas">
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Czas"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/clock_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
                     android:id="@+id/timePicker2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:fontFamily="@font/lato_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato_bold"
                 android:paddingLeft="0dp"
+                android:paddingTop="0dp"
                 android:paddingRight="0dp"
-                android:text="ALARM" />
+                android:paddingBottom="0dp"
+                android:text="ALARM"
+                android:textSize="25dp" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/alarmSwitcher"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:textSize="18dp"
                 android:layout_height="match_parent"
-                android:text="Włącz alarm"/>
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="Włącz alarm"
+                android:textSize="18dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/alarmDatePicker"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
                 android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/calendar2_icon"
-                android:hint="Data">
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:enabled="false"
+                android:hint="Data"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/calendar2_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
                     android:id="@+id/alarmDatePicker2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:focusable="false"
-                    />
+                    android:enabled="false"
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/alarmTimePicker"
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                app:startIconDrawable="@drawable/alarm_icon"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Czas">
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:enabled="false"
+                android:hint="Czas"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/alarm_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
                     android:id="@+id/alarmTimePicker2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato_bold"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="POGODA"
+                android:textSize="25dp" />
 
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/weatherSwitcher"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:enabled="false"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="Włącz pobieranie pogody z internetu"
+                android:textSize="18dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weatherCityPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:enabled="false"
+                android:hint="Wpisz miasto"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                app:startIconDrawable="@drawable/weather_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weatherCityPicker2"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
 
 
     </ScrollView>
@@ -284,6 +363,7 @@
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/extended_fab"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="bottom|end"

@@ -92,7 +92,7 @@ public class DevicesList extends Fragment implements OnItemClickListener
                     for (BluetoothDevice device : pairedDevices)
                     {
                         String deviceName = device.getName();
-                        if(true) //deviceName.equals("HC-06")
+                        if(deviceName.equals("HC-06")) //deviceName.equals("HC-06")
                         {
                             String deviceHardwareAddress = device.getAddress();
                             items.add(new Item("NAZWA", "Clocker", deviceHardwareAddress));
