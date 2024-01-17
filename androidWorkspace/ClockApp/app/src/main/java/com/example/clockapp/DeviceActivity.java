@@ -12,6 +12,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -100,33 +101,39 @@ public class DeviceActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(true);
-                if(!sendData("abcdxx\r\n"))
-                {
-                    MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
-                    x.setTitle("Wysłanie danych nie powiodło się!");
-                    x.setMessage("Sprawdz czy urządzenie jest w zasięgu telefonu.");
-                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            dialog.dismiss();
-                        }
-                    });;
-                    x.show();
-                }
-                else
-                {
-                    MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
-                    x.setMessage("Przesłano dane do urządzenia!");
-                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            dialog.dismiss();
-                        }
-                    });;
-                    x.show();
-                }
+                BluetoothThread y = new BluetoothThread(DeviceActivity.this.device, "aaaa");
+                y.start();
+
+
+
+
+//                if(!sendData("abcdxx\r\n"))
+//                {
+//                    MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
+//                    x.setTitle("Wysłanie danych nie powiodło się!");
+//                    x.setMessage("Sprawdz czy urządzenie jest w zasięgu telefonu.");
+//                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which)
+//                        {
+//                            dialog.dismiss();
+//                        }
+//                    });;
+//                    x.show();
+//                }
+//                else
+//                {
+//                    MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
+//                    x.setMessage("Przesłano dane do urządzenia!");
+//                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which)
+//                        {
+//                            dialog.dismiss();
+//                        }
+//                    });;
+//                    x.show();
+//                }
             }
 
         });
@@ -237,6 +244,116 @@ public class DeviceActivity extends AppCompatActivity
                 materialTimePicker.show(getSupportFragmentManager(), "TIME_PICKER_TAG");
             }
         });
+    }
+
+    class BluetoothThread extends Thread
+    {
+        private BluetoothDevice device;
+        private String name;
+
+        public BluetoothThread(BluetoothDevice device, String name)
+        {
+            super();
+            this.device = device;
+            this.name = name;
+        }
+
+        @Override
+        public void run()
+        {
+            super.run();
+            boolean z = false;
+            try
+            {
+                z = this.sendData(this.name);
+            }
+            catch(Exception y)
+            {
+                z = false;
+            }
+            if(!z)
+            {
+                MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
+                    x.setTitle("Wysłanie danych nie powiodło się!");
+                    x.setMessage("Sprawdz czy urządzenie jest w zasięgu telefonu.");
+                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.dismiss();
+                        }
+                    });
+                    runOnUiThread(()->{
+                        ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(false);
+                        x.show();
+                    });
+            }
+            else
+            {
+                MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
+                    x.setMessage("Przesłano dane do urządzenia!");
+                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.dismiss();
+                        }
+                    });;
+                runOnUiThread(()->{
+                    ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(false);
+                    x.show();
+                });
+            }
+        }
+
+
+        boolean sendData(String dataToSend)
+        {
+            ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(true);
+            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+            BluetoothSocket bluetoothSocket = null;
+            if (ActivityCompat.checkSelfPermission(DeviceActivity.this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+            {
+                return false;
+            }
+            try
+            {
+                bluetoothSocket = this.device.createRfcommSocketToServiceRecord(uuid);
+                bluetoothSocket.connect();
+            }
+            catch (Exception x)
+            {
+                try
+                {
+                    bluetoothSocket.close();
+                }
+                catch (IOException e)
+                {
+                    return false;
+                }
+                return false;
+            }
+
+
+            if (bluetoothSocket != null)
+            {
+                try
+                {
+                    OutputStream outputStream = bluetoothSocket.getOutputStream();
+                    byte[] bytes = dataToSend.getBytes();
+                    outputStream.write(bytes);
+                    bluetoothSocket.close();
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            } else
+            {
+                return false;
+            }
+            return true;
+        }
     }
 
     boolean sendData(String dataToSend)
