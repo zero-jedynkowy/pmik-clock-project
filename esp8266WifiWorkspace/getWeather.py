@@ -1,7 +1,8 @@
 import requests
 
-def getWeather(apiKey, lat, lon):
-    apiQuestionTemplate = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={apiKey}"
+def getWeather(apiKey, city):
+    apiQuestionTemplate = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}"
+    print(apiQuestionTemplate)
     try:
         response = requests.get(apiQuestionTemplate)
         response.raise_for_status()  # Raise an exception for bad responses (4xx or 5xx)
@@ -13,8 +14,7 @@ def getWeather(apiKey, lat, lon):
     
 
 myData = ["2085dd69af79e62bdb50e4448b053eef",
-        "40.7128",
-         "-74.0060"]
+        "Warszawa"]
 
 
 if __name__ == "__main__":
