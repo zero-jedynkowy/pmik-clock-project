@@ -6,11 +6,30 @@
  */
 #include "Clocker.h"
 
-void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle)
+void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_HandleTypeDef * timSegment, TIM_HandleTypeDef * timScreen)
 {
+	DF_Init(20);
+	HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
 	myClocker->maxScreen = 9;
 	myClocker->currentScreen = 0;
 	myClocker->screenTimeChanging = 5; //in seconds
+	Clocker_Set_Screens(myClocker);
+	myClocker->sTime = (RTC_TimeTypeDef *)malloc(sizeof(RTC_TimeTypeDef));
+	*myClocker->sTime = (RTC_TimeTypeDef){0};
+	myClocker->sDate = (RTC_DateTypeDef *)malloc(sizeof(RTC_DateTypeDef));
+	*myClocker->sDate = (RTC_DateTypeDef){0};
+	myClocker->sAlarm = (RTC_AlarmTypeDef *)malloc(sizeof(RTC_DateTypeDef));
+	*myClocker->sAlarm = (RTC_AlarmTypeDef){0};
+	myClocker->rtcHandle = rtcHandle;
+	HAL_TIM_Base_Start_IT(timSegment);
+	HAL_TIM_Base_Start(timScreen);
+	lcd_init();
+	lcd_clear();
+}
+
+void Clocker_Set_Screens(Clocker * myClocker)
+{
 	strcpy(myClocker->tableOfScreens[0][0], "WEATHER");
 	strcpy(myClocker->tableOfScreens[0][1], "%s");
 	strcpy(myClocker->tableOfScreens[1][0], "TEMPERATURE");
@@ -31,16 +50,9 @@ void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle)
 	strcpy(myClocker->tableOfScreens[8][1], "%d:%d");
 	strcpy(myClocker->tableOfScreens[9][0], "CITY");
 	strcpy(myClocker->tableOfScreens[9][1], "%s");
-	myClocker->sTime = (RTC_TimeTypeDef *)malloc(sizeof(RTC_TimeTypeDef));
-	*myClocker->sTime = (RTC_TimeTypeDef){0};
-	myClocker->sDate = (RTC_DateTypeDef *)malloc(sizeof(RTC_DateTypeDef));
-	*myClocker->sDate = (RTC_DateTypeDef){0};
-	myClocker->sAlarm = (RTC_AlarmTypeDef *)malloc(sizeof(RTC_DateTypeDef));
-	*myClocker->sAlarm = (RTC_AlarmTypeDef){0};
-	myClocker->rtcHandle = rtcHandle;
 }
 
-void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds)
+void Clocker_Set_Time(Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds)
 {
 	myClocker->sTime->Hours = newHours;
 	myClocker->sTime->Minutes = newMinutes;
@@ -50,7 +62,7 @@ void Clocker_Set_Time(struct Clocker * myClocker, uint8_t newHours, uint8_t newM
 	HAL_RTC_SetTime(myClocker->rtcHandle, myClocker->sTime, RTC_FORMAT_BIN);
 }
 
-void Clocker_Set_Alarm(struct Clocker * myClocker, uint8_t alarmHours, uint8_t alarmMinutes)
+void Clocker_Set_Alarm(Clocker * myClocker, uint8_t alarmHours, uint8_t alarmMinutes)
 {
 	myClocker->sAlarm->AlarmTime.Hours = alarmHours;
 	myClocker->sAlarm->AlarmTime.Minutes = alarmMinutes;
@@ -66,7 +78,7 @@ void Clocker_Set_Alarm(struct Clocker * myClocker, uint8_t alarmHours, uint8_t a
 	HAL_RTC_SetAlarm(myClocker->rtcHandle, myClocker->sAlarm, RTC_FORMAT_BCD);
 }
 
-void Clocker_Segment_Update(struct Clocker * myClocker)
+void Clocker_Segment_Update(Clocker * myClocker)
 {
 	uint8_t tempTime[4] = {0};
 	HAL_RTC_GetTime(myClocker->rtcHandle, myClocker->sTime, RTC_FORMAT_BIN);
@@ -76,6 +88,25 @@ void Clocker_Segment_Update(struct Clocker * myClocker)
 	tempTime[2] = Clocker_Convert_Int_to_Segment((myClocker->sTime->Minutes)/10);
 	tempTime[3] = Clocker_Convert_Int_to_Segment((myClocker->sTime->Minutes)%10);
 	tm1637_DisplayHandle(7, tempTime);
+}
+
+void Clocker_Change_Screen(Clocker * myClocker)
+{
+	myClocker->currentScreen++;
+	if(myClocker->currentScreen >= 10)
+	{
+		myClocker->currentScreen = 0;
+	}
+	lcd_clear();
+	lcd_put_cur(0, 0);
+	lcd_send_string(myClocker->tableOfScreens[myClocker->currentScreen][0]);
+	lcd_put_cur(1, 0);
+	lcd_send_string(myClocker->tableOfScreens[myClocker->currentScreen][1]);
+}
+
+void Clocker_Change_Time(Clocker * myClocker, HAL_TIM_StateTypeDef * myTimer)
+{
+	//tutaj rób
 }
 
 uint8_t Clocker_Convert_Int_to_Segment(uint8_t c)

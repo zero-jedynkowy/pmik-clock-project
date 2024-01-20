@@ -1,5 +1,8 @@
 ../Devices/Src/Clocker.c:9:6:Clocker_Init	1
-../Devices/Src/Clocker.c:43:6:Clocker_Set_Time	1
-../Devices/Src/Clocker.c:53:6:Clocker_Set_Alarm	1
-../Devices/Src/Clocker.c:69:6:Clocker_Segment_Update	1
-../Devices/Src/Clocker.c:81:9:Clocker_Convert_Int_to_Segment	11
+../Devices/Src/Clocker.c:31:6:Clocker_Set_Screens	1
+../Devices/Src/Clocker.c:55:6:Clocker_Set_Time	1
+../Devices/Src/Clocker.c:65:6:Clocker_Set_Alarm	1
+../Devices/Src/Clocker.c:81:6:Clocker_Segment_Update	1
+../Devices/Src/Clocker.c:93:6:Clocker_Change_Screen	2
+../Devices/Src/Clocker.c:107:6:Clocker_Change_Time	1
+../Devices/Src/Clocker.c:112:9:Clocker_Convert_Int_to_Segment	11

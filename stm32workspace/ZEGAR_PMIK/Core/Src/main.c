@@ -70,7 +70,7 @@ static void MX_TIM3_Init(void);
 static void MX_RTC_Init(void);
 static void MX_USART4_UART_Init(void);
 /* USER CODE BEGIN PFP */
-struct Clocker ourClocker;
+Clocker ourClocker;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -113,55 +113,33 @@ int main(void)
   MX_RTC_Init();
   MX_USART4_UART_Init();
   /* USER CODE BEGIN 2 */
+  Clocker_Init(&ourClocker, &hrtc, &htim2, &htim3);
+  Clocker_Set_Time(&ourClocker, 21, 37, 00);
 
-  //Inicjalizacja muzyki głośność od 0-30, ustawiłem wstepnie 20 bo to było w miarę głośne, można ustawić do 15 i też będzie ok, dla 30 już nie.
-  DF_Init(20);
 
-  //Inicjalizacja Wejść do obsługi ekranu 8-segmentowego
-  HAL_GPIO_WritePin(SCLK_GPIO_Port, SCLK_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
-
-  //Inicjalizacja struktry odpowiedzialnej za czas,datę i czas alarmu
-  Clocker_Init(&ourClocker, &hrtc);
-  Clocker_Set_Time(&ourClocker, 22, 35, 00);
-
-  //Załączenie Timerów, z czego na ten moment tylko jeden jest z obsługą przerwania w celu aktualizacji ekranu
-  HAL_TIM_Base_Start_IT(&htim2);
-  HAL_TIM_Base_Start(&htim3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  lcd_init ();
-  lcd_clear();
-  char * ada = "ssss";
+
   uint8_t alarm = 0; //Tymczasowa wartość
-  uint8_t counter = 0;
   while (1)
   {
-	  if(counter >= 10)
-	  {
-		  counter = 0;
-	  }
-	  lcd_put_cur(0, 0);
-	  lcd_send_string(ourClocker.tableOfScreens[counter][0]);
-	  lcd_put_cur(1, 0);
-	  lcd_send_string(ourClocker.tableOfScreens[counter][1]);
+	  Clocker_Change_Screen(&ourClocker);
 	  HAL_Delay(2000);
-	  lcd_clear();
-	  counter++;
 
-	  if(alarm == 1)
-	  {
-		  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
-		  alarm = 0;
-	  }
-	  if(budzik == 1)
-	  {
-		  DF_PlayFromStart(); //Załączenie muzyki jak już budzik odmierzył swój czas.
-		  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A); //Wyłączenie budzika
-		  budzik = 0;
-	  }
+
+//	  if(alarm == 1)
+//	  {
+//		  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
+//		  alarm = 0;
+//	  }
+//	  if(budzik == 1)
+//	  {
+//		  DF_PlayFromStart(); //Załączenie muzyki jak już budzik odmierzył swój czas.
+//		  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A); //Wyłączenie budzika
+//		  budzik = 0;
+//	  }
 //	  if()
 //	  {
 //		  DF_Pause();          // Tutaj w warunku damy HAL_Read_Pin w celu użycia przycisku jako wyłączenie muzyki z alarmu.
