@@ -14,10 +14,10 @@
 
 struct Clocker
 {
-	uint8_t numberOfScreens;
+	uint8_t maxScreen;
 	uint8_t currentScreen;
 	uint8_t screenTimeChanging; //in seconds
-	char ** tableOfScreens;
+	char tableOfScreens[10][2][16];
 	RTC_TimeTypeDef * sTime;
 	RTC_DateTypeDef * sDate;
 	RTC_AlarmTypeDef * sAlarm;

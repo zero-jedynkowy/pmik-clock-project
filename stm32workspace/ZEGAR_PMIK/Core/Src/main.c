@@ -136,12 +136,20 @@ int main(void)
   lcd_clear();
   char * ada = "ssss";
   uint8_t alarm = 0; //Tymczasowa wartość
+  uint8_t counter = 0;
   while (1)
   {
+	  if(counter >= 10)
+	  {
+		  counter = 0;
+	  }
 	  lcd_put_cur(0, 0);
-	  lcd_send_string(ada);
-	  HAL_Delay(3000);
+	  lcd_send_string(ourClocker.tableOfScreens[counter][0]);
+	  lcd_put_cur(1, 0);
+	  lcd_send_string(ourClocker.tableOfScreens[counter][1]);
+	  HAL_Delay(2000);
 	  lcd_clear();
+	  counter++;
 
 	  if(alarm == 1)
 	  {

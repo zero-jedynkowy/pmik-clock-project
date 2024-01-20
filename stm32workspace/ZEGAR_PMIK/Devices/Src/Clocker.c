@@ -8,9 +8,29 @@
 
 void Clocker_Init(struct Clocker * myClocker, RTC_HandleTypeDef * rtcHandle)
 {
-	myClocker->numberOfScreens = 5;
-	myClocker->currentScreen = 1;
-	myClocker->screenTimeChanging = 5;
+	myClocker->maxScreen = 9;
+	myClocker->currentScreen = 0;
+	myClocker->screenTimeChanging = 5; //in seconds
+	strcpy(myClocker->tableOfScreens[0][0], "WEATHER");
+	strcpy(myClocker->tableOfScreens[0][1], "%s");
+	strcpy(myClocker->tableOfScreens[1][0], "TEMPERATURE");
+	strcpy(myClocker->tableOfScreens[1][1], "%.1f st. C");
+	strcpy(myClocker->tableOfScreens[2][0], "FEELS LIKE");
+	strcpy(myClocker->tableOfScreens[2][1], "%.1f st. C");
+	strcpy(myClocker->tableOfScreens[3][0], "PRESSURE");
+	strcpy(myClocker->tableOfScreens[3][1], "%.0f hPa");
+	strcpy(myClocker->tableOfScreens[4][0], "HUMIDITY");
+	strcpy(myClocker->tableOfScreens[4][1], "%.1f %");
+	strcpy(myClocker->tableOfScreens[5][0], "WIND SPEED");
+	strcpy(myClocker->tableOfScreens[5][1], "%.1f m.s");
+	strcpy(myClocker->tableOfScreens[6][0], "WIND SPEED");
+	strcpy(myClocker->tableOfScreens[6][1], "%.1f m.s");
+	strcpy(myClocker->tableOfScreens[7][0], "SUNRISE");
+	strcpy(myClocker->tableOfScreens[7][1], "%d:%d");
+	strcpy(myClocker->tableOfScreens[8][0], "SUNSET");
+	strcpy(myClocker->tableOfScreens[8][1], "%d:%d");
+	strcpy(myClocker->tableOfScreens[9][0], "CITY");
+	strcpy(myClocker->tableOfScreens[9][1], "%s");
 	myClocker->sTime = (RTC_TimeTypeDef *)malloc(sizeof(RTC_TimeTypeDef));
 	*myClocker->sTime = (RTC_TimeTypeDef){0};
 	myClocker->sDate = (RTC_DateTypeDef *)malloc(sizeof(RTC_DateTypeDef));
