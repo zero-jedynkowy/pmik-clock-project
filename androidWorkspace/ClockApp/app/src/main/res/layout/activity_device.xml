@@ -381,15 +381,16 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:paddingLeft="0dp"
+                android:id="@+id/sliderTitle"
                 android:paddingTop="0dp"
                 android:paddingRight="0dp"
                 android:paddingBottom="0dp"
-                android:text="Przełączania ekranu: %d sekund"
+                android:text="Przełączania ekranu: %.0f sekund"
                 android:textSize="18dp" />
 
             <com.google.android.material.slider.Slider
-                android:tooltipText="asadas"
                 android:valueFrom="1.0"
+                android:id="@+id/timeSlider"
                 android:valueTo="20.0"
                 android:stepSize="1.0"
                 android:layout_height="wrap_content"

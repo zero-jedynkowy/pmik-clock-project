@@ -31,11 +31,15 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.slider.Slider;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,6 +47,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
@@ -58,6 +63,7 @@ public class DeviceActivity extends AppCompatActivity
     String timeTime;
     String alarmDate;
     String alarmTime;
+    String sliderText;
 
     TextInputLayout layoutTimeDate;
     TextInputEditText textTimeDate;
@@ -73,91 +79,39 @@ public class DeviceActivity extends AppCompatActivity
 
     public String createData()
     {
-        String a = "WIFI";
-        String b = "DATE";
-        String c = "ALAR";
-        String d = "WEAT";
-
-
+        JSONObject myData = new JSONObject();
 
         boolean wifi = this.listOfSwitches.get("wifiSwitcher").isChecked();
         boolean dateTime = this.listOfSwitches.get("dateTimeSwitcher").isChecked();
         boolean alarm = this.listOfSwitches.get("dateTimeSwitcher").isChecked();
         boolean weather = this.listOfSwitches.get("weatherSwitcher").isChecked();
 
-        if(wifi)
+        try
         {
-            a += "__ONN__";
-            a += ((TextInputEditText)findViewById(R.id.wifiSSID2)).getText().toString();
-            a += "__";
-            a += ((TextInputEditText)findViewById(R.id.wifiPassword2)).getText().toString();
+            myData.put("wifi", wifi);
+            myData.put("wifiSSID", ((TextInputEditText)findViewById(R.id.wifiSSID2)).getText().toString());
+            myData.put("wifiPassword", ((TextInputEditText)findViewById(R.id.wifiPassword2)).getText().toString());
+            myData.put("dateTime", dateTime);
+            myData.put("setDate", ((TextInputEditText)findViewById(R.id.datePicker2)).getText().toString());
+            myData.put("setTime", ((TextInputEditText)findViewById(R.id.timePicker2)).getText().toString());
+            myData.put("alarm", alarm);
+            myData.put("alarmDate", ((TextInputEditText)findViewById(R.id.alarmDatePicker2)).getText().toString());
+            myData.put("alarmTime", ((TextInputEditText)findViewById(R.id.alarmTimePicker2)).getText().toString());
+            myData.put("weather", weather);
+            myData.put("weatherCity", ((TextInputEditText)findViewById(R.id.weatherCityPicker2)).getText().toString());
+            myData.put("screenTime", ((Slider)(findViewById(R.id.timeSlider))).getValue());
         }
-        else
+        catch (Exception myException)
         {
-            a += "__OFF__";
+
         }
-        if(wifi && dateTime)
+        String converted = myData.toString();
+        if(converted.length() < 500)
         {
-            b += "__ONN__";
-            b += "TIME";
-            b += "__ONN__";
+            converted += generatePlaceholder(500 - converted.length(), "_");
         }
-        else
-        {
-            b += "__OFF__";
-            String temp = ((TextInputEditText)findViewById(R.id.datePicker2)).getText().toString();
-            String x[] = temp.split("/");
-            for(int i=0; i<x.length; i++)
-            {
-                b += x[i];
-                b += "__";
-            }
-            b += "TIME";
-            b += "__OFF__";
-            temp = ((TextInputEditText)findViewById(R.id.timePicker2)).getText().toString();
-            x = temp.split(":");
-            for(int i=0; i<x.length; i++)
-            {
-                b += x[i];
-                b += "__";
-            }
-        }
-        if(alarm)
-        {
-            c += "__ONN__";
-            String temp = ((TextInputEditText)findViewById(R.id.alarmDatePicker2)).getText().toString();
-            String x[] = temp.split("/");
-            for(int i=0; i<x.length; i++)
-            {
-                c += x[i];
-                c += "__";
-            }
-            temp = ((TextInputEditText)findViewById(R.id.alarmTimePicker2)).getText().toString();
-            x = temp.split(":");
-            for(int i=0; i<x.length; i++)
-            {
-                b += x[i];
-                b += "__";
-            }
-        }
-        else
-        {
-            c += "__OFF__";
-        }
-        if(weather && wifi)
-        {
-            d += "__ON__";
-            d += ((TextInputEditText)findViewById(R.id.weatherCityPicker2)).getText().toString();
-        }
-        else
-        {
-            d += "__OFF__";
-        }
-        a += generatePlaceholder(50 - a.length(), "_");
-        b += generatePlaceholder(50 - b.length(), "_");
-        c += generatePlaceholder(50 - c.length(), "_");
-        d += generatePlaceholder(50 - d.length(), "_");
-        return  a + "\n" + b + "\n" + c + "\n" + d + "\n";
+        System.out.println(converted);
+       return converted;
     }
 
     @Override
@@ -189,6 +143,13 @@ public class DeviceActivity extends AppCompatActivity
                 }
             }
         });
+        this.sliderText = (((TextView)findViewById(R.id.sliderTitle)).getText()).toString();
+        Slider tempSlider = (Slider)(findViewById(R.id.timeSlider));
+        ((TextView)findViewById(R.id.sliderTitle)).setText(String.format(this.sliderText, tempSlider.getValue()));
+        tempSlider.addOnChangeListener((slider, value, fromUser) ->{
+            ((TextView)findViewById(R.id.sliderTitle)).setText(String.format(this.sliderText, tempSlider.getValue()));
+                System.out.println(tempSlider.getValue());
+        });
 
         ((TextView)findViewById(R.id.deviceTitle)).setText(this.userName);
         listOfSwitches = new HashMap<>();
@@ -219,37 +180,6 @@ public class DeviceActivity extends AppCompatActivity
                 System.out.println(temp.length());
                 BluetoothThread y = new BluetoothThread(DeviceActivity.this.device, temp);
                 y.start();
-
-
-
-
-//                if(!sendData("abcdxx\r\n"))
-//                {
-//                    MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
-//                    x.setTitle("Wysłanie danych nie powiodło się!");
-//                    x.setMessage("Sprawdz czy urządzenie jest w zasięgu telefonu.");
-//                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which)
-//                        {
-//                            dialog.dismiss();
-//                        }
-//                    });;
-//                    x.show();
-//                }
-//                else
-//                {
-//                    MaterialAlertDialogBuilder x = new MaterialAlertDialogBuilder(DeviceActivity.this);
-//                    x.setMessage("Przesłano dane do urządzenia!");
-//                    x.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which)
-//                        {
-//                            dialog.dismiss();
-//                        }
-//                    });;
-//                    x.show();
-//                }
             }
 
         });
@@ -484,52 +414,52 @@ public class DeviceActivity extends AppCompatActivity
         }
     }
 
-    boolean sendData(String dataToSend)
-    {
-        ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(true);
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-        BluetoothSocket bluetoothSocket = null;
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
-        {
-            return false;
-        }
-        try
-        {
-            bluetoothSocket = this.device.createRfcommSocketToServiceRecord(uuid);
-            bluetoothSocket.connect();
-        }
-        catch (Exception x)
-        {
-            try
-            {
-                bluetoothSocket.close();
-            }
-            catch (IOException e)
-            {
-                return false;
-            }
-            return false;
-        }
-
-
-        if (bluetoothSocket != null)
-        {
-            try
-            {
-                OutputStream outputStream = bluetoothSocket.getOutputStream();
-                byte[] bytes = dataToSend.getBytes();
-                outputStream.write(bytes);
-                bluetoothSocket.close();
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        } else
-        {
-            return false;
-        }
-        return true;
-    }
+//    boolean sendData(String dataToSend)
+//    {
+//        ((LinearProgressIndicator)(findViewById(R.id.loading))).setIndeterminate(true);
+//        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+//        UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+//        BluetoothSocket bluetoothSocket = null;
+//        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+//        {
+//            return false;
+//        }
+//        try
+//        {
+//            bluetoothSocket = this.device.createRfcommSocketToServiceRecord(uuid);
+//            bluetoothSocket.connect();
+//        }
+//        catch (Exception x)
+//        {
+//            try
+//            {
+//                bluetoothSocket.close();
+//            }
+//            catch (IOException e)
+//            {
+//                return false;
+//            }
+//            return false;
+//        }
+//
+//
+//        if (bluetoothSocket != null)
+//        {
+//            try
+//            {
+//                OutputStream outputStream = bluetoothSocket.getOutputStream();
+//                byte[] bytes = dataToSend.getBytes();
+//                outputStream.write(bytes);
+//                bluetoothSocket.close();
+//            } catch (IOException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        } else
+//        {
+//            return false;
+//        }
+//        return true;
+//    }
 }
 
