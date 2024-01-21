@@ -132,11 +132,11 @@ int main(void)
   uint8_t alarm = 0; //Tymczasowa wartość
   while (1)
   {
-	  Clocker_Change_Screen(&ourClocker);
-	  HAL_Delay(2000);
+
 
 	  if(timer_counter >= ourClocker.screenTimeChanging)
 	  {
+		  timer_counter = 0;
 		  Clocker_Change_Screen(&ourClocker);
 	  }
 
@@ -565,8 +565,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim == &htim2)
 	{
+		timer_counter++;
 		Clocker_Segment_Update(&ourClocker);
-		timer_counter ++;
 	}
 }
 

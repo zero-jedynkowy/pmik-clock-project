@@ -13,7 +13,7 @@ void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_Handle
 	HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
 	myClocker->maxScreen = 9;
 	myClocker->currentScreen = 0;
-	myClocker->screenTimeChanging = 5; //in seconds
+	myClocker->screenTimeChanging = 1; //in seconds
 	Clocker_Set_Screens(myClocker);
 	myClocker->sTime = (RTC_TimeTypeDef *)malloc(sizeof(RTC_TimeTypeDef));
 	*myClocker->sTime = (RTC_TimeTypeDef){0};
