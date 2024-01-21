@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
 #include <stdio.h>
 #include <stdint.h>
 #include "TM1637.h"
@@ -56,10 +56,13 @@ RTC_HandleTypeDef hrtc;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
+UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart4;
+UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN PV */
 volatile uint8_t budzik = 0;
+volatile uint8_t timer_counter = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -69,6 +72,8 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_RTC_Init(void);
 static void MX_USART4_UART_Init(void);
+static void MX_USART1_UART_Init(void);
+static void MX_USART5_UART_Init(void);
 /* USER CODE BEGIN PFP */
 Clocker ourClocker;
 /* USER CODE END PFP */
@@ -112,6 +117,8 @@ int main(void)
   MX_TIM3_Init();
   MX_RTC_Init();
   MX_USART4_UART_Init();
+  MX_USART1_UART_Init();
+  MX_USART5_UART_Init();
   /* USER CODE BEGIN 2 */
   Clocker_Init(&ourClocker, &hrtc, &htim2, &htim3);
   Clocker_Set_Time(&ourClocker, 21, 37, 00);
@@ -128,6 +135,10 @@ int main(void)
 	  Clocker_Change_Screen(&ourClocker);
 	  HAL_Delay(2000);
 
+	  if(timer_counter >= ourClocker.screenTimeChanging)
+	  {
+		  Clocker_Change_Screen(&ourClocker);
+	  }
 
 //	  if(alarm == 1)
 //	  {
@@ -193,7 +204,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_RTC;
+  PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
   PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
@@ -375,6 +387,41 @@ static void MX_TIM3_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief USART4 Initialization Function
   * @param None
   * @retval None
@@ -410,6 +457,41 @@ static void MX_USART4_UART_Init(void)
 }
 
 /**
+  * @brief USART5 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART5_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART5_Init 0 */
+
+  /* USER CODE END USART5_Init 0 */
+
+  /* USER CODE BEGIN USART5_Init 1 */
+
+  /* USER CODE END USART5_Init 1 */
+  huart5.Instance = USART5;
+  huart5.Init.BaudRate = 9600;
+  huart5.Init.WordLength = UART_WORDLENGTH_8B;
+  huart5.Init.StopBits = UART_STOPBITS_1;
+  huart5.Init.Parity = UART_PARITY_NONE;
+  huart5.Init.Mode = UART_MODE_TX_RX;
+  huart5.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart5.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart5.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart5.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART5_Init 2 */
+
+  /* USER CODE END USART5_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -425,16 +507,17 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, R_S_Pin|R_W_Pin|E_N_Pin|D_7_Pin
-                          |D_6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, R_S_Pin|R_W_Pin|E_N_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, D_6_Pin|D_7_Pin|D_4_Pin|SCLK_Pin
+                          |SDO_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(D_5_GPIO_Port, D_5_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, D_4_Pin|SCLK_Pin|SDO_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -450,14 +533,21 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF4_USART2;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : R_S_Pin R_W_Pin E_N_Pin D_7_Pin
-                           D_6_Pin */
-  GPIO_InitStruct.Pin = R_S_Pin|R_W_Pin|E_N_Pin|D_7_Pin
-                          |D_6_Pin;
+  /*Configure GPIO pins : R_S_Pin R_W_Pin E_N_Pin */
+  GPIO_InitStruct.Pin = R_S_Pin|R_W_Pin|E_N_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : D_6_Pin D_7_Pin D_4_Pin SCLK_Pin
+                           SDO_Pin */
+  GPIO_InitStruct.Pin = D_6_Pin|D_7_Pin|D_4_Pin|SCLK_Pin
+                          |SDO_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : D_5_Pin */
   GPIO_InitStruct.Pin = D_5_Pin;
@@ -466,13 +556,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(D_5_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : D_4_Pin SCLK_Pin SDO_Pin */
-  GPIO_InitStruct.Pin = D_4_Pin|SCLK_Pin|SDO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }
@@ -480,7 +563,11 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if(htim == &htim2) Clocker_Segment_Update(&ourClocker);
+	if(htim == &htim2)
+	{
+		Clocker_Segment_Update(&ourClocker);
+		timer_counter ++;
+	}
 }
 
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
