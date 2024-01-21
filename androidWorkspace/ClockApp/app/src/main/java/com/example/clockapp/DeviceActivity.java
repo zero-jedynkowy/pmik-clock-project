@@ -4,6 +4,7 @@ import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MO
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.widget.NestedScrollView;
 
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
@@ -15,14 +16,18 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -64,6 +69,7 @@ public class DeviceActivity extends AppCompatActivity
     TextInputLayout layoutAlarmTime;
     TextInputEditText textAlarmTime;
     Map<String, MaterialSwitch> listOfSwitches;
+    ExtendedFloatingActionButton blButton;
 
     public String createData()
     {
@@ -71,6 +77,8 @@ public class DeviceActivity extends AppCompatActivity
         String b = "DATE";
         String c = "ALAR";
         String d = "WEAT";
+
+
 
         boolean wifi = this.listOfSwitches.get("wifiSwitcher").isChecked();
         boolean dateTime = this.listOfSwitches.get("dateTimeSwitcher").isChecked();
@@ -161,6 +169,26 @@ public class DeviceActivity extends AppCompatActivity
         this.device = intent.getParcelableExtra("selectedDevice");
         this.userName = intent.getStringExtra("itemSystemName");
         this.model = intent.getStringExtra("modelName");
+        this.blButton = (ExtendedFloatingActionButton)findViewById(R.id.extended_fab);
+        ScrollView myScroll = (ScrollView)findViewById(R.id.deviceScroll);
+        myScroll.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                // Handle scroll changes here
+                int scrollY = myScroll.getScrollY();
+                System.out.println(scrollY);
+                System.out.println(myScroll.getHeight());
+                if((scrollY*100)/myScroll.getHeight() > 50)
+                {
+                    DeviceActivity.this.blButton.setVisibility(View.INVISIBLE);
+                    System.out.println("sdad");
+                }
+                else
+                {
+                    DeviceActivity.this.blButton.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         ((TextView)findViewById(R.id.deviceTitle)).setText(this.userName);
         listOfSwitches = new HashMap<>();
