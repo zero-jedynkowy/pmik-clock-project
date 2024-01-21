@@ -27,6 +27,7 @@
 #include "TM1637.h"
 #include "LCD1602.h"
 #include "Clocker.h"
+#include "cJSON.h"
 #include "DFPLAYER_MINI.h"
 /* USER CODE END Includes */
 
@@ -79,22 +80,81 @@ static void MX_USART1_UART_Init(void);
 static void MX_USART5_UART_Init(void);
 /* USER CODE BEGIN PFP */
 Clocker ourClocker;
+
+
+cJSON * androidResults[18];
+char * androidQuestions[18] = {"wifi", "wifiSSID", "wifiPassword",
+		"dateTime", "dateTimeDay", "dateTimeMonth", "dateTimeYear", "dateTimeHours",
+		"dateTimeMinutes", "alarm", "alarmDay", "alarmMonth", "alarmYear", "alarmHours",
+		"alarmMinutes", "weather", "weatherCity", "screenTime"};
+
+enum
+{
+	wifi,
+	wifiSSID,
+	wifiPassword,
+	dateTime,
+	dateTimeDay,
+	dateTimeMonth,
+	dateTimeYear,
+	dateTimeHours,
+	dateTimeMinutes,
+	alarm,
+	alarmDay,
+	alarmMonth,
+	alarmYear,
+	alarmHours,
+	alarmMinutes,
+	weather,
+	weatherCity,
+	screenTime
+};
+
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   {
-	  if(huart == &huart5)
-	  {
-		  const char * result = strchr(table, '_');
-		  if (result != NULL)
-		  {
-			  table[result - table] = '\0';
-		  }
-		  printf("%s\n", table);
-	  }
-	  HAL_UART_Receive_IT(&huart5, table, 500);
+
+	const char * result = strchr(table, '_');
+
+	if (result != NULL)
+	{
+		table[result - table] = '\0';
+	}
+
+	cJSON * obj = cJSON_Parse(table);
+	for(int i=0; i<18; i++)
+	{
+		androidResults[i] = cJSON_GetObjectItemCaseSensitive(obj, androidQuestions[i]);
+	}
+	if(cJSON_IsBool(androidResults[wifi]))
+	{
+		if(cJSON_IsTrue(androidResults[wifi]))
+		{
+			printf("asdasd\n");
+		}
+		else
+		{
+			if (cJSON_IsNumber(androidResults[dateTimeHours]) && cJSON_IsNumber(androidResults[dateTimeMinutes]))
+			{
+				Clocker_Set_Time(&ourClocker, androidResults[dateTimeHours]->valueint, androidResults[dateTimeMinutes]->valueint, 0);
+			}
+		}
+	}
+	if(cJSON_IsNumber(androidResults[screenTime]))
+	{
+		ourClocker.screenTimeChanging = (uint8_t)androidResults[screenTime]->valueint;
+	}
+
+
+
+
+
+
+	HAL_UART_Receive_IT(&huart5, table, 500);
   }
 /* USER CODE END 0 */
 
@@ -136,7 +196,7 @@ int main(void)
   MX_USART5_UART_Init();
   /* USER CODE BEGIN 2 */
   Clocker_Init(&ourClocker, &hrtc, &htim2, &htim3);
-  Clocker_Set_Time(&ourClocker, 21, 37, 00);
+  Clocker_Set_Time(&ourClocker, 12, 0, 0);
 
 
 

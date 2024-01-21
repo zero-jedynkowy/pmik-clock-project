@@ -88,24 +88,157 @@ public class DeviceActivity extends AppCompatActivity
 
         try
         {
+            myData.put("wifi", false);
+            myData.put("wifiSSID", "unset");
+            myData.put("wifiPassword", "unset");
+            myData.put("dateTime", false);
+            myData.put("dateTimeDay", 1);
+            myData.put("dateTimeMonth", 1);
+            myData.put("dateTimeYear", 2024);
+            myData.put("dateTimeHours", 8);
+            myData.put("dateTimeMinutes", 0);
+            myData.put("alarm", false);
+            myData.put("alarmDay", 0);
+            myData.put("alarmMonth", 0);
+            myData.put("alarmYear", 0);
+            myData.put("alarmHours", 0);
+            myData.put("alarmMinutes", 0);
+            myData.put("weather", false);
+            myData.put("weatherCity", "unset");
+            myData.put("screenTime", 5);
+        }
+        catch (Exception myException)
+        {}
+
+        try
+        {
             myData.put("wifi", wifi);
-            myData.put("wifiSSID", ((TextInputEditText)findViewById(R.id.wifiSSID2)).getText().toString());
-            myData.put("wifiPassword", ((TextInputEditText)findViewById(R.id.wifiPassword2)).getText().toString());
             myData.put("dateTime", dateTime);
-            myData.put("setDate", ((TextInputEditText)findViewById(R.id.datePicker2)).getText().toString());
-            myData.put("setTime", ((TextInputEditText)findViewById(R.id.timePicker2)).getText().toString());
             myData.put("alarm", alarm);
-            myData.put("alarmDate", ((TextInputEditText)findViewById(R.id.alarmDatePicker2)).getText().toString());
-            myData.put("alarmTime", ((TextInputEditText)findViewById(R.id.alarmTimePicker2)).getText().toString());
             myData.put("weather", weather);
-            myData.put("weatherCity", ((TextInputEditText)findViewById(R.id.weatherCityPicker2)).getText().toString());
-            myData.put("screenTime", ((Slider)(findViewById(R.id.timeSlider))).getValue());
+            if(wifi)
+            {
+                myData.put("wifiSSID", ((TextInputEditText)findViewById(R.id.wifiSSID2)).getText().toString());
+                myData.put("wifiPassword", ((TextInputEditText)findViewById(R.id.wifiPassword2)).getText().toString());
+            }
         }
         catch (Exception myException)
         {
-
+            try
+            {
+                myData.put("wifi", false);
+                myData.put("wifiSSID", "unset");
+                myData.put("wifiPassword", "unset");
+            }
+            catch (Exception newException)
+            {}
         }
+
+        int day, month, year, hours, minutes;
+        SimpleDateFormat dateFormat;
+        Date date;
+        String[] parts;
+        try
+        {
+            dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            date = dateFormat.parse(((TextInputEditText)findViewById(R.id.datePicker2)).getText().toString());
+            if(!dateTime)
+            {
+                day = Integer.parseInt(new SimpleDateFormat("dd").format(date));
+                month = Integer.parseInt(new SimpleDateFormat("MM").format(date));
+                year = Integer.parseInt(new SimpleDateFormat("yyyy").format(date));
+                myData.put("dateTimeDay", day);
+                myData.put("dateTimeMonth", month);
+                myData.put("dateTimeYear", year);
+                parts = ((TextInputEditText)findViewById(R.id.timePicker2)).getText().toString().split(":");
+                hours = Integer.parseInt(parts[0]);
+                minutes = Integer.parseInt(parts[1]);
+                myData.put("dateTimeHours", hours);
+                myData.put("dateTimeMinutes", minutes);
+            }
+        }
+        catch (Exception myException)
+        {
+            try
+            {
+                myData.put("dateTime", false);
+                myData.put("dateTimeDay", 1);
+                myData.put("dateTimeMonth", 1);
+                myData.put("dateTimeYear", 2024);
+                myData.put("dateTimeHours", 8);
+                myData.put("dateTimeMinutes", 0);
+            }
+            catch (Exception newException)
+            {}
+        }
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try
+        {
+            if(alarm)
+            {
+                date = dateFormat.parse(((TextInputEditText)findViewById(R.id.alarmDatePicker2)).getText().toString());
+                day = Integer.parseInt(new SimpleDateFormat("dd").format(date));
+                month = Integer.parseInt(new SimpleDateFormat("MM").format(date));
+                year = Integer.parseInt(new SimpleDateFormat("yyyy").format(date));
+                myData.put("alarmDay", day);
+                myData.put("alarmMonth", month);
+                myData.put("alarmYear", year);
+                parts = ((TextInputEditText)findViewById(R.id.alarmTimePicker2)).getText().toString().split(":");
+                hours = Integer.parseInt(parts[0]);
+                minutes = Integer.parseInt(parts[1]);
+                myData.put("alarmHours", hours);
+                myData.put("alarmMinutes", minutes);
+            }
+        }
+        catch (Exception myException)
+        {
+            try
+            {
+                myData.put("alarm", false);
+                myData.put("alarmDay", 0);
+                myData.put("alarmMonth", 0);
+                myData.put("alarmYear", 0);
+                myData.put("alarmHours", 0);
+                myData.put("alarmMinutes", 0);
+            }
+            catch (Exception newException)
+            {}
+        }
+
+        try
+        {
+            myData.put("screenTime", ((Slider)(findViewById(R.id.timeSlider))).getValue());
+            if(weather)
+            {
+                myData.put("weather", weather);
+                myData.put("weatherCity", ((TextInputEditText)findViewById(R.id.weatherCityPicker2)).getText().toString());
+            }
+        }
+        catch (Exception myException)
+        {
+            try
+            {
+                myData.put("weather", false);
+                myData.put("weatherCity", "unset");
+            }
+            catch (Exception newException)
+            {
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         String converted = myData.toString();
+        System.out.println(converted);
+        System.out.println(converted.length());
         if(converted.length() < 500)
         {
             converted += generatePlaceholder(500 - converted.length(), "_");

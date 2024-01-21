@@ -8,19 +8,25 @@ C_SRCS += \
 ../Devices/Src/Clocker.c \
 ../Devices/Src/DFPLAYER_MINI.c \
 ../Devices/Src/LCD1602.c \
-../Devices/Src/TM1637.c 
+../Devices/Src/TM1637.c \
+../Devices/Src/cJSON.c \
+../Devices/Src/cJSON_Utils.c 
 
 OBJS += \
 ./Devices/Src/Clocker.o \
 ./Devices/Src/DFPLAYER_MINI.o \
 ./Devices/Src/LCD1602.o \
-./Devices/Src/TM1637.o 
+./Devices/Src/TM1637.o \
+./Devices/Src/cJSON.o \
+./Devices/Src/cJSON_Utils.o 
 
 C_DEPS += \
 ./Devices/Src/Clocker.d \
 ./Devices/Src/DFPLAYER_MINI.d \
 ./Devices/Src/LCD1602.d \
-./Devices/Src/TM1637.d 
+./Devices/Src/TM1637.d \
+./Devices/Src/cJSON.d \
+./Devices/Src/cJSON_Utils.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -30,7 +36,7 @@ Devices/Src/%.o Devices/Src/%.su Devices/Src/%.cyclo: ../Devices/Src/%.c Devices
 clean: clean-Devices-2f-Src
 
 clean-Devices-2f-Src:
-	-$(RM) ./Devices/Src/Clocker.cyclo ./Devices/Src/Clocker.d ./Devices/Src/Clocker.o ./Devices/Src/Clocker.su ./Devices/Src/DFPLAYER_MINI.cyclo ./Devices/Src/DFPLAYER_MINI.d ./Devices/Src/DFPLAYER_MINI.o ./Devices/Src/DFPLAYER_MINI.su ./Devices/Src/LCD1602.cyclo ./Devices/Src/LCD1602.d ./Devices/Src/LCD1602.o ./Devices/Src/LCD1602.su ./Devices/Src/TM1637.cyclo ./Devices/Src/TM1637.d ./Devices/Src/TM1637.o ./Devices/Src/TM1637.su
+	-$(RM) ./Devices/Src/Clocker.cyclo ./Devices/Src/Clocker.d ./Devices/Src/Clocker.o ./Devices/Src/Clocker.su ./Devices/Src/DFPLAYER_MINI.cyclo ./Devices/Src/DFPLAYER_MINI.d ./Devices/Src/DFPLAYER_MINI.o ./Devices/Src/DFPLAYER_MINI.su ./Devices/Src/LCD1602.cyclo ./Devices/Src/LCD1602.d ./Devices/Src/LCD1602.o ./Devices/Src/LCD1602.su ./Devices/Src/TM1637.cyclo ./Devices/Src/TM1637.d ./Devices/Src/TM1637.o ./Devices/Src/TM1637.su ./Devices/Src/cJSON.cyclo ./Devices/Src/cJSON.d ./Devices/Src/cJSON.o ./Devices/Src/cJSON.su ./Devices/Src/cJSON_Utils.cyclo ./Devices/Src/cJSON_Utils.d ./Devices/Src/cJSON_Utils.o ./Devices/Src/cJSON_Utils.su
 
 .PHONY: clean-Devices-2f-Src
 

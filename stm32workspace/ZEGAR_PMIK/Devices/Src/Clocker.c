@@ -26,6 +26,7 @@ void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_Handle
 	HAL_TIM_Base_Start(timScreen);
 	lcd_init();
 	lcd_clear();
+
 }
 
 void Clocker_Set_Screens(Clocker * myClocker)

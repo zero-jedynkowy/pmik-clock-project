@@ -37,6 +37,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/DFPLAYER_MINI.h \
  /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/TM1637.h \
  /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/LCD1602.h \
+ /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/cJSON.h \
  /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/DFPLAYER_MINI.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
@@ -77,4 +78,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/DFPLAYER_MINI.h:
 /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/TM1637.h:
 /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/LCD1602.h:
+/home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/cJSON.h:
 /home/zero-jedynkowy/Dokumenty/pmik_projekt_ka_jj_zegar/stm32workspace/ZEGAR_PMIK/Devices/Inc/DFPLAYER_MINI.h:
