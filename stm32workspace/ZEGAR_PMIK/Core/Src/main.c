@@ -65,6 +65,7 @@ volatile uint8_t budzik = 0;
 volatile uint8_t timer_counter = 0;
 volatile uint8_t alarm_counter = 0;
 volatile uint8_t budzik_music = 0;
+char table[500];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -82,7 +83,19 @@ Clocker ourClocker;
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+  {
+	  if(huart == &huart5)
+	  {
+		  const char * result = strchr(table, '_');
+		  if (result != NULL)
+		  {
+			  table[result - table] = '\0';
+		  }
+		  printf("%s\n", table);
+	  }
+	  HAL_UART_Receive_IT(&huart5, table, 500);
+  }
 /* USER CODE END 0 */
 
 /**
@@ -126,11 +139,13 @@ int main(void)
   Clocker_Set_Time(&ourClocker, 21, 37, 00);
 
 
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+  HAL_UART_Receive_IT(&huart5, table, 500);
   uint8_t alarm = 0; //Tymczasowa wartość
   while (1)
   {
@@ -588,10 +603,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 	budzik_music = 1;
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
 
-}
 /* USER CODE END 4 */
 
 /**
