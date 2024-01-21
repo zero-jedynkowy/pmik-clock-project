@@ -9,11 +9,13 @@
 #define __CLOCKER_H
 
 #include <stdint.h>
+#include "DFPLAYER_MINI.h"
 #include "TM1637.h"
 #include "LCD1602.h"
 #include "stm32l0xx_hal_rtc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct
 {
@@ -34,5 +36,6 @@ uint8_t Clocker_Convert_Int_to_Segment(uint8_t c);
 void Clocker_Segment_Update(Clocker * myClocker);
 void Clocker_Change_Screen(Clocker * myClocker);
 void Clocker_Change_Time(Clocker * myClocker, HAL_TIM_StateTypeDef * myTimer);
+void Clocker_Set_Screens(Clocker * myClocker);
 
 #endif

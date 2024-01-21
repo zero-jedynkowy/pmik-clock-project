@@ -63,6 +63,8 @@ UART_HandleTypeDef huart5;
 /* USER CODE BEGIN PV */
 volatile uint8_t budzik = 0;
 volatile uint8_t timer_counter = 0;
+volatile uint8_t alarm_counter = 0;
+volatile uint8_t budzik_music = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -140,22 +142,27 @@ int main(void)
 		  Clocker_Change_Screen(&ourClocker);
 	  }
 
-//	  if(alarm == 1)
-//	  {
-//		  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
-//		  alarm = 0;
-//	  }
-//	  if(budzik == 1)
-//	  {
-//		  DF_PlayFromStart(); //Załączenie muzyki jak już budzik odmierzył swój czas.
-//		  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A); //Wyłączenie budzika
-//		  budzik = 0;
-//	  }
-//	  if()
-//	  {
-//		  DF_Pause();          // Tutaj w warunku damy HAL_Read_Pin w celu użycia przycisku jako wyłączenie muzyki z alarmu.
-//
-//	  }
+	  // Ustawienie alarmu z poziomu aplikacji.
+	  if(alarm == 1)
+	  {
+		  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
+		  alarm = 0;
+	  }
+
+	  // Flaga obsługi budzika, czyli odpala się muzyka i wyłącza RTC Alarm
+	  if(budzik == 1)
+	  {
+		  DF_PlayFromStart(); //Załączenie muzyki jak już budzik odmierzył swój czas.
+		  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A); //Wyłączenie budzika
+		  budzik = 0;
+	  }
+	  // Czas działania muzyki, timer robi przerwania co sekundę więc uaktualnia flagę alarm_counter co sekundę i tak 60 razy czyli razem minutę
+	  if(alarm_counter >= 60)
+	  {
+		  DF_Pause();          // Tutaj w warunku damy HAL_Read_Pin w celu użycia przycisku jako wyłączenie muzyki z alarmu.
+		  alarm_counter = 0;
+		  budzik_music = 0;
+	  }
 
     /* USER CODE END WHILE */
 
@@ -567,6 +574,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		timer_counter++;
 		Clocker_Segment_Update(&ourClocker);
+		if(budzik_music == 1)
+		{
+			alarm_counter++;
+		}
 	}
 }
 
@@ -574,6 +585,12 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 {
 	// Tutaj robimy aktualizację czyli dajemy flagę żeby aktywować muzyczkę.
 	budzik = 1;
+	budzik_music = 1;
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+
 }
 /* USER CODE END 4 */
 
