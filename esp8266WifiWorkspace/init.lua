@@ -6,29 +6,15 @@ dataGot = {}
 myTimer = tmr.create()
 decoder = sjson.decoder()
 
-dataGot["wifi"] = false
-dataGot["weather"] = false
-dataGot["dateTime"] = false
+dataGot["login"] = false
+dataGot["password"] = false
+dataGot["city"] = false
 
-weatherStatus = false
-timezoneStatus = false
-timeStatus = false
 
 function createWeatherQueston(city)
     part1 = "http://api.openweathermap.org/data/2.5/weather?q="
     part2 = "&appid=2085dd69af79e62bdb50e4448b053eef"
-    return part1 .. city .. part2;
-end
-
-function createContinentQuestion(city)
-    part1 = "https://api.opencagedata.com/geocode/v1/json?q="
-    part2 = "&key=0b7457cafd7d46fc9cbb768341822da3"
     return part1 .. city .. part2
-end
-
-function createTimeDateQuestion(timezone)
-    part1 = "http://worldtimeapi.org/api/timezone/"
-    return part1 .. timezone
 end
 
 function createWifiConfig(login, password)
@@ -60,12 +46,13 @@ function weatherCallback(code, data)
     temp1 = unixToTime(dataToSend["sunset"], dataToSend["timeOffset"])["hour"]
     temp2 = unixToTime(dataToSend["sunset"], dataToSend["timeOffset"])["minutes"]
     dataToSend["sunset"] = string.format("%02d:%02d", temp1, temp2)
-
-
-   
-    for key, value in pairs(dataToSend) do
-             print(key, value)
-        end
+    myStr = sjson.encode(dataToSend)
+    if string.len(myStr) < 500 then
+        for k = string.len(myStr), 499 do
+            myStr = myStr .. "_"
+            end
+    end
+    uart.write(0, myStr)
 end
 
 function unixToTime(unixTimestamp, offset)
@@ -82,7 +69,7 @@ function unixToTime(unixTimestamp, offset)
     return table
 end
 
-function continentCallback(code, data)
+function timeCallback(code, data)
     if (code < 0) then
         print("HTTP request failed")
     else
@@ -98,21 +85,34 @@ function continentCallback(code, data)
     end
 end
 
-function start()
-    print("START")
-    wifi.setmode(wifi.STATION)
-    wifi.sta.config(createWifiConfig(varSSID, varPassword))
-    myTimer:alarm(5000, tmr.ALARM_AUTO, function()
+function uartReceive(data)
+    myTimer:stop()
+    convertedData = sjson.decode(data)
+    wifi.sta.config(createWifiConfig(convertedData["login"], convertedData["password"]))
+    city = convertedData["city"]
+    getHTTP()
+    myTimer:start()
+end
+
+function getHTTP()
     if wifi.sta.getip() == nil then
         print("Connecting to WiFi...")
     else
         print("Connected to WiFi. IP address: " .. wifi.sta.getip())
-        http.request("http://worldtimeapi.org/api/ip/", "GET", "", "", continentCallback)
-
-        myTimer:stop()
+        http.request("http://worldtimeapi.org/api/ip/", "GET", "", "", timeCallback)
     end
-end)
+end
 
+function start()
+    print("START")
+    wifi.setmode(wifi.STATION)
+    wifi.sta.config(createWifiConfig(varSSID, varPassword))
+    uart.setup(0, 115200, 8, uart.PARITY_NONE, uart.STOPBITS_1, 1)
+    uart.on("data", "}", uartReceive)
+    
+    myTimer:alarm(1000*60*3, tmr.ALARM_AUTO, function()
+        getHTTP()
+    end)
 end
 
 start()
