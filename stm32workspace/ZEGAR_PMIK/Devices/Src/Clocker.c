@@ -105,10 +105,6 @@ void Clocker_Change_Screen(Clocker * myClocker)
 	lcd_send_string(myClocker->tableOfScreens[myClocker->currentScreen][1]);
 }
 
-void Clocker_Change_Time(Clocker * myClocker, HAL_TIM_StateTypeDef * myTimer)
-{
-	//tutaj rób
-}
 
 uint8_t Clocker_Convert_Int_to_Segment(uint8_t c)
 {

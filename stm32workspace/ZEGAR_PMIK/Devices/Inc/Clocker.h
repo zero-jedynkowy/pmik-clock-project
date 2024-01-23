@@ -29,13 +29,77 @@ struct
 	RTC_HandleTypeDef * rtcHandle;
 } typedef Clocker;
 
+/** @brief Inicjalizuje strukturę zegara czyli godzinę,
+ * 		   datę, pogodę oraz ekrany
+ *
+ *  @param Wykorzystujesz tutaj swoją strukturę Clocker która będzie zainicjalizowana
+ *
+ *  @param Przekazujesz Handler od RTC
+ *
+ *  @param Przekazujesz Handler od Timera 1
+ *
+ *  @param Przekazujesz Handler od Timer 2
+ *
+ *  @return Void.
+ */
 void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_HandleTypeDef * timSegment, TIM_HandleTypeDef * timScreen);
+
+/** @brief Ustawienie czasu od którego zacznie odliczać czas.
+ *
+ *  @param Wykorzystujesz tutaj swoją strukturę Clocker która była już zainicjalizowana
+ *
+ *  @param Podajesz Godzinę którą chcesz ustawić w RTC
+ *
+ *  @param Podajesz Minutę którą chcesz ustawić w RTC
+ *
+ *  @param Podajesz Sekundę którą chcesz ustawić w RTC
+ *
+ *  @return Void.
+ */
 void Clocker_Set_Time(Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds);
+
+/** @brief Ustawienie czasu Alarmu w który ma się aktywować.
+ *
+ *  @param Wykorzystujesz tutaj swoją strukturę Clocker która była już zainicjalizowana
+ *
+ *  @param Ustawienie godziny alarmu
+ *
+ *  @param Ustawienie minut alarmu
+ *
+ *  @return Void.
+ */
 void Clocker_Set_Alarm(Clocker * myClocker, uint8_t alarmHours, uint8_t alarmMinutes);
+
+/** @brief Przekonwertowanie liczby Intiger na znak Char
+ *
+ *  @param liczba typu Intiger
+ *
+ *  @return Void.
+ */
 uint8_t Clocker_Convert_Int_to_Segment(uint8_t c);
+
+/** @brief Zaktualizowanie ekranu Segmentowego.
+ *
+ *  @param Wykorzystuje gotową strukturę typu Clocker
+ *
+ *  @return Void.
+ */
 void Clocker_Segment_Update(Clocker * myClocker);
+
+/** @brief Zaktualizowanie ekranu LCD
+ *
+ *  @param Wykorzystuje gotową strukturę typu Clocker
+ *
+ *  @return Void.
+ */
 void Clocker_Change_Screen(Clocker * myClocker);
-void Clocker_Change_Time(Clocker * myClocker, HAL_TIM_StateTypeDef * myTimer);
+
+/** @brief Wpisywanie odgórnych nagłówków które LCD ma wyświetlić do struktury Clocker
+ *
+ *  @param Wykorzystuje gotową strukturę typu Clocker
+ *
+ *  @return Void.
+ */
 void Clocker_Set_Screens(Clocker * myClocker);
 
 #endif

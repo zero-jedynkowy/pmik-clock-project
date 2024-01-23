@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  12 .comment      00000043  00000000  00000000  00020258  2**0
                   CONTENTS, READONLY
- 13 .debug_info   0001352d  00000000  00000000  0002029b  2**0
+ 13 .debug_info   000134f5  00000000  00000000  0002029b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00002dcd  00000000  00000000  000337c8  2**0
+ 14 .debug_abbrev 00002db2  00000000  00000000  00033790  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00001238  00000000  00000000  00036598  2**3
+ 15 .debug_aranges 00001230  00000000  00000000  00036548  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 00000e65  00000000  00000000  000377d0  2**0
+ 16 .debug_rnglists 00000e5f  00000000  00000000  00037778  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00017a4f  00000000  00000000  00038635  2**0
+ 17 .debug_macro  00017a4f  00000000  00000000  000385d7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00014836  00000000  00000000  00050084  2**0
+ 18 .debug_line   000157fd  00000000  00000000  00050026  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0008e5f3  00000000  00000000  000648ba  2**0
+ 19 .debug_str    0008e636  00000000  00000000  00065823  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000057dc  00000000  00000000  000f2eb0  2**2
+ 20 .debug_frame  000057bc  00000000  00000000  000f3e5c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000080  00000000  00000000  000f868c  2**0
+ 21 .debug_line_str 00000080  00000000  00000000  000f9618  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -6777,111 +6777,49 @@ void SystemInit (void)
 	...
 
 08003060 <Reset_Handler>:
-
-    .section  .text.Reset_Handler
-  .weak  Reset_Handler
-  .type  Reset_Handler, %function
-Reset_Handler:  
-   ldr   r0, =_estack
  8003060:	480d      	ldr	r0, [pc, #52]	; (8003098 <LoopForever+0x2>)
-   mov   sp, r0          /* set stack pointer */
  8003062:	4685      	mov	sp, r0
-
-/* Call the clock system initialization function.*/
-  bl  SystemInit
  8003064:	f7ff fff6 	bl	8003054 <SystemInit>
-
-/* Copy the data segment initializers from flash to SRAM */
-  ldr r0, =_sdata
  8003068:	480c      	ldr	r0, [pc, #48]	; (800309c <LoopForever+0x6>)
-  ldr r1, =_edata
  800306a:	490d      	ldr	r1, [pc, #52]	; (80030a0 <LoopForever+0xa>)
-  ldr r2, =_sidata
  800306c:	4a0d      	ldr	r2, [pc, #52]	; (80030a4 <LoopForever+0xe>)
-  movs r3, #0
  800306e:	2300      	movs	r3, #0
-  b LoopCopyDataInit
  8003070:	e002      	b.n	8003078 <LoopCopyDataInit>
 
 08003072 <CopyDataInit>:
-
-CopyDataInit:
-  ldr r4, [r2, r3]
  8003072:	58d4      	ldr	r4, [r2, r3]
-  str r4, [r0, r3]
  8003074:	50c4      	str	r4, [r0, r3]
-  adds r3, r3, #4
  8003076:	3304      	adds	r3, #4
 
 08003078 <LoopCopyDataInit>:
-
-LoopCopyDataInit:
-  adds r4, r0, r3
  8003078:	18c4      	adds	r4, r0, r3
-  cmp r4, r1
  800307a:	428c      	cmp	r4, r1
-  bcc CopyDataInit
  800307c:	d3f9      	bcc.n	8003072 <CopyDataInit>
-  
-/* Zero fill the bss segment. */
-  ldr r2, =_sbss
  800307e:	4a0a      	ldr	r2, [pc, #40]	; (80030a8 <LoopForever+0x12>)
-  ldr r4, =_ebss
  8003080:	4c0a      	ldr	r4, [pc, #40]	; (80030ac <LoopForever+0x16>)
-  movs r3, #0
  8003082:	2300      	movs	r3, #0
-  b LoopFillZerobss
  8003084:	e001      	b.n	800308a <LoopFillZerobss>
 
 08003086 <FillZerobss>:
-
-FillZerobss:
-  str  r3, [r2]
  8003086:	6013      	str	r3, [r2, #0]
-  adds r2, r2, #4
  8003088:	3204      	adds	r2, #4
 
 0800308a <LoopFillZerobss>:
-
-LoopFillZerobss:
-  cmp r2, r4
  800308a:	42a2      	cmp	r2, r4
-  bcc FillZerobss
  800308c:	d3fb      	bcc.n	8003086 <FillZerobss>
-
-
-/* Call static constructors */
-    bl __libc_init_array
  800308e:	f007 fce1 	bl	800aa54 <__libc_init_array>
-/* Call the application's entry point.*/
-  bl  main
  8003092:	f7ff fa73 	bl	800257c <main>
 
 08003096 <LoopForever>:
-
-LoopForever:
-    b LoopForever
  8003096:	e7fe      	b.n	8003096 <LoopForever>
-   ldr   r0, =_estack
  8003098:	20005000 	.word	0x20005000
-  ldr r0, =_sdata
  800309c:	20000000 	.word	0x20000000
-  ldr r1, =_edata
  80030a0:	20000230 	.word	0x20000230
-  ldr r2, =_sidata
  80030a4:	0800cc6c 	.word	0x0800cc6c
-  ldr r2, =_sbss
  80030a8:	20000230 	.word	0x20000230
-  ldr r4, =_ebss
  80030ac:	20000a24 	.word	0x20000a24
 
 080030b0 <ADC1_COMP_IRQHandler>:
- * @retval : None
-*/
-    .section  .text.Default_Handler,"ax",%progbits
-Default_Handler:
-Infinite_Loop:
-  b  Infinite_Loop
  80030b0:	e7fe      	b.n	80030b0 <ADC1_COMP_IRQHandler>
 	...
 
@@ -7619,9 +7557,7 @@ void Clocker_Change_Screen(Clocker * myClocker)
 	...
 
 08003614 <Clocker_Convert_Int_to_Segment>:
-{
-	//tutaj rób
-}
+
 
 uint8_t Clocker_Convert_Int_to_Segment(uint8_t c)
 {
