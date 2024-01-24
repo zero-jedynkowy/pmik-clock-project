@@ -26,9 +26,8 @@ function createWifiConfig(login, password)
 end
 
 function weatherCallback(code, data)
-    if (code < 0) then
-        print("HTTP request failed")
-    else
+    if (code > 0) then
+        
         convertedData = sjson.decode(data)
         dataToSend["weather"] = (convertedData["weather"])[1]["main"]
         dataToSend["temp"] = (convertedData["main"])["temp"] - 273.15
@@ -46,6 +45,9 @@ function weatherCallback(code, data)
     temp1 = unixToTime(dataToSend["sunset"], dataToSend["timeOffset"])["hour"]
     temp2 = unixToTime(dataToSend["sunset"], dataToSend["timeOffset"])["minutes"]
     dataToSend["sunset"] = string.format("%02d:%02d", temp1, temp2)
+    for key, value in pairs(dataToSend) do
+        dataToSend[key] = tostring(dataToSend[key])
+    end
     myStr = sjson.encode(dataToSend)
     if string.len(myStr) < 500 then
         for k = string.len(myStr), 499 do
@@ -70,9 +72,8 @@ function unixToTime(unixTimestamp, offset)
 end
 
 function timeCallback(code, data)
-    if (code < 0) then
-        print("HTTP request failed")
-    else
+    if (code > 0) then
+      
         convertedData = sjson.decode(data)
         
         dataToSend["timeOffset"] = tonumber(string.sub(convertedData["utc_offset"], 1, 3))
@@ -95,23 +96,21 @@ function uartReceive(data)
 end
 
 function getHTTP()
-    if wifi.sta.getip() == nil then
-        print("Connecting to WiFi...")
-    else
-        print("Connected to WiFi. IP address: " .. wifi.sta.getip())
+    if wifi.sta.getip() ~= nil then
         http.request("http://worldtimeapi.org/api/ip/", "GET", "", "", timeCallback)
     end
 end
 
+
 function start()
-    print("START")
     wifi.setmode(wifi.STATION)
     wifi.sta.config(createWifiConfig(varSSID, varPassword))
     uart.setup(0, 115200, 8, uart.PARITY_NONE, uart.STOPBITS_1, 1)
     uart.on("data", "}", uartReceive)
     
-    myTimer:alarm(1000*60*3, tmr.ALARM_AUTO, function()
+    myTimer:alarm(1000*60, tmr.ALARM_AUTO, function()
         getHTTP()
+        
     end)
 end
 

@@ -13,7 +13,7 @@ void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_Handle
 	HAL_GPIO_WritePin(SDO_GPIO_Port, SDO_Pin, GPIO_PIN_SET);
 	myClocker->maxScreen = 9;
 	myClocker->currentScreen = 0;
-	myClocker->screenTimeChanging = 1; //in seconds
+	myClocker->screenTimeChanging = 5; //in seconds
 	Clocker_Set_Screens(myClocker);
 	myClocker->sTime = (RTC_TimeTypeDef *)malloc(sizeof(RTC_TimeTypeDef));
 	*myClocker->sTime = (RTC_TimeTypeDef){0};
@@ -22,6 +22,10 @@ void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_Handle
 	myClocker->sAlarm = (RTC_AlarmTypeDef *)malloc(sizeof(RTC_DateTypeDef));
 	*myClocker->sAlarm = (RTC_AlarmTypeDef){0};
 	myClocker->rtcHandle = rtcHandle;
+	myClocker->alarmTimer = 0;
+	myClocker->screenTimer = 0;
+	myClocker->alarm = 0;
+	uint8_t flags[4] = {0, 0, 0, 0};
 	HAL_TIM_Base_Start_IT(timSegment);
 	HAL_TIM_Base_Start(timScreen);
 	lcd_init();
@@ -34,23 +38,25 @@ void Clocker_Set_Screens(Clocker * myClocker)
 	strcpy(myClocker->tableOfScreens[0][0], "WEATHER");
 	strcpy(myClocker->tableOfScreens[0][1], "%s");
 	strcpy(myClocker->tableOfScreens[1][0], "TEMPERATURE");
-	strcpy(myClocker->tableOfScreens[1][1], "%.1f st. C");
+	strcpy(myClocker->tableOfScreens[1][1], "%s");
 	strcpy(myClocker->tableOfScreens[2][0], "FEELS LIKE");
-	strcpy(myClocker->tableOfScreens[2][1], "%.1f st. C");
+	strcpy(myClocker->tableOfScreens[2][1], "%s");
 	strcpy(myClocker->tableOfScreens[3][0], "PRESSURE");
-	strcpy(myClocker->tableOfScreens[3][1], "%.0f hPa");
+	strcpy(myClocker->tableOfScreens[3][1], "%s");
 	strcpy(myClocker->tableOfScreens[4][0], "HUMIDITY");
-	strcpy(myClocker->tableOfScreens[4][1], "%.1f %");
+	strcpy(myClocker->tableOfScreens[4][1], "%s");
 	strcpy(myClocker->tableOfScreens[5][0], "WIND SPEED");
-	strcpy(myClocker->tableOfScreens[5][1], "%.1f m.s");
-	strcpy(myClocker->tableOfScreens[6][0], "WIND SPEED");
-	strcpy(myClocker->tableOfScreens[6][1], "%.1f m.s");
-	strcpy(myClocker->tableOfScreens[7][0], "SUNRISE");
-	strcpy(myClocker->tableOfScreens[7][1], "%d:%d");
-	strcpy(myClocker->tableOfScreens[8][0], "SUNSET");
-	strcpy(myClocker->tableOfScreens[8][1], "%d:%d");
-	strcpy(myClocker->tableOfScreens[9][0], "CITY");
-	strcpy(myClocker->tableOfScreens[9][1], "%s");
+	strcpy(myClocker->tableOfScreens[5][1], "%s");
+	strcpy(myClocker->tableOfScreens[6][0], "SUNRISE");
+	strcpy(myClocker->tableOfScreens[6][1], "%s");
+	strcpy(myClocker->tableOfScreens[7][0], "SUNSET");
+	strcpy(myClocker->tableOfScreens[7][1], "%s");
+	strcpy(myClocker->tableOfScreens[8][0], "CITY");
+	strcpy(myClocker->tableOfScreens[8][1], "%s");
+	for(int i=0; i<9; i++)
+	{
+		strcpy(myClocker->contentOfScreens[i], "");
+	}
 }
 
 void Clocker_Set_Time(Clocker * myClocker, uint8_t newHours, uint8_t newMinutes, uint8_t newSeconds)
@@ -93,16 +99,52 @@ void Clocker_Segment_Update(Clocker * myClocker)
 
 void Clocker_Change_Screen(Clocker * myClocker)
 {
-	myClocker->currentScreen++;
-	if(myClocker->currentScreen >= 10)
+	if(myClocker->screenTimer >= myClocker->screenTimeChanging)
 	{
-		myClocker->currentScreen = 0;
+		myClocker->screenTimer = 0;
+		myClocker->currentScreen++;
+		if(myClocker->currentScreen >= 10)
+		{
+			myClocker->currentScreen = 0;
+		}
+		lcd_clear();
+		lcd_put_cur(0, 0);
+		lcd_send_string(myClocker->tableOfScreens[myClocker->currentScreen][0]);
+		lcd_put_cur(1, 0);
+		lcd_send_string(myClocker->contentOfScreens[myClocker->currentScreen]);
 	}
-	lcd_clear();
-	lcd_put_cur(0, 0);
-	lcd_send_string(myClocker->tableOfScreens[myClocker->currentScreen][0]);
-	lcd_put_cur(1, 0);
-	lcd_send_string(myClocker->tableOfScreens[myClocker->currentScreen][1]);
+}
+
+void Clocker_Alarm_Update(Clocker * myClocker)
+{
+	if(myClocker->alarmTimer >= 60)
+	{
+		myClocker->alarmTimer = 0;
+		myClocker->alarm = 0;
+		myClocker->alarmTimerOn = 0;
+		DF_Pause();
+	}
+}
+
+void Clocker_Run_Alarm(Clocker * myClocker, RTC_HandleTypeDef * hrtc)
+{
+
+	if(myClocker->alarm == 1)
+	{
+		myClocker->alarm = 0;
+		myClocker->alarmTimerOn = 1;
+		HAL_RTC_DeactivateAlarm(hrtc, RTC_ALARM_A);
+		DF_PlayFromStart();
+	}
+}
+
+void Clocker_Update_Timers(Clocker * myClocker)
+{
+	if(myClocker->alarmTimerOn == 1)
+	{
+		myClocker->alarmTimer++;
+	}
+	myClocker->screenTimer++;
 }
 
 

@@ -67,6 +67,7 @@ volatile uint8_t timer_counter = 0;
 volatile uint8_t alarm_counter = 0;
 volatile uint8_t budzik_music = 0;
 char table[500];
+char table2[500];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -80,82 +81,92 @@ static void MX_USART1_UART_Init(void);
 static void MX_USART5_UART_Init(void);
 /* USER CODE BEGIN PFP */
 Clocker ourClocker;
-
-
-cJSON * androidResults[18];
-char * androidQuestions[18] = {"wifi", "wifiSSID", "wifiPassword",
-		"dateTime", "dateTimeDay", "dateTimeMonth", "dateTimeYear", "dateTimeHours",
-		"dateTimeMinutes", "alarm", "alarmDay", "alarmMonth", "alarmYear", "alarmHours",
-		"alarmMinutes", "weather", "weatherCity", "screenTime"};
-
-enum
-{
-	wifi,
-	wifiSSID,
-	wifiPassword,
-	dateTime,
-	dateTimeDay,
-	dateTimeMonth,
-	dateTimeYear,
-	dateTimeHours,
-	dateTimeMinutes,
-	alarm,
-	alarmDay,
-	alarmMonth,
-	alarmYear,
-	alarmHours,
-	alarmMinutes,
-	weather,
-	weatherCity,
-	screenTime
-};
-
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim == &htim2)
+	{
+		Clocker_Update_Timers(&ourClocker);
+		Clocker_Segment_Update(&ourClocker);
+	}
+}
+
+void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
+{
+	ourClocker.alarm = 1;
+}
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-  {
-
-	const char * result = strchr(table, '_');
-
-	if (result != NULL)
+{
+	if(huart == &huart1)
 	{
-		table[result - table] = '\0';
+		const char * result = strchr(table2, '_');
+		cJSON * myTempObj = cJSON_Parse(table2);
+		strcpy(ourClocker.contentOfScreens[0], cJSON_GetObjectItem(myTempObj, "weather")->valuestring);
+		strcpy(ourClocker.contentOfScreens[1], cJSON_GetObjectItem(myTempObj, "temp")->valuestring);
+		strcpy(ourClocker.contentOfScreens[2], cJSON_GetObjectItem(myTempObj, "feels_like")->valuestring);
+		strcpy(ourClocker.contentOfScreens[3], cJSON_GetObjectItem(myTempObj, "pressure")->valuestring);
+		strcpy(ourClocker.contentOfScreens[4], cJSON_GetObjectItem(myTempObj, "humidity")->valuestring);
+		strcpy(ourClocker.contentOfScreens[5], cJSON_GetObjectItem(myTempObj, "windspeed")->valuestring);
+		strcpy(ourClocker.contentOfScreens[6], cJSON_GetObjectItem(myTempObj, "sunrise")->valuestring);
+		strcpy(ourClocker.contentOfScreens[7], cJSON_GetObjectItem(myTempObj, "sunset")->valuestring);
+		strcpy(ourClocker.contentOfScreens[8], cJSON_GetObjectItem(myTempObj, "city")->valuestring);
+		Clocker_Set_Time(&ourClocker, atoi(cJSON_GetObjectItem(myTempObj, "hour")->valuestring), atoi(cJSON_GetObjectItem(myTempObj, "minutes")->valuestring), atoi(cJSON_GetObjectItem(myTempObj, "seconds")->valuestring));
+
+
 	}
-
-	cJSON * obj = cJSON_Parse(table);
-	for(int i=0; i<18; i++)
+	else if(huart == &huart5)
 	{
-		androidResults[i] = cJSON_GetObjectItemCaseSensitive(obj, androidQuestions[i]);
-	}
-	if(cJSON_IsBool(androidResults[wifi]))
-	{
-		if(cJSON_IsTrue(androidResults[wifi]))
+		const char * result = strchr(table, '_');
+		if (result != NULL)
 		{
-			printf("asdasd\n");
+			table[result - table] = '\0';
+		}
+		cJSON * myTempObj = cJSON_Parse(table);
+		if(cJSON_IsTrue(cJSON_GetObjectItem(myTempObj, "wifi")))
+		{
+			ourClocker.wifi = 1;
+			if(cJSON_IsTrue(cJSON_GetObjectItem(myTempObj, "weather")))
+			{
+				ourClocker.weather = 1;
+			}
+			else
+			{
+				ourClocker.weather = 0;
+			}
 		}
 		else
 		{
-			if (cJSON_IsNumber(androidResults[dateTimeHours]) && cJSON_IsNumber(androidResults[dateTimeMinutes]))
+			ourClocker.wifi = 0;
+			if(cJSON_IsFalse(cJSON_GetObjectItem(myTempObj, "dateTime")))
 			{
-				Clocker_Set_Time(&ourClocker, androidResults[dateTimeHours]->valueint, androidResults[dateTimeMinutes]->valueint, 0);
+				ourClocker.dateTime = 0;
+				if (cJSON_IsNumber(cJSON_GetObjectItem(myTempObj, "dateTimeHours")) && cJSON_IsNumber(cJSON_GetObjectItem(myTempObj, "dateTimeMinutes")))
+				{
+					Clocker_Set_Time(&ourClocker, cJSON_GetObjectItem(myTempObj, "dateTimeHours")->valueint, cJSON_GetObjectItem(myTempObj, "dateTimeMinutes")->valueint, 0);
+				}
+			}
+			else
+			{
+				ourClocker.dateTime = 1;
 			}
 		}
+
+		if(cJSON_IsTrue(cJSON_GetObjectItem(myTempObj, "alarm")))
+		{
+			Clocker_Set_Alarm(&ourClocker, cJSON_GetObjectItem(myTempObj, "alarmHours")->valueint, cJSON_GetObjectItem(myTempObj, "alarmMinutes")->valueint);
+		}
+		cJSON_Delete(myTempObj);
 	}
-	if(cJSON_IsNumber(androidResults[screenTime]))
-	{
-		ourClocker.screenTimeChanging = (uint8_t)androidResults[screenTime]->valueint;
-	}
-
-
-
-
-
 
 	HAL_UART_Receive_IT(&huart5, table, 500);
-  }
+	HAL_UART_Receive_IT(&huart1, table2, 500);
+}
 /* USER CODE END 0 */
 
 /**
@@ -205,40 +216,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_UART_Receive_IT(&huart5, table, 500);
-  uint8_t alarm = 0; //Tymczasowa wartość
+	HAL_UART_Receive_IT(&huart5, table, 500);
+	HAL_UART_Receive_IT(&huart1, table2, 500);
+
   while (1)
   {
-
-
-	  if(timer_counter >= ourClocker.screenTimeChanging)
-	  {
-		  timer_counter = 0;
-		  Clocker_Change_Screen(&ourClocker);
-	  }
-
-	  // Ustawienie alarmu z poziomu aplikacji.
-	  if(alarm == 1)
-	  {
-		  Clocker_Set_Alarm(&ourClocker, 22, 30); // Tymczasowodałem zmienne Godziny i Minuty, ale należy tam dać czas który ustawiliśmy na apce.
-		  alarm = 0;
-	  }
-
-	  // Flaga obsługi budzika, czyli odpala się muzyka i wyłącza RTC Alarm
-	  if(budzik == 1)
-	  {
-		  DF_PlayFromStart(); //Załączenie muzyki jak już budzik odmierzył swój czas.
-		  HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A); //Wyłączenie budzika
-		  budzik = 0;
-	  }
-	  // Czas działania muzyki, timer robi przerwania co sekundę więc uaktualnia flagę alarm_counter co sekundę i tak 60 razy czyli razem minutę
-	  if(alarm_counter >= 60)
-	  {
-		  DF_Pause();          // Tutaj w warunku damy HAL_Read_Pin w celu użycia przycisku jako wyłączenie muzyki z alarmu.
-		  alarm_counter = 0;
-		  budzik_music = 0;
-	  }
-
+	  Clocker_Change_Screen(&ourClocker);
+	  Clocker_Run_Alarm(&ourClocker,&hrtc);
+	  Clocker_Alarm_Update(&ourClocker);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -643,25 +628,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	if(htim == &htim2)
-	{
-		timer_counter++;
-		Clocker_Segment_Update(&ourClocker);
-		if(budzik_music == 1)
-		{
-			alarm_counter++;
-		}
-	}
-}
 
-void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
-{
-	// Tutaj robimy aktualizację czyli dajemy flagę żeby aktywować muzyczkę.
-	budzik = 1;
-	budzik_music = 1;
-}
 
 
 /* USER CODE END 4 */

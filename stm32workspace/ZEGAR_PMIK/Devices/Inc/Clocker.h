@@ -27,6 +27,17 @@ struct
 	RTC_DateTypeDef * sDate;
 	RTC_AlarmTypeDef * sAlarm;
 	RTC_HandleTypeDef * rtcHandle;
+	uint8_t screenTimer;
+	uint8_t alarmTimer;
+	uint8_t alarmTimerOn;
+	uint8_t alarm;
+	uint8_t wifi;
+	uint8_t weather;
+	uint8_t dateTime;
+	char login[250];
+	char password[250];
+	char city[250];
+	char contentOfScreens[10][16];
 } typedef Clocker;
 
 /** @brief Inicjalizuje strukturę zegara czyli godzinę,
@@ -101,5 +112,6 @@ void Clocker_Change_Screen(Clocker * myClocker);
  *  @return Void.
  */
 void Clocker_Set_Screens(Clocker * myClocker);
+
 
 #endif
