@@ -54,25 +54,23 @@ struct
 /** @brief Inicjalizuje strukturę zegara czyli godzinę,
  * 		   datę, pogodę, ekrany itp.
  *
- *  @param Struktura Clocker która ma byc zainicjalizowana
+ *  @param myClocker Struktura Clocker która ma byc zainicjalizowana
  *
- *  @param Handler od RTC
+ *  @param rtcHandle Handler od RTC
  *
- *  @param Handler od Timera 1 (ekran segmentowy)
+ *  @param timSegment Handler od Timera 1 (ekran segmentowy)
  *
- *  @param Handler od Timera 2 (LCD)
+ *  @param timScreen Handler od Timera 2 (LCD)
  *
  *  @return Void.
  */
 void Clocker_Init(Clocker * myClocker, RTC_HandleTypeDef * rtcHandle, TIM_HandleTypeDef * timSegment, TIM_HandleTypeDef * timScreen);
 
 
-
-
 /** @brief Ustawia początkowe wartości ekranów LCD
  *
  *
- *  @param Struktura Clocker która ma byc edytowana
+ *  @param myClocker Struktura Clocker która ma byc edytowana
  *
  *  @return Void.
  */
@@ -84,13 +82,13 @@ void Clocker_Set_Screens(Clocker * myClocker);
 
 /** @brief Ustawia czasa od którego zacznie odliczać czas.
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
- *  @param Godzina która ma być ustawiona w RTC
+ *  @param newHours Godzina która ma być ustawiona w RTC
  *
- *  @param Minuty które mają być ustawiona w RTC
+ *  @param newMinutes Minuty które mają być ustawiona w RTC
  *
- *  @param Sekundy które mają być ustawiona w RTC
+ *  @param newSeconds Sekundy które mają być ustawiona w RTC
  *
  *  @return Void.
  */
@@ -99,11 +97,11 @@ void Clocker_Set_Time(Clocker * myClocker, uint8_t newHours, uint8_t newMinutes,
 
 /** @brief Ustawia godzinę i date alarmu
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
- *  @param Ustawia godzinę alarmu
+ *  @param alarmHours Ustawia godzinę alarmu
  *
- *  @param Ustawia minuty alarmu
+ *  @param alarmMinutes Ustawia minuty alarmu
  *
  *  @return Void.
  */
@@ -111,7 +109,7 @@ void Clocker_Set_Alarm(Clocker * myClocker, uint8_t alarmHours, uint8_t alarmMin
 
 /** @brief Aktualizuje czas na ekranie segmentowym
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
  *  @return Void.
  */
@@ -119,7 +117,7 @@ void Clocker_Segment_Update(Clocker * myClocker);
 
 /** @brief Aktualizuje ekran LCD
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
  *  @return Void.
  */
@@ -127,7 +125,7 @@ void Clocker_Change_Screen(Clocker * myClocker);
 
 /** @brief Aktualizuje czas alarmu; sprawdza czy mineła minuta od odpalenia alarmu
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
  *  @return Void.
  */
@@ -135,9 +133,9 @@ void Clocker_Alarm_Update(Clocker * myClocker);
 
 /** @brief Aktualizuje alarm
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
- *  @param Struktura RTC
+ *  @param hrtc Struktura RTC
  *
  *  @return Void.
  */
@@ -145,7 +143,7 @@ void Clocker_Run_Alarm(Clocker * myClocker, RTC_HandleTypeDef * hrtc);
 
 /** @brief Aktualizuje timery ekranu LCD i alarmu; ich czasy trwania
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
  *  @return Void.
  */
@@ -153,7 +151,7 @@ void Clocker_Update_Timers(Clocker * myClocker);
 
 /** @brief Zamienia liczbę na dane, którą ekran segmentowy jest w stanie odczytać
  *
- *  @param Liczba int do zamiany
+ *  @param c Liczba int do zamiany
  *
  *  @return Void.
  */
@@ -161,9 +159,9 @@ uint8_t Clocker_Convert_Int_to_Segment(uint8_t c);
 
 /** @brief Odpowiada za przetworzenie danych odebranych z telefonu z bluetooth
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
- *  @param Tablica znaków char w której są dane z bluetooth
+ *  @param table Tablica znaków char w której są dane z bluetooth
  *
  *  @return Void.
  */
@@ -171,9 +169,9 @@ void Clocker_Bluetooth(Clocker * myClocker, char * table);
 
 /** @brief Odpowiada za przetowrzenie danychy z wifi
  *
- *  @param Struktura Clocker która ma być edytowana
+ *  @param myClocker Struktura Clocker która ma być edytowana
  *
- *  @param Tablica znaków char w której są dane z wifi
+ *  @param table Tablica znaków char w której są dane z wifi
  *
  *  @return Void.
  */

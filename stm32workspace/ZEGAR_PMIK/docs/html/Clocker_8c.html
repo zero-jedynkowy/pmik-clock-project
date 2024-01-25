@@ -161,7 +161,7 @@ Functions</h2></td></tr>
 <p>Aktualizuje czas alarmu; sprawdza czy mineła minuta od odpalenia alarmu. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
   </table>
   </dd>
 </dl>
@@ -198,8 +198,8 @@ Functions</h2></td></tr>
 <p>Odpowiada za przetworzenie danych odebranych z telefonu z bluetooth. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
-    <tr><td class="paramname">Tablica</td><td>znaków char w której są dane z bluetooth</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">table</td><td>Tablica znaków char w której są dane z bluetooth</td></tr>
   </table>
   </dd>
 </dl>
@@ -226,7 +226,7 @@ Functions</h2></td></tr>
 <p>Aktualizuje ekran LCD. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
   </table>
   </dd>
 </dl>
@@ -253,7 +253,7 @@ Functions</h2></td></tr>
 <p>Zamienia liczbę na dane, którą ekran segmentowy jest w stanie odczytać </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Liczba</td><td>int do zamiany</td></tr>
+    <tr><td class="paramname">c</td><td>Liczba int do zamiany</td></tr>
   </table>
   </dd>
 </dl>
@@ -302,10 +302,10 @@ Functions</h2></td></tr>
 <p>Inicjalizuje strukturę zegara czyli godzinę, datę, pogodę, ekrany itp. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma byc zainicjalizowana</td></tr>
-    <tr><td class="paramname">Handler</td><td>od RTC</td></tr>
-    <tr><td class="paramname">Handler</td><td>od Timera 1 (ekran segmentowy)</td></tr>
-    <tr><td class="paramname">Handler</td><td>od Timera 2 (LCD)</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma byc zainicjalizowana</td></tr>
+    <tr><td class="paramname">rtcHandle</td><td>Handler od RTC</td></tr>
+    <tr><td class="paramname">timSegment</td><td>Handler od Timera 1 (ekran segmentowy)</td></tr>
+    <tr><td class="paramname">timScreen</td><td>Handler od Timera 2 (LCD)</td></tr>
   </table>
   </dd>
 </dl>
@@ -342,8 +342,8 @@ Functions</h2></td></tr>
 <p>Aktualizuje alarm. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
-    <tr><td class="paramname">Struktura</td><td>RTC</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">hrtc</td><td>Struktura RTC</td></tr>
   </table>
   </dd>
 </dl>
@@ -370,7 +370,7 @@ Functions</h2></td></tr>
 <p>Aktualizuje czas na ekranie segmentowym. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
   </table>
   </dd>
 </dl>
@@ -413,9 +413,9 @@ Functions</h2></td></tr>
 <p>Ustawia godzinę i date alarmu. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
-    <tr><td class="paramname">Ustawia</td><td>godzinę alarmu</td></tr>
-    <tr><td class="paramname">Ustawia</td><td>minuty alarmu</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">alarmHours</td><td>Ustawia godzinę alarmu</td></tr>
+    <tr><td class="paramname">alarmMinutes</td><td>Ustawia minuty alarmu</td></tr>
   </table>
   </dd>
 </dl>
@@ -442,7 +442,7 @@ Functions</h2></td></tr>
 <p>Ustawia początkowe wartości ekranów LCD. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma byc edytowana</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma byc edytowana</td></tr>
   </table>
   </dd>
 </dl>
@@ -491,10 +491,10 @@ Functions</h2></td></tr>
 <p>Ustawia czasa od którego zacznie odliczać czas. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
-    <tr><td class="paramname">Godzina</td><td>która ma być ustawiona w RTC</td></tr>
-    <tr><td class="paramname">Minuty</td><td>które mają być ustawiona w RTC</td></tr>
-    <tr><td class="paramname">Sekundy</td><td>które mają być ustawiona w RTC</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">newHours</td><td>Godzina która ma być ustawiona w RTC</td></tr>
+    <tr><td class="paramname">newMinutes</td><td>Minuty które mają być ustawiona w RTC</td></tr>
+    <tr><td class="paramname">newSeconds</td><td>Sekundy które mają być ustawiona w RTC</td></tr>
   </table>
   </dd>
 </dl>
@@ -521,7 +521,7 @@ Functions</h2></td></tr>
 <p>Aktualizuje timery ekranu LCD i alarmu; ich czasy trwania. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
   </table>
   </dd>
 </dl>
@@ -558,8 +558,8 @@ Functions</h2></td></tr>
 <p>Odpowiada za przetowrzenie danychy z wifi. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Struktura</td><td><a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
-    <tr><td class="paramname">Tablica</td><td>znaków char w której są dane z wifi</td></tr>
+    <tr><td class="paramname">myClocker</td><td>Struktura <a class="el" href="structClocker.html" title="Struktura zarządzająca całym urządzeniem.">Clocker</a> która ma być edytowana</td></tr>
+    <tr><td class="paramname">table</td><td>Tablica znaków char w której są dane z wifi</td></tr>
   </table>
   </dd>
 </dl>

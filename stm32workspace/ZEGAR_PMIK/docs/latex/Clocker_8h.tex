@@ -14,16 +14,14 @@ Plik nagłówkowy biblioteki \mbox{\hyperlink{structClocker}{Clocker}}; zawiera 
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$c\+JSON.\+h$>$}\newline
-Include dependency graph for Clocker.\+h\+:
-\nopagebreak
+Include dependency graph for Clocker.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{Clocker_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -90,7 +88,7 @@ Aktualizuje czas alarmu; sprawdza czy mineła minuta od odpalenia alarmu.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -108,9 +106,9 @@ Odpowiada za przetworzenie danych odebranych z telefonu z bluetooth.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
-{\em Tablica} & znaków char w której są dane z bluetooth\\
+{\em table} & Tablica znaków char w której są dane z bluetooth\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -128,7 +126,7 @@ Aktualizuje ekran LCD.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -146,7 +144,7 @@ Zamienia liczbę na dane, którą ekran segmentowy jest w stanie odczytać
 
 
 \begin{DoxyParams}{Parameters}
-{\em Liczba} & int do zamiany\\
+{\em c} & Liczba int do zamiany\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -164,13 +162,13 @@ Inicjalizuje strukturę zegara czyli godzinę, datę, pogodę, ekrany itp.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma byc zainicjalizowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma byc zainicjalizowana\\
 \hline
-{\em Handler} & od RTC\\
+{\em rtc\+Handle} & Handler od RTC\\
 \hline
-{\em Handler} & od Timera 1 (ekran segmentowy)\\
+{\em tim\+Segment} & Handler od Timera 1 (ekran segmentowy)\\
 \hline
-{\em Handler} & od Timera 2 (LCD)\\
+{\em tim\+Screen} & Handler od Timera 2 (LCD)\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -188,9 +186,9 @@ Aktualizuje alarm.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
-{\em Struktura} & RTC\\
+{\em hrtc} & Struktura RTC\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -208,7 +206,7 @@ Aktualizuje czas na ekranie segmentowym.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -226,11 +224,11 @@ Ustawia godzinę i date alarmu.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
-{\em Ustawia} & godzinę alarmu\\
+{\em alarm\+Hours} & Ustawia godzinę alarmu\\
 \hline
-{\em Ustawia} & minuty alarmu\\
+{\em alarm\+Minutes} & Ustawia minuty alarmu\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -248,7 +246,7 @@ Ustawia początkowe wartości ekranów LCD.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma byc edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma byc edytowana\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -266,13 +264,13 @@ Ustawia czasa od którego zacznie odliczać czas.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
-{\em Godzina} & która ma być ustawiona w RTC\\
+{\em new\+Hours} & Godzina która ma być ustawiona w RTC\\
 \hline
-{\em Minuty} & które mają być ustawiona w RTC\\
+{\em new\+Minutes} & Minuty które mają być ustawiona w RTC\\
 \hline
-{\em Sekundy} & które mają być ustawiona w RTC\\
+{\em new\+Seconds} & Sekundy które mają być ustawiona w RTC\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -290,7 +288,7 @@ Aktualizuje timery ekranu LCD i alarmu; ich czasy trwania.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -308,9 +306,9 @@ Odpowiada za przetowrzenie danychy z wifi.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+{\em my\+Clocker} & Struktura \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
 \hline
-{\em Tablica} & znaków char w której są dane z wifi\\
+{\em table} & Tablica znaków char w której są dane z wifi\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
