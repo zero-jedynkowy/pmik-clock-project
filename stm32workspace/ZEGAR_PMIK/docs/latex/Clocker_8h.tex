@@ -1,0 +1,318 @@
+\hypertarget{Clocker_8h}{}\doxysection{Devices/\+Inc/\+Clocker.h File Reference}
+\label{Clocker_8h}\index{Devices/Inc/Clocker.h@{Devices/Inc/Clocker.h}}
+
+
+Plik nagłówkowy biblioteki \mbox{\hyperlink{structClocker}{Clocker}}; zawiera wszystkie nagłówki funkcji.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}DFPLAYER\+\_\+\+MINI.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}TM1637.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}LCD1602.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32l0xx\+\_\+hal\+\_\+rtc.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$c\+JSON.\+h$>$}\newline
+Include dependency graph for Clocker.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Clocker_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{Clocker_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structClocker}{Clocker}}
+\begin{DoxyCompactList}\small\item\em Struktura zarządzająca całym urządzeniem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Clocker_8h_a96732676002677179b932f64ea895031}{Clocker\+\_\+\+Init}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker, RTC\+\_\+\+Handle\+Type\+Def $\ast$rtc\+Handle, TIM\+\_\+\+Handle\+Type\+Def $\ast$tim\+Segment, TIM\+\_\+\+Handle\+Type\+Def $\ast$tim\+Screen)
+\begin{DoxyCompactList}\small\item\em Inicjalizuje strukturę zegara czyli godzinę, datę, pogodę, ekrany itp. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a9acb0a648d4852cc072a0358384c42f1}{Clocker\+\_\+\+Set\+\_\+\+Screens}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker)
+\begin{DoxyCompactList}\small\item\em Ustawia początkowe wartości ekranów LCD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a0c3fa22fc8ceeceec8143418165dc816}{Clocker\+\_\+\+Set\+\_\+\+Time}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker, uint8\+\_\+t new\+Hours, uint8\+\_\+t new\+Minutes, uint8\+\_\+t new\+Seconds)
+\begin{DoxyCompactList}\small\item\em Ustawia czasa od którego zacznie odliczać czas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a1624a1fefcd60f196d45509efd22bf56}{Clocker\+\_\+\+Set\+\_\+\+Alarm}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker, uint8\+\_\+t alarm\+Hours, uint8\+\_\+t alarm\+Minutes)
+\begin{DoxyCompactList}\small\item\em Ustawia godzinę i date alarmu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a283cc36149e8629c768d2d79aa6163f5}{Clocker\+\_\+\+Segment\+\_\+\+Update}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker)
+\begin{DoxyCompactList}\small\item\em Aktualizuje czas na ekranie segmentowym. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a5493fb9e8373faa26a22f0ef36665765}{Clocker\+\_\+\+Change\+\_\+\+Screen}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker)
+\begin{DoxyCompactList}\small\item\em Aktualizuje ekran LCD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_ab9f10f25c497208de8f5b24f9dedfa08}{Clocker\+\_\+\+Alarm\+\_\+\+Update}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker)
+\begin{DoxyCompactList}\small\item\em Aktualizuje czas alarmu; sprawdza czy mineła minuta od odpalenia alarmu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a1c2e2e891705795074f63ba550970684}{Clocker\+\_\+\+Run\+\_\+\+Alarm}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker, RTC\+\_\+\+Handle\+Type\+Def $\ast$hrtc)
+\begin{DoxyCompactList}\small\item\em Aktualizuje alarm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a58bde11aacfba6768d789047d8794eb3}{Clocker\+\_\+\+Update\+\_\+\+Timers}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker)
+\begin{DoxyCompactList}\small\item\em Aktualizuje timery ekranu LCD i alarmu; ich czasy trwania. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{Clocker_8h_afe1f2cd1d2f4fab0a585ab3c4da84b24}{Clocker\+\_\+\+Convert\+\_\+\+Int\+\_\+to\+\_\+\+Segment}} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Zamienia liczbę na dane, którą ekran segmentowy jest w stanie odczytać \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_ad663da4fae42c677605f6c0d2e20abc0}{Clocker\+\_\+\+Bluetooth}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker, char $\ast$table)
+\begin{DoxyCompactList}\small\item\em Odpowiada za przetworzenie danych odebranych z telefonu z bluetooth. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Clocker_8h_a8ef5ef9ecd7a5e4c1cc95f88ff8fceb3}{Clocker\+\_\+\+Wifi\+\_\+\+Receive}} (\mbox{\hyperlink{structClocker}{Clocker}} $\ast$my\+Clocker, char $\ast$table)
+\begin{DoxyCompactList}\small\item\em Odpowiada za przetowrzenie danychy z wifi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Plik nagłówkowy biblioteki \mbox{\hyperlink{structClocker}{Clocker}}; zawiera wszystkie nagłówki funkcji. 
+
+Detailed description of the file goes here.
+
+\begin{DoxyAuthor}{Author}
+Karol Ambroziński, Jakub Jastrzębski 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+January 25, 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Clocker_8h_ab9f10f25c497208de8f5b24f9dedfa08}\label{Clocker_8h_ab9f10f25c497208de8f5b24f9dedfa08}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Alarm\_Update@{Clocker\_Alarm\_Update}}
+\index{Clocker\_Alarm\_Update@{Clocker\_Alarm\_Update}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Alarm\_Update()}{Clocker\_Alarm\_Update()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Alarm\+\_\+\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker }\end{DoxyParamCaption})}
+
+
+
+Aktualizuje czas alarmu; sprawdza czy mineła minuta od odpalenia alarmu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_ad663da4fae42c677605f6c0d2e20abc0}\label{Clocker_8h_ad663da4fae42c677605f6c0d2e20abc0}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Bluetooth@{Clocker\_Bluetooth}}
+\index{Clocker\_Bluetooth@{Clocker\_Bluetooth}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Bluetooth()}{Clocker\_Bluetooth()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Bluetooth (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker,  }\item[{char $\ast$}]{table }\end{DoxyParamCaption})}
+
+
+
+Odpowiada za przetworzenie danych odebranych z telefonu z bluetooth. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+{\em Tablica} & znaków char w której są dane z bluetooth\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a5493fb9e8373faa26a22f0ef36665765}\label{Clocker_8h_a5493fb9e8373faa26a22f0ef36665765}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Change\_Screen@{Clocker\_Change\_Screen}}
+\index{Clocker\_Change\_Screen@{Clocker\_Change\_Screen}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Change\_Screen()}{Clocker\_Change\_Screen()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Change\+\_\+\+Screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker }\end{DoxyParamCaption})}
+
+
+
+Aktualizuje ekran LCD. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_afe1f2cd1d2f4fab0a585ab3c4da84b24}\label{Clocker_8h_afe1f2cd1d2f4fab0a585ab3c4da84b24}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Convert\_Int\_to\_Segment@{Clocker\_Convert\_Int\_to\_Segment}}
+\index{Clocker\_Convert\_Int\_to\_Segment@{Clocker\_Convert\_Int\_to\_Segment}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Convert\_Int\_to\_Segment()}{Clocker\_Convert\_Int\_to\_Segment()}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+\_\+\+Convert\+\_\+\+Int\+\_\+to\+\_\+\+Segment (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
+
+
+
+Zamienia liczbę na dane, którą ekran segmentowy jest w stanie odczytać 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Liczba} & int do zamiany\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a96732676002677179b932f64ea895031}\label{Clocker_8h_a96732676002677179b932f64ea895031}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Init@{Clocker\_Init}}
+\index{Clocker\_Init@{Clocker\_Init}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Init()}{Clocker\_Init()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker,  }\item[{RTC\+\_\+\+Handle\+Type\+Def $\ast$}]{rtc\+Handle,  }\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{tim\+Segment,  }\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{tim\+Screen }\end{DoxyParamCaption})}
+
+
+
+Inicjalizuje strukturę zegara czyli godzinę, datę, pogodę, ekrany itp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma byc zainicjalizowana\\
+\hline
+{\em Handler} & od RTC\\
+\hline
+{\em Handler} & od Timera 1 (ekran segmentowy)\\
+\hline
+{\em Handler} & od Timera 2 (LCD)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a1c2e2e891705795074f63ba550970684}\label{Clocker_8h_a1c2e2e891705795074f63ba550970684}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Run\_Alarm@{Clocker\_Run\_Alarm}}
+\index{Clocker\_Run\_Alarm@{Clocker\_Run\_Alarm}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Run\_Alarm()}{Clocker\_Run\_Alarm()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Run\+\_\+\+Alarm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker,  }\item[{RTC\+\_\+\+Handle\+Type\+Def $\ast$}]{hrtc }\end{DoxyParamCaption})}
+
+
+
+Aktualizuje alarm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+{\em Struktura} & RTC\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a283cc36149e8629c768d2d79aa6163f5}\label{Clocker_8h_a283cc36149e8629c768d2d79aa6163f5}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Segment\_Update@{Clocker\_Segment\_Update}}
+\index{Clocker\_Segment\_Update@{Clocker\_Segment\_Update}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Segment\_Update()}{Clocker\_Segment\_Update()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Segment\+\_\+\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker }\end{DoxyParamCaption})}
+
+
+
+Aktualizuje czas na ekranie segmentowym. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a1624a1fefcd60f196d45509efd22bf56}\label{Clocker_8h_a1624a1fefcd60f196d45509efd22bf56}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Set\_Alarm@{Clocker\_Set\_Alarm}}
+\index{Clocker\_Set\_Alarm@{Clocker\_Set\_Alarm}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Set\_Alarm()}{Clocker\_Set\_Alarm()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Set\+\_\+\+Alarm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker,  }\item[{uint8\+\_\+t}]{alarm\+Hours,  }\item[{uint8\+\_\+t}]{alarm\+Minutes }\end{DoxyParamCaption})}
+
+
+
+Ustawia godzinę i date alarmu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+{\em Ustawia} & godzinę alarmu\\
+\hline
+{\em Ustawia} & minuty alarmu\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a9acb0a648d4852cc072a0358384c42f1}\label{Clocker_8h_a9acb0a648d4852cc072a0358384c42f1}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Set\_Screens@{Clocker\_Set\_Screens}}
+\index{Clocker\_Set\_Screens@{Clocker\_Set\_Screens}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Set\_Screens()}{Clocker\_Set\_Screens()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Set\+\_\+\+Screens (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker }\end{DoxyParamCaption})}
+
+
+
+Ustawia początkowe wartości ekranów LCD. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma byc edytowana\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a0c3fa22fc8ceeceec8143418165dc816}\label{Clocker_8h_a0c3fa22fc8ceeceec8143418165dc816}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Set\_Time@{Clocker\_Set\_Time}}
+\index{Clocker\_Set\_Time@{Clocker\_Set\_Time}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Set\_Time()}{Clocker\_Set\_Time()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Set\+\_\+\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker,  }\item[{uint8\+\_\+t}]{new\+Hours,  }\item[{uint8\+\_\+t}]{new\+Minutes,  }\item[{uint8\+\_\+t}]{new\+Seconds }\end{DoxyParamCaption})}
+
+
+
+Ustawia czasa od którego zacznie odliczać czas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+{\em Godzina} & która ma być ustawiona w RTC\\
+\hline
+{\em Minuty} & które mają być ustawiona w RTC\\
+\hline
+{\em Sekundy} & które mają być ustawiona w RTC\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a58bde11aacfba6768d789047d8794eb3}\label{Clocker_8h_a58bde11aacfba6768d789047d8794eb3}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Update\_Timers@{Clocker\_Update\_Timers}}
+\index{Clocker\_Update\_Timers@{Clocker\_Update\_Timers}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Update\_Timers()}{Clocker\_Update\_Timers()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Update\+\_\+\+Timers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker }\end{DoxyParamCaption})}
+
+
+
+Aktualizuje timery ekranu LCD i alarmu; ich czasy trwania. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Clocker_8h_a8ef5ef9ecd7a5e4c1cc95f88ff8fceb3}\label{Clocker_8h_a8ef5ef9ecd7a5e4c1cc95f88ff8fceb3}} 
+\index{Clocker.h@{Clocker.h}!Clocker\_Wifi\_Receive@{Clocker\_Wifi\_Receive}}
+\index{Clocker\_Wifi\_Receive@{Clocker\_Wifi\_Receive}!Clocker.h@{Clocker.h}}
+\doxysubsubsection{\texorpdfstring{Clocker\_Wifi\_Receive()}{Clocker\_Wifi\_Receive()}}
+{\footnotesize\ttfamily void Clocker\+\_\+\+Wifi\+\_\+\+Receive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClocker}{Clocker}} $\ast$}]{my\+Clocker,  }\item[{char $\ast$}]{table }\end{DoxyParamCaption})}
+
+
+
+Odpowiada za przetowrzenie danychy z wifi. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Struktura} & \mbox{\hyperlink{structClocker}{Clocker}} która ma być edytowana\\
+\hline
+{\em Tablica} & znaków char w której są dane z wifi\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}

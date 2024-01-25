@@ -1,0 +1,176 @@
+\hypertarget{TM1637_8c}{}\doxysection{Devices/\+Src/\+TM1637.c File Reference}
+\label{TM1637_8c}\index{Devices/Src/TM1637.c@{Devices/Src/TM1637.c}}
+{\ttfamily \#include \char`\"{}TM1637.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32l0xx\+\_\+hal\+\_\+gpio.\+h\char`\"{}}\newline
+Include dependency graph for TM1637.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{TM1637_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{TM1637_8c_a22aabb10b7c70dda6e51b36175b41be5}{tm1637\+\_\+\+CLKhigh}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_ab2418f282c08e576ff73959e3e7cbc28}{tm1637\+\_\+\+CLKlow}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_a65ad5e5c1f723df99e7202fa2770f5ba}{tm1637\+\_\+\+SDOhigh}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_afc211eab070f156f345f588c9538ce5d}{tm1637\+\_\+\+SDOlow}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_ad1bf4effc77a7e7b09d4f2f6dfa3bb7a}{tm1637\+\_\+\+Start\+Packet}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_aa7107f25470ff6b015473f037bb7ef82}{tm1637\+\_\+\+End\+Packet}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_adf89f6a93e0a258c9ffb7077755caf03}{tm1637\+\_\+\+Data\+Out}} (uint8\+\_\+t $\ast$tm1637\+\_\+\+Tx\+Buffer)
+\item 
+void \mbox{\hyperlink{TM1637_8c_a651c1f13272bd938dc375c3c6140cb23}{tm1637\+\_\+\+Tx\+Command}} (uint8\+\_\+t $\ast$Command)
+\item 
+void \mbox{\hyperlink{TM1637_8c_a9e73ef622433d8b155aaabe8a6b24235}{tm1637\+\_\+\+Tx\+Data}} (uint8\+\_\+t $\ast$Data, uint8\+\_\+t Packet\+Size)
+\item 
+void \mbox{\hyperlink{TM1637_8c_ab5ca28c645c5bd386d9609751652b6ec}{tm1637\+\_\+\+Initialize}} (uint8\+\_\+t Direction)
+\item 
+void \mbox{\hyperlink{TM1637_8c_a3bfcf5cda0681b2b6fd10e9e730b00f2}{tm1637\+\_\+\+ACKcheck}} ()
+\item 
+void \mbox{\hyperlink{TM1637_8c_a92bbdc322dbadbadddf288bcbb528423}{tm1637\+\_\+\+Display\+Clear}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{TM1637_8c_abec80a517a4ad90d971ffd36fb551eef}{tm1637\+\_\+\+Display\+Handle}} (uint8\+\_\+t Brightness, uint8\+\_\+t $\ast$Display\+Buffer)
+\item 
+\mbox{\hyperlink{TM1637_8h_a3f3882ad3bb57d80695e152c97e22757}{tm1637\+\_\+\+Status\+Typedef}} \mbox{\hyperlink{TM1637_8c_a82e25739ee16e0f5ded19c4acbde1c99}{tm1637\+\_\+\+Set\+Brighness}} (uint8\+\_\+t Brighness\+Level)
+\item 
+void \mbox{\hyperlink{TM1637_8c_a8ad8cf838f7bbe96b97ec8bf9e76d5ad}{tm1637\+\_\+\+Effect}} (uint8\+\_\+t Rotationfrequency)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{TM1637_8c_ad804b72cea4d261cf88d0c190b85d91c}{char2segments}} (char c)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{TM1637_8c_adff822d57e096dbae7862d82e00e73d2}{Timer1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{TM1637_8c_a7cd10d29dfa0cb792de62d7bdc6b052c}{Current\+Display}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{TM1637_8c_a8e3e52a83ffa3a5c4d1352bfdad3fe7f}{tm1637\+\_\+\+Segments}} \mbox{[}8\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{TM1637_8c_ad804b72cea4d261cf88d0c190b85d91c}\label{TM1637_8c_ad804b72cea4d261cf88d0c190b85d91c}} 
+\index{TM1637.c@{TM1637.c}!char2segments@{char2segments}}
+\index{char2segments@{char2segments}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{char2segments()}{char2segments()}}
+{\footnotesize\ttfamily uint8\+\_\+t char2segments (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a3bfcf5cda0681b2b6fd10e9e730b00f2}\label{TM1637_8c_a3bfcf5cda0681b2b6fd10e9e730b00f2}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_ACKcheck@{tm1637\_ACKcheck}}
+\index{tm1637\_ACKcheck@{tm1637\_ACKcheck}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_ACKcheck()}{tm1637\_ACKcheck()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+ACKcheck (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a22aabb10b7c70dda6e51b36175b41be5}\label{TM1637_8c_a22aabb10b7c70dda6e51b36175b41be5}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_CLKhigh@{tm1637\_CLKhigh}}
+\index{tm1637\_CLKhigh@{tm1637\_CLKhigh}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_CLKhigh()}{tm1637\_CLKhigh()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+CLKhigh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_ab2418f282c08e576ff73959e3e7cbc28}\label{TM1637_8c_ab2418f282c08e576ff73959e3e7cbc28}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_CLKlow@{tm1637\_CLKlow}}
+\index{tm1637\_CLKlow@{tm1637\_CLKlow}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_CLKlow()}{tm1637\_CLKlow()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+CLKlow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_adf89f6a93e0a258c9ffb7077755caf03}\label{TM1637_8c_adf89f6a93e0a258c9ffb7077755caf03}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_DataOut@{tm1637\_DataOut}}
+\index{tm1637\_DataOut@{tm1637\_DataOut}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_DataOut()}{tm1637\_DataOut()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Data\+Out (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{tm1637\+\_\+\+Tx\+Buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a92bbdc322dbadbadddf288bcbb528423}\label{TM1637_8c_a92bbdc322dbadbadddf288bcbb528423}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_DisplayClear@{tm1637\_DisplayClear}}
+\index{tm1637\_DisplayClear@{tm1637\_DisplayClear}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_DisplayClear()}{tm1637\_DisplayClear()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Display\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_abec80a517a4ad90d971ffd36fb551eef}\label{TM1637_8c_abec80a517a4ad90d971ffd36fb551eef}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_DisplayHandle@{tm1637\_DisplayHandle}}
+\index{tm1637\_DisplayHandle@{tm1637\_DisplayHandle}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_DisplayHandle()}{tm1637\_DisplayHandle()}}
+{\footnotesize\ttfamily uint8\+\_\+t tm1637\+\_\+\+Display\+Handle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Brightness,  }\item[{uint8\+\_\+t $\ast$}]{Display\+Buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a8ad8cf838f7bbe96b97ec8bf9e76d5ad}\label{TM1637_8c_a8ad8cf838f7bbe96b97ec8bf9e76d5ad}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_Effect@{tm1637\_Effect}}
+\index{tm1637\_Effect@{tm1637\_Effect}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_Effect()}{tm1637\_Effect()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Effect (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Rotationfrequency }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_aa7107f25470ff6b015473f037bb7ef82}\label{TM1637_8c_aa7107f25470ff6b015473f037bb7ef82}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_EndPacket@{tm1637\_EndPacket}}
+\index{tm1637\_EndPacket@{tm1637\_EndPacket}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_EndPacket()}{tm1637\_EndPacket()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+End\+Packet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_ab5ca28c645c5bd386d9609751652b6ec}\label{TM1637_8c_ab5ca28c645c5bd386d9609751652b6ec}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_Initialize@{tm1637\_Initialize}}
+\index{tm1637\_Initialize@{tm1637\_Initialize}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_Initialize()}{tm1637\_Initialize()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Direction }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a65ad5e5c1f723df99e7202fa2770f5ba}\label{TM1637_8c_a65ad5e5c1f723df99e7202fa2770f5ba}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_SDOhigh@{tm1637\_SDOhigh}}
+\index{tm1637\_SDOhigh@{tm1637\_SDOhigh}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_SDOhigh()}{tm1637\_SDOhigh()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+SDOhigh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_afc211eab070f156f345f588c9538ce5d}\label{TM1637_8c_afc211eab070f156f345f588c9538ce5d}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_SDOlow@{tm1637\_SDOlow}}
+\index{tm1637\_SDOlow@{tm1637\_SDOlow}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_SDOlow()}{tm1637\_SDOlow()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+SDOlow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a82e25739ee16e0f5ded19c4acbde1c99}\label{TM1637_8c_a82e25739ee16e0f5ded19c4acbde1c99}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_SetBrighness@{tm1637\_SetBrighness}}
+\index{tm1637\_SetBrighness@{tm1637\_SetBrighness}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_SetBrighness()}{tm1637\_SetBrighness()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{TM1637_8h_a3f3882ad3bb57d80695e152c97e22757}{tm1637\+\_\+\+Status\+Typedef}} tm1637\+\_\+\+Set\+Brighness (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Brighness\+Level }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_ad1bf4effc77a7e7b09d4f2f6dfa3bb7a}\label{TM1637_8c_ad1bf4effc77a7e7b09d4f2f6dfa3bb7a}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_StartPacket@{tm1637\_StartPacket}}
+\index{tm1637\_StartPacket@{tm1637\_StartPacket}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_StartPacket()}{tm1637\_StartPacket()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Start\+Packet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a651c1f13272bd938dc375c3c6140cb23}\label{TM1637_8c_a651c1f13272bd938dc375c3c6140cb23}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_TxCommand@{tm1637\_TxCommand}}
+\index{tm1637\_TxCommand@{tm1637\_TxCommand}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_TxCommand()}{tm1637\_TxCommand()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Tx\+Command (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Command }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{TM1637_8c_a9e73ef622433d8b155aaabe8a6b24235}\label{TM1637_8c_a9e73ef622433d8b155aaabe8a6b24235}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_TxData@{tm1637\_TxData}}
+\index{tm1637\_TxData@{tm1637\_TxData}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_TxData()}{tm1637\_TxData()}}
+{\footnotesize\ttfamily void tm1637\+\_\+\+Tx\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Data,  }\item[{uint8\+\_\+t}]{Packet\+Size }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{TM1637_8c_a7cd10d29dfa0cb792de62d7bdc6b052c}\label{TM1637_8c_a7cd10d29dfa0cb792de62d7bdc6b052c}} 
+\index{TM1637.c@{TM1637.c}!CurrentDisplay@{CurrentDisplay}}
+\index{CurrentDisplay@{CurrentDisplay}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{CurrentDisplay}{CurrentDisplay}}
+{\footnotesize\ttfamily uint8\+\_\+t Current\+Display\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{TM1637_8c_adff822d57e096dbae7862d82e00e73d2}\label{TM1637_8c_adff822d57e096dbae7862d82e00e73d2}} 
+\index{TM1637.c@{TM1637.c}!Timer1@{Timer1}}
+\index{Timer1@{Timer1}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{Timer1}{Timer1}}
+{\footnotesize\ttfamily uint32\+\_\+t Timer1\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{TM1637_8c_a8e3e52a83ffa3a5c4d1352bfdad3fe7f}\label{TM1637_8c_a8e3e52a83ffa3a5c4d1352bfdad3fe7f}} 
+\index{TM1637.c@{TM1637.c}!tm1637\_Segments@{tm1637\_Segments}}
+\index{tm1637\_Segments@{tm1637\_Segments}!TM1637.c@{TM1637.c}}
+\doxysubsubsection{\texorpdfstring{tm1637\_Segments}{tm1637\_Segments}}
+{\footnotesize\ttfamily uint8\+\_\+t tm1637\+\_\+\+Segments\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+

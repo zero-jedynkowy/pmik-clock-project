@@ -1,0 +1,167 @@
+\hypertarget{DFPLAYER__MINI_8c}{}\doxysection{Devices/\+Src/\+DFPLAYER\+\_\+\+MINI.c File Reference}
+\label{DFPLAYER__MINI_8c}\index{Devices/Src/DFPLAYER\_MINI.c@{Devices/Src/DFPLAYER\_MINI.c}}
+{\ttfamily \#include \char`\"{}stdio.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stm32l0xx\+\_\+hal.\+h\char`\"{}}\newline
+Include dependency graph for DFPLAYER\+\_\+\+MINI.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{DFPLAYER__MINI_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_aced9cfc8381dd3d847d030d23564b5c4}{DF\+\_\+\+UART}}~\&\mbox{\hyperlink{DFPLAYER__MINI_8c_ae273feb3e0dc44e38892650faa58fced}{huart4}}
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_aed789cae0cd34cc40a5cf01d9c7bcc62}{Source}}~0x02
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_aa696468ffcc3f52eef52b4f9de919d8e}{Start\+\_\+\+Byte}}~0x7E
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_a9f3768d1b03bc549fd00183308fc11ae}{End\+\_\+\+Byte}}~0x\+EF
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_a00c9dad6cd91a4abb6062ea1efc82bd9}{Version}}~0x\+FF
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_a27b51678541e0bfd29db689dddd8fa09}{Cmd\+\_\+\+Len}}~0x06
+\item 
+\#define \mbox{\hyperlink{DFPLAYER__MINI_8c_afdcba4a1062c3a8e4a837a6e895a8f82}{Feedback}}~0x00
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_a8569ed422cd12b15d5eab2a4526ac779}{Send\+\_\+cmd}} (uint8\+\_\+t cmd, uint8\+\_\+t Parameter1, uint8\+\_\+t Parameter2)
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_ad6514af345022f95c66a90c5da6e6d89}{DF\+\_\+\+Play\+From\+Start}} (void)
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_a25cd319616b479822bc242df5b2df1d6}{DF\+\_\+\+Init}} (uint8\+\_\+t volume)
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_a755a030138d60fb6797d38abb1ff6ccb}{DF\+\_\+\+Next}} (void)
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_a17651e82272fa7d3235e5727e61d6bb8}{DF\+\_\+\+Pause}} (void)
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_a8aabc39482ec270b44043b1a703ec972}{DF\+\_\+\+Previous}} (void)
+\item 
+void \mbox{\hyperlink{DFPLAYER__MINI_8c_ad1bd46881f08f23be04d4a6cfa7db82e}{DF\+\_\+\+Playback}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+UART\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{DFPLAYER__MINI_8c_ae273feb3e0dc44e38892650faa58fced}{huart4}}
+\item 
+int \mbox{\hyperlink{DFPLAYER__MINI_8c_a266c7a122f6673add64ab42dfb2d32a2}{ispause}} =0
+\item 
+int \mbox{\hyperlink{DFPLAYER__MINI_8c_a69b58b2c60203bfd1c20f3e97c884064}{isplaying}} =1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a27b51678541e0bfd29db689dddd8fa09}\label{DFPLAYER__MINI_8c_a27b51678541e0bfd29db689dddd8fa09}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!Cmd\_Len@{Cmd\_Len}}
+\index{Cmd\_Len@{Cmd\_Len}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_Len}{Cmd\_Len}}
+{\footnotesize\ttfamily \#define Cmd\+\_\+\+Len~0x06}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_aced9cfc8381dd3d847d030d23564b5c4}\label{DFPLAYER__MINI_8c_aced9cfc8381dd3d847d030d23564b5c4}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_UART@{DF\_UART}}
+\index{DF\_UART@{DF\_UART}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_UART}{DF\_UART}}
+{\footnotesize\ttfamily \#define DF\+\_\+\+UART~\&\mbox{\hyperlink{DFPLAYER__MINI_8c_ae273feb3e0dc44e38892650faa58fced}{huart4}}}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a9f3768d1b03bc549fd00183308fc11ae}\label{DFPLAYER__MINI_8c_a9f3768d1b03bc549fd00183308fc11ae}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!End\_Byte@{End\_Byte}}
+\index{End\_Byte@{End\_Byte}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{End\_Byte}{End\_Byte}}
+{\footnotesize\ttfamily \#define End\+\_\+\+Byte~0x\+EF}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_afdcba4a1062c3a8e4a837a6e895a8f82}\label{DFPLAYER__MINI_8c_afdcba4a1062c3a8e4a837a6e895a8f82}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!Feedback@{Feedback}}
+\index{Feedback@{Feedback}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{Feedback}{Feedback}}
+{\footnotesize\ttfamily \#define Feedback~0x00}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_aed789cae0cd34cc40a5cf01d9c7bcc62}\label{DFPLAYER__MINI_8c_aed789cae0cd34cc40a5cf01d9c7bcc62}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!Source@{Source}}
+\index{Source@{Source}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{Source}{Source}}
+{\footnotesize\ttfamily \#define Source~0x02}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_aa696468ffcc3f52eef52b4f9de919d8e}\label{DFPLAYER__MINI_8c_aa696468ffcc3f52eef52b4f9de919d8e}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!Start\_Byte@{Start\_Byte}}
+\index{Start\_Byte@{Start\_Byte}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{Start\_Byte}{Start\_Byte}}
+{\footnotesize\ttfamily \#define Start\+\_\+\+Byte~0x7E}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a00c9dad6cd91a4abb6062ea1efc82bd9}\label{DFPLAYER__MINI_8c_a00c9dad6cd91a4abb6062ea1efc82bd9}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!Version@{Version}}
+\index{Version@{Version}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{Version}{Version}}
+{\footnotesize\ttfamily \#define Version~0x\+FF}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a25cd319616b479822bc242df5b2df1d6}\label{DFPLAYER__MINI_8c_a25cd319616b479822bc242df5b2df1d6}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_Init@{DF\_Init}}
+\index{DF\_Init@{DF\_Init}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_Init()}{DF\_Init()}}
+{\footnotesize\ttfamily void DF\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{volume }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a755a030138d60fb6797d38abb1ff6ccb}\label{DFPLAYER__MINI_8c_a755a030138d60fb6797d38abb1ff6ccb}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_Next@{DF\_Next}}
+\index{DF\_Next@{DF\_Next}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_Next()}{DF\_Next()}}
+{\footnotesize\ttfamily void DF\+\_\+\+Next (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a17651e82272fa7d3235e5727e61d6bb8}\label{DFPLAYER__MINI_8c_a17651e82272fa7d3235e5727e61d6bb8}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_Pause@{DF\_Pause}}
+\index{DF\_Pause@{DF\_Pause}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_Pause()}{DF\_Pause()}}
+{\footnotesize\ttfamily void DF\+\_\+\+Pause (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_ad1bd46881f08f23be04d4a6cfa7db82e}\label{DFPLAYER__MINI_8c_ad1bd46881f08f23be04d4a6cfa7db82e}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_Playback@{DF\_Playback}}
+\index{DF\_Playback@{DF\_Playback}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_Playback()}{DF\_Playback()}}
+{\footnotesize\ttfamily void DF\+\_\+\+Playback (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_ad6514af345022f95c66a90c5da6e6d89}\label{DFPLAYER__MINI_8c_ad6514af345022f95c66a90c5da6e6d89}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_PlayFromStart@{DF\_PlayFromStart}}
+\index{DF\_PlayFromStart@{DF\_PlayFromStart}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_PlayFromStart()}{DF\_PlayFromStart()}}
+{\footnotesize\ttfamily void DF\+\_\+\+Play\+From\+Start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a8aabc39482ec270b44043b1a703ec972}\label{DFPLAYER__MINI_8c_a8aabc39482ec270b44043b1a703ec972}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!DF\_Previous@{DF\_Previous}}
+\index{DF\_Previous@{DF\_Previous}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{DF\_Previous()}{DF\_Previous()}}
+{\footnotesize\ttfamily void DF\+\_\+\+Previous (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a8569ed422cd12b15d5eab2a4526ac779}\label{DFPLAYER__MINI_8c_a8569ed422cd12b15d5eab2a4526ac779}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!Send\_cmd@{Send\_cmd}}
+\index{Send\_cmd@{Send\_cmd}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{Send\_cmd()}{Send\_cmd()}}
+{\footnotesize\ttfamily void Send\+\_\+cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cmd,  }\item[{uint8\+\_\+t}]{Parameter1,  }\item[{uint8\+\_\+t}]{Parameter2 }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_ae273feb3e0dc44e38892650faa58fced}\label{DFPLAYER__MINI_8c_ae273feb3e0dc44e38892650faa58fced}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!huart4@{huart4}}
+\index{huart4@{huart4}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{huart4}{huart4}}
+{\footnotesize\ttfamily UART\+\_\+\+Handle\+Type\+Def huart4\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a266c7a122f6673add64ab42dfb2d32a2}\label{DFPLAYER__MINI_8c_a266c7a122f6673add64ab42dfb2d32a2}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!ispause@{ispause}}
+\index{ispause@{ispause}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{ispause}{ispause}}
+{\footnotesize\ttfamily int ispause =0}
+
+\mbox{\Hypertarget{DFPLAYER__MINI_8c_a69b58b2c60203bfd1c20f3e97c884064}\label{DFPLAYER__MINI_8c_a69b58b2c60203bfd1c20f3e97c884064}} 
+\index{DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}!isplaying@{isplaying}}
+\index{isplaying@{isplaying}!DFPLAYER\_MINI.c@{DFPLAYER\_MINI.c}}
+\doxysubsubsection{\texorpdfstring{isplaying}{isplaying}}
+{\footnotesize\ttfamily int isplaying =1}
+

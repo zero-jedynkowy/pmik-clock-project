@@ -1,0 +1,6 @@
+<map id="Devices/Inc/LCD1602.h" name="Devices/Inc/LCD1602.h">
+<area shape="rect" id="node1" title=" " alt="" coords="95,5,265,32"/>
+<area shape="rect" id="node2" href="$Clocker_8h.html" title="Plik nagłówkowy biblioteki Clocker; zawiera wszystkie nagłówki funkcji." alt="" coords="5,80,165,107"/>
+<area shape="rect" id="node4" href="$LCD1602_8c.html" title=" " alt="" coords="189,80,360,107"/>
+<area shape="rect" id="node3" href="$Clocker_8c.html" title="Plik żródłowy bilioteki Clocker; zawiera definicje funkcji." alt="" coords="5,155,165,181"/>
+</map>

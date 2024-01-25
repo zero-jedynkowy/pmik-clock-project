@@ -1,0 +1,223 @@
+\hypertarget{LCD1602_8c}{}\doxysection{Devices/\+Src/\+LCD1602.c File Reference}
+\label{LCD1602_8c}\index{Devices/Src/LCD1602.c@{Devices/Src/LCD1602.c}}
+{\ttfamily \#include $<$LCD1602.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stm32l0xx\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+Include dependency graph for LCD1602.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{LCD1602_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a8cc091dd8e1b0850b60e2092581723cb}{RS\+\_\+\+Pin}}~R\+\_\+\+S\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a58ffa5b505a5859a1e42dc38a2b897af}{RS\+\_\+\+GPIO\+\_\+\+Port}}~R\+\_\+\+S\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_aa69614562cfbabf0113eb6d6fd9e859c}{RW\+\_\+\+Pin}}~R\+\_\+\+W\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a8907dc19a7cf8ec9282769cb13cd22fe}{RW\+\_\+\+GPIO\+\_\+\+Port}}~R\+\_\+\+W\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a11d8159a4446baa3c5f607e468cf2c09}{EN\+\_\+\+Pin}}~E\+\_\+\+N\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a5df3937da641196d35075528851e4c45}{EN\+\_\+\+GPIO\+\_\+\+Port}}~E\+\_\+\+N\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_abde71de7b8534bb3e46ae52d311535d6}{D4\+\_\+\+Pin}}~D\+\_\+4\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_abfab7dc506666fb280e60803d02a0802}{D4\+\_\+\+GPIO\+\_\+\+Port}}~D\+\_\+4\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_aad87fcee8ef4628586d46ae125746270}{D5\+\_\+\+Pin}}~D\+\_\+5\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_aff9e76151a3bd4be5f636179131372d2}{D5\+\_\+\+GPIO\+\_\+\+Port}}~D\+\_\+5\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a49e0b7cb29953ce2c8f60041965bc992}{D6\+\_\+\+Pin}}~D\+\_\+6\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a1b856aaef14f0e64fd8d3bfc31d9aa37}{D6\+\_\+\+GPIO\+\_\+\+Port}}~D\+\_\+6\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_ab03099940ad055680ce36a0cec68df83}{D7\+\_\+\+Pin}}~D\+\_\+7\+\_\+\+Pin
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a49df45d9357e8679887f1d7550521d42}{D7\+\_\+\+GPIO\+\_\+\+Port}}~D\+\_\+7\+\_\+\+GPIO\+\_\+\+Port
+\item 
+\#define \mbox{\hyperlink{LCD1602_8c_a58f13f9781bcf54867b055fe3d9a6b18}{timer}}~htim3
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{LCD1602_8c_af79f5d5747b60aef71bd0f79b06415cf}{delay}} (uint16\+\_\+t us)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_ae47e7494d6c1b7b1acf9d28059baf35b}{send\+\_\+to\+\_\+lcd}} (char data, int rs)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\+\_\+send\+\_\+cmd}} (char cmd)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\+\_\+send\+\_\+data}} (char data)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_ad235a86241458b1e7b8771688bfdaf9a}{lcd\+\_\+clear}} (void)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_a335c8a975c28b9eb7ee6c27a6efe7c44}{lcd\+\_\+put\+\_\+cur}} (int row, int col)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_a6842775ba83d166f02b8fef8bb63b1e6}{lcd\+\_\+init}} (void)
+\item 
+void \mbox{\hyperlink{LCD1602_8c_a234ae1cb5d91fa756d1216e3540222ad}{lcd\+\_\+send\+\_\+string}} (char $\ast$str)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{LCD1602_8c_ae6a7a9aacd7086c16eedc30ff193d66c}{timer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{LCD1602_8c_abfab7dc506666fb280e60803d02a0802}\label{LCD1602_8c_abfab7dc506666fb280e60803d02a0802}} 
+\index{LCD1602.c@{LCD1602.c}!D4\_GPIO\_Port@{D4\_GPIO\_Port}}
+\index{D4\_GPIO\_Port@{D4\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D4\_GPIO\_Port}{D4\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define D4\+\_\+\+GPIO\+\_\+\+Port~D\+\_\+4\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_abde71de7b8534bb3e46ae52d311535d6}\label{LCD1602_8c_abde71de7b8534bb3e46ae52d311535d6}} 
+\index{LCD1602.c@{LCD1602.c}!D4\_Pin@{D4\_Pin}}
+\index{D4\_Pin@{D4\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D4\_Pin}{D4\_Pin}}
+{\footnotesize\ttfamily \#define D4\+\_\+\+Pin~D\+\_\+4\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_aff9e76151a3bd4be5f636179131372d2}\label{LCD1602_8c_aff9e76151a3bd4be5f636179131372d2}} 
+\index{LCD1602.c@{LCD1602.c}!D5\_GPIO\_Port@{D5\_GPIO\_Port}}
+\index{D5\_GPIO\_Port@{D5\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D5\_GPIO\_Port}{D5\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define D5\+\_\+\+GPIO\+\_\+\+Port~D\+\_\+5\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_aad87fcee8ef4628586d46ae125746270}\label{LCD1602_8c_aad87fcee8ef4628586d46ae125746270}} 
+\index{LCD1602.c@{LCD1602.c}!D5\_Pin@{D5\_Pin}}
+\index{D5\_Pin@{D5\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D5\_Pin}{D5\_Pin}}
+{\footnotesize\ttfamily \#define D5\+\_\+\+Pin~D\+\_\+5\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_a1b856aaef14f0e64fd8d3bfc31d9aa37}\label{LCD1602_8c_a1b856aaef14f0e64fd8d3bfc31d9aa37}} 
+\index{LCD1602.c@{LCD1602.c}!D6\_GPIO\_Port@{D6\_GPIO\_Port}}
+\index{D6\_GPIO\_Port@{D6\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D6\_GPIO\_Port}{D6\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define D6\+\_\+\+GPIO\+\_\+\+Port~D\+\_\+6\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_a49e0b7cb29953ce2c8f60041965bc992}\label{LCD1602_8c_a49e0b7cb29953ce2c8f60041965bc992}} 
+\index{LCD1602.c@{LCD1602.c}!D6\_Pin@{D6\_Pin}}
+\index{D6\_Pin@{D6\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D6\_Pin}{D6\_Pin}}
+{\footnotesize\ttfamily \#define D6\+\_\+\+Pin~D\+\_\+6\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_a49df45d9357e8679887f1d7550521d42}\label{LCD1602_8c_a49df45d9357e8679887f1d7550521d42}} 
+\index{LCD1602.c@{LCD1602.c}!D7\_GPIO\_Port@{D7\_GPIO\_Port}}
+\index{D7\_GPIO\_Port@{D7\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D7\_GPIO\_Port}{D7\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define D7\+\_\+\+GPIO\+\_\+\+Port~D\+\_\+7\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_ab03099940ad055680ce36a0cec68df83}\label{LCD1602_8c_ab03099940ad055680ce36a0cec68df83}} 
+\index{LCD1602.c@{LCD1602.c}!D7\_Pin@{D7\_Pin}}
+\index{D7\_Pin@{D7\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{D7\_Pin}{D7\_Pin}}
+{\footnotesize\ttfamily \#define D7\+\_\+\+Pin~D\+\_\+7\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_a5df3937da641196d35075528851e4c45}\label{LCD1602_8c_a5df3937da641196d35075528851e4c45}} 
+\index{LCD1602.c@{LCD1602.c}!EN\_GPIO\_Port@{EN\_GPIO\_Port}}
+\index{EN\_GPIO\_Port@{EN\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{EN\_GPIO\_Port}{EN\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+GPIO\+\_\+\+Port~E\+\_\+\+N\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_a11d8159a4446baa3c5f607e468cf2c09}\label{LCD1602_8c_a11d8159a4446baa3c5f607e468cf2c09}} 
+\index{LCD1602.c@{LCD1602.c}!EN\_Pin@{EN\_Pin}}
+\index{EN\_Pin@{EN\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{EN\_Pin}{EN\_Pin}}
+{\footnotesize\ttfamily \#define EN\+\_\+\+Pin~E\+\_\+\+N\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_a58ffa5b505a5859a1e42dc38a2b897af}\label{LCD1602_8c_a58ffa5b505a5859a1e42dc38a2b897af}} 
+\index{LCD1602.c@{LCD1602.c}!RS\_GPIO\_Port@{RS\_GPIO\_Port}}
+\index{RS\_GPIO\_Port@{RS\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{RS\_GPIO\_Port}{RS\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define RS\+\_\+\+GPIO\+\_\+\+Port~R\+\_\+\+S\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_a8cc091dd8e1b0850b60e2092581723cb}\label{LCD1602_8c_a8cc091dd8e1b0850b60e2092581723cb}} 
+\index{LCD1602.c@{LCD1602.c}!RS\_Pin@{RS\_Pin}}
+\index{RS\_Pin@{RS\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{RS\_Pin}{RS\_Pin}}
+{\footnotesize\ttfamily \#define RS\+\_\+\+Pin~R\+\_\+\+S\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_a8907dc19a7cf8ec9282769cb13cd22fe}\label{LCD1602_8c_a8907dc19a7cf8ec9282769cb13cd22fe}} 
+\index{LCD1602.c@{LCD1602.c}!RW\_GPIO\_Port@{RW\_GPIO\_Port}}
+\index{RW\_GPIO\_Port@{RW\_GPIO\_Port}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{RW\_GPIO\_Port}{RW\_GPIO\_Port}}
+{\footnotesize\ttfamily \#define RW\+\_\+\+GPIO\+\_\+\+Port~R\+\_\+\+W\+\_\+\+GPIO\+\_\+\+Port}
+
+\mbox{\Hypertarget{LCD1602_8c_aa69614562cfbabf0113eb6d6fd9e859c}\label{LCD1602_8c_aa69614562cfbabf0113eb6d6fd9e859c}} 
+\index{LCD1602.c@{LCD1602.c}!RW\_Pin@{RW\_Pin}}
+\index{RW\_Pin@{RW\_Pin}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{RW\_Pin}{RW\_Pin}}
+{\footnotesize\ttfamily \#define RW\+\_\+\+Pin~R\+\_\+\+W\+\_\+\+Pin}
+
+\mbox{\Hypertarget{LCD1602_8c_a58f13f9781bcf54867b055fe3d9a6b18}\label{LCD1602_8c_a58f13f9781bcf54867b055fe3d9a6b18}} 
+\index{LCD1602.c@{LCD1602.c}!timer@{timer}}
+\index{timer@{timer}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{timer}{timer}}
+{\footnotesize\ttfamily \#define timer~htim3}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{LCD1602_8c_af79f5d5747b60aef71bd0f79b06415cf}\label{LCD1602_8c_af79f5d5747b60aef71bd0f79b06415cf}} 
+\index{LCD1602.c@{LCD1602.c}!delay@{delay}}
+\index{delay@{delay}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{delay()}{delay()}}
+{\footnotesize\ttfamily void delay (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{us }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_ad235a86241458b1e7b8771688bfdaf9a}\label{LCD1602_8c_ad235a86241458b1e7b8771688bfdaf9a}} 
+\index{LCD1602.c@{LCD1602.c}!lcd\_clear@{lcd\_clear}}
+\index{lcd\_clear@{lcd\_clear}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_clear()}{lcd\_clear()}}
+{\footnotesize\ttfamily void lcd\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_a6842775ba83d166f02b8fef8bb63b1e6}\label{LCD1602_8c_a6842775ba83d166f02b8fef8bb63b1e6}} 
+\index{LCD1602.c@{LCD1602.c}!lcd\_init@{lcd\_init}}
+\index{lcd\_init@{lcd\_init}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_init()}{lcd\_init()}}
+{\footnotesize\ttfamily void lcd\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_a335c8a975c28b9eb7ee6c27a6efe7c44}\label{LCD1602_8c_a335c8a975c28b9eb7ee6c27a6efe7c44}} 
+\index{LCD1602.c@{LCD1602.c}!lcd\_put\_cur@{lcd\_put\_cur}}
+\index{lcd\_put\_cur@{lcd\_put\_cur}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_put\_cur()}{lcd\_put\_cur()}}
+{\footnotesize\ttfamily void lcd\+\_\+put\+\_\+cur (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_a0934da706080d3b0b3b2f04c9d044e67}\label{LCD1602_8c_a0934da706080d3b0b3b2f04c9d044e67}} 
+\index{LCD1602.c@{LCD1602.c}!lcd\_send\_cmd@{lcd\_send\_cmd}}
+\index{lcd\_send\_cmd@{lcd\_send\_cmd}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_send\_cmd()}{lcd\_send\_cmd()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+cmd (\begin{DoxyParamCaption}\item[{char}]{cmd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}\label{LCD1602_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}} 
+\index{LCD1602.c@{LCD1602.c}!lcd\_send\_data@{lcd\_send\_data}}
+\index{lcd\_send\_data@{lcd\_send\_data}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_send\_data()}{lcd\_send\_data()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+data (\begin{DoxyParamCaption}\item[{char}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_a234ae1cb5d91fa756d1216e3540222ad}\label{LCD1602_8c_a234ae1cb5d91fa756d1216e3540222ad}} 
+\index{LCD1602.c@{LCD1602.c}!lcd\_send\_string@{lcd\_send\_string}}
+\index{lcd\_send\_string@{lcd\_send\_string}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_send\_string()}{lcd\_send\_string()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{LCD1602_8c_ae47e7494d6c1b7b1acf9d28059baf35b}\label{LCD1602_8c_ae47e7494d6c1b7b1acf9d28059baf35b}} 
+\index{LCD1602.c@{LCD1602.c}!send\_to\_lcd@{send\_to\_lcd}}
+\index{send\_to\_lcd@{send\_to\_lcd}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{send\_to\_lcd()}{send\_to\_lcd()}}
+{\footnotesize\ttfamily void send\+\_\+to\+\_\+lcd (\begin{DoxyParamCaption}\item[{char}]{data,  }\item[{int}]{rs }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{LCD1602_8c_ae6a7a9aacd7086c16eedc30ff193d66c}\label{LCD1602_8c_ae6a7a9aacd7086c16eedc30ff193d66c}} 
+\index{LCD1602.c@{LCD1602.c}!timer@{timer}}
+\index{timer@{timer}!LCD1602.c@{LCD1602.c}}
+\doxysubsubsection{\texorpdfstring{timer}{timer}}
+{\footnotesize\ttfamily TIM\+\_\+\+Handle\+Type\+Def timer\hspace{0.3cm}{\ttfamily [extern]}}
+

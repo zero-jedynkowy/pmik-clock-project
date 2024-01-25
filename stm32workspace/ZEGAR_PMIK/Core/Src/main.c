@@ -62,10 +62,6 @@ UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN PV */
-volatile uint8_t budzik = 0;
-volatile uint8_t timer_counter = 0;
-volatile uint8_t alarm_counter = 0;
-volatile uint8_t budzik_music = 0;
 char table[500];
 char table2[500];
 /* USER CODE END PV */
@@ -105,63 +101,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if(huart == &huart1)
 	{
-		const char * result = strchr(table2, '_');
-		cJSON * myTempObj = cJSON_Parse(table2);
-		strcpy(ourClocker.contentOfScreens[0], cJSON_GetObjectItem(myTempObj, "weather")->valuestring);
-		strcpy(ourClocker.contentOfScreens[1], cJSON_GetObjectItem(myTempObj, "temp")->valuestring);
-		strcpy(ourClocker.contentOfScreens[2], cJSON_GetObjectItem(myTempObj, "feels_like")->valuestring);
-		strcpy(ourClocker.contentOfScreens[3], cJSON_GetObjectItem(myTempObj, "pressure")->valuestring);
-		strcpy(ourClocker.contentOfScreens[4], cJSON_GetObjectItem(myTempObj, "humidity")->valuestring);
-		strcpy(ourClocker.contentOfScreens[5], cJSON_GetObjectItem(myTempObj, "windspeed")->valuestring);
-		strcpy(ourClocker.contentOfScreens[6], cJSON_GetObjectItem(myTempObj, "sunrise")->valuestring);
-		strcpy(ourClocker.contentOfScreens[7], cJSON_GetObjectItem(myTempObj, "sunset")->valuestring);
-		strcpy(ourClocker.contentOfScreens[8], cJSON_GetObjectItem(myTempObj, "city")->valuestring);
-		Clocker_Set_Time(&ourClocker, atoi(cJSON_GetObjectItem(myTempObj, "hour")->valuestring), atoi(cJSON_GetObjectItem(myTempObj, "minutes")->valuestring), atoi(cJSON_GetObjectItem(myTempObj, "seconds")->valuestring));
-
-
+		Clocker_Wifi_Receive(&ourClocker, table2);
 	}
 	else if(huart == &huart5)
 	{
-		const char * result = strchr(table, '_');
-		if (result != NULL)
-		{
-			table[result - table] = '\0';
-		}
-		cJSON * myTempObj = cJSON_Parse(table);
-		if(cJSON_IsTrue(cJSON_GetObjectItem(myTempObj, "wifi")))
-		{
-			ourClocker.wifi = 1;
-			if(cJSON_IsTrue(cJSON_GetObjectItem(myTempObj, "weather")))
-			{
-				ourClocker.weather = 1;
-			}
-			else
-			{
-				ourClocker.weather = 0;
-			}
-		}
-		else
-		{
-			ourClocker.wifi = 0;
-			if(cJSON_IsFalse(cJSON_GetObjectItem(myTempObj, "dateTime")))
-			{
-				ourClocker.dateTime = 0;
-				if (cJSON_IsNumber(cJSON_GetObjectItem(myTempObj, "dateTimeHours")) && cJSON_IsNumber(cJSON_GetObjectItem(myTempObj, "dateTimeMinutes")))
-				{
-					Clocker_Set_Time(&ourClocker, cJSON_GetObjectItem(myTempObj, "dateTimeHours")->valueint, cJSON_GetObjectItem(myTempObj, "dateTimeMinutes")->valueint, 0);
-				}
-			}
-			else
-			{
-				ourClocker.dateTime = 1;
-			}
-		}
-
-		if(cJSON_IsTrue(cJSON_GetObjectItem(myTempObj, "alarm")))
-		{
-			Clocker_Set_Alarm(&ourClocker, cJSON_GetObjectItem(myTempObj, "alarmHours")->valueint, cJSON_GetObjectItem(myTempObj, "alarmMinutes")->valueint);
-		}
-		cJSON_Delete(myTempObj);
+		Clocker_Bluetooth(&ourClocker, table);
 	}
 
 	HAL_UART_Receive_IT(&huart5, table, 500);

@@ -1,0 +1,131 @@
+\hypertarget{cJSON__Utils_8c}{}\doxysection{Devices/\+Src/c\+JSON\+\_\+\+Utils.c File Reference}
+\label{cJSON__Utils_8c}\index{Devices/Src/cJSON\_Utils.c@{Devices/Src/cJSON\_Utils.c}}
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+JSON\+\_\+\+Utils.\+h\char`\"{}}\newline
+Include dependency graph for c\+JSON\+\_\+\+Utils.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cJSON__Utils_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cJSON__Utils_8c_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}}~((\mbox{\hyperlink{cJSON_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}})1)
+\item 
+\#define \mbox{\hyperlink{cJSON__Utils_8c_a65e9886d74aaee76545e83dd09011727}{false}}~((\mbox{\hyperlink{cJSON_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}})0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225}{patch\+\_\+operation}} \{ \newline
+\mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aef2863a469df3ea6871d640e3669a2f2}{INVALID}}
+, \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225acfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225a894523bc8f6298dbfe0a6cc5c43a6f30}{REMOVE}}
+, \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225a765ae4f8f09e8a28e363acc11643ed91}{REPLACE}}
+, \newline
+\mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aed3ef32890b6da0919b57254c5206c62}{MOVE}}
+, \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aba6788019f0f871f0aefcd5644635785}{COPY}}
+, \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225ab2f0cd22b1963becef8b91d29d567fe8}{TEST}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cJSON__Utils_8c_a7b2c22f062a3076b09d526268d540b1f}{CJSON\+\_\+\+PUBLIC}} (char $\ast$)
+\item 
+\mbox{\hyperlink{cJSON__Utils_8c_aa2ca313f61c789be20f8a69b651043c3}{CJSON\+\_\+\+PUBLIC}} (\mbox{\hyperlink{structcJSON}{c\+JSON}} $\ast$)
+\item 
+\mbox{\hyperlink{cJSON__Utils_8c_a608c0c1e4b61142a10db460339ba9be0}{CJSON\+\_\+\+PUBLIC}} (int)
+\item 
+\mbox{\hyperlink{cJSON__Utils_8c_a9e943a63b19411e07fe82f46a56e35e5}{CJSON\+\_\+\+PUBLIC}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cJSON__Utils_8c_a65e9886d74aaee76545e83dd09011727}\label{cJSON__Utils_8c_a65e9886d74aaee76545e83dd09011727}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!false@{false}}
+\index{false@{false}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily \#define false~((\mbox{\hyperlink{cJSON_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}})0)}
+
+\mbox{\Hypertarget{cJSON__Utils_8c_a41f9c5fb8b08eb5dc3edce4dcb37fee7}\label{cJSON__Utils_8c_a41f9c5fb8b08eb5dc3edce4dcb37fee7}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!true@{true}}
+\index{true@{true}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily \#define true~((\mbox{\hyperlink{cJSON_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}})1)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!patch\_operation@{patch\_operation}}
+\index{patch\_operation@{patch\_operation}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{patch\_operation}{patch\_operation}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225}{patch\+\_\+operation}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!INVALID@{INVALID}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aef2863a469df3ea6871d640e3669a2f2}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aef2863a469df3ea6871d640e3669a2f2}} 
+INVALID&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!ADD@{ADD}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225acfcf145f2788bf340ff3f3098bc54909}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225acfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REMOVE@{REMOVE}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!REMOVE@{REMOVE}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225a894523bc8f6298dbfe0a6cc5c43a6f30}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225a894523bc8f6298dbfe0a6cc5c43a6f30}} 
+REMOVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REPLACE@{REPLACE}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!REPLACE@{REPLACE}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225a765ae4f8f09e8a28e363acc11643ed91}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225a765ae4f8f09e8a28e363acc11643ed91}} 
+REPLACE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOVE@{MOVE}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!MOVE@{MOVE}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aed3ef32890b6da0919b57254c5206c62}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aed3ef32890b6da0919b57254c5206c62}} 
+MOVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COPY@{COPY}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!COPY@{COPY}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aba6788019f0f871f0aefcd5644635785}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225aba6788019f0f871f0aefcd5644635785}} 
+COPY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEST@{TEST}!cJSON\_Utils.c@{cJSON\_Utils.c}}\index{cJSON\_Utils.c@{cJSON\_Utils.c}!TEST@{TEST}}}\mbox{\Hypertarget{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225ab2f0cd22b1963becef8b91d29d567fe8}\label{cJSON__Utils_8c_aaa57b5e01ec6361fc7dfecc688a04225ab2f0cd22b1963becef8b91d29d567fe8}} 
+TEST&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cJSON__Utils_8c_a7b2c22f062a3076b09d526268d540b1f}\label{cJSON__Utils_8c_a7b2c22f062a3076b09d526268d540b1f}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cJSON__Utils_8c_aa2ca313f61c789be20f8a69b651043c3}\label{cJSON__Utils_8c_aa2ca313f61c789be20f8a69b651043c3}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcJSON}{c\+JSON}} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cJSON__Utils_8c_a608c0c1e4b61142a10db460339ba9be0}\label{cJSON__Utils_8c_a608c0c1e4b61142a10db460339ba9be0}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cJSON__Utils_8c_a9e943a63b19411e07fe82f46a56e35e5}\label{cJSON__Utils_8c_a9e943a63b19411e07fe82f46a56e35e5}} 
+\index{cJSON\_Utils.c@{cJSON\_Utils.c}!CJSON\_PUBLIC@{CJSON\_PUBLIC}}
+\index{CJSON\_PUBLIC@{CJSON\_PUBLIC}!cJSON\_Utils.c@{cJSON\_Utils.c}}
+\doxysubsubsection{\texorpdfstring{CJSON\_PUBLIC()}{CJSON\_PUBLIC()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily CJSON\+\_\+\+PUBLIC (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+

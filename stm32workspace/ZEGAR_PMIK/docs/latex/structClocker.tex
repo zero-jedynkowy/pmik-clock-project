@@ -1,0 +1,179 @@
+\hypertarget{structClocker}{}\doxysection{Clocker Struct Reference}
+\label{structClocker}\index{Clocker@{Clocker}}
+
+
+Struktura zarządzająca całym urządzeniem.  
+
+
+
+
+{\ttfamily \#include $<$Clocker.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_a45c1991c932adcb39bdf030632028742}{max\+Screen}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_a2effc9005263723ffa08043bf8d0fa5c}{current\+Screen}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_ae0f170f9ad82e57ec1bad73a66e0f2ab}{screen\+Time\+Changing}}
+\item 
+char \mbox{\hyperlink{structClocker_ada2797f88ef016133159e96f7067e4ac}{table\+Of\+Screens}} \mbox{[}10\mbox{]}\mbox{[}2\mbox{]}\mbox{[}16\mbox{]}
+\item 
+RTC\+\_\+\+Time\+Type\+Def $\ast$ \mbox{\hyperlink{structClocker_ac4ab4aafadd52a9be9ac921b508f46f5}{s\+Time}}
+\item 
+RTC\+\_\+\+Date\+Type\+Def $\ast$ \mbox{\hyperlink{structClocker_aa985e763652879d380ddd1b8ec632de1}{s\+Date}}
+\item 
+RTC\+\_\+\+Alarm\+Type\+Def $\ast$ \mbox{\hyperlink{structClocker_ade3e8bccd49deb35b1c02ca4e4c4dfc4}{s\+Alarm}}
+\item 
+RTC\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{structClocker_a9db44fdeb311231e0865aa4e70be2545}{rtc\+Handle}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_ac9eb1f341b6dce40c9f444eaf3715c23}{screen\+Timer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_adc4d89023e8de30af664c9782afd18f5}{alarm\+Timer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_a18f540bbd8a96ebef50fccbabb9b4f78}{alarm\+Timer\+On}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_a6f39291958d16d557a89b53beaacd196}{alarm}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_ae1c72ea6975009b83e5bb334cef7323a}{wifi}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_ac3e49d7e1b64ff06d0f49435208584ef}{weather}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structClocker_a3f5785b7c1ab404b5e895937aa9038b4}{date\+Time}}
+\item 
+char \mbox{\hyperlink{structClocker_a9772b05c50ec7e4f4a1829589585586f}{login}} \mbox{[}250\mbox{]}
+\item 
+char \mbox{\hyperlink{structClocker_a85df905016e68e0a1db7594a06616b4e}{password}} \mbox{[}250\mbox{]}
+\item 
+char \mbox{\hyperlink{structClocker_a7bd65feb5b2337414d7c20b896f792ae}{city}} \mbox{[}250\mbox{]}
+\item 
+char \mbox{\hyperlink{structClocker_ac96e558ed4d8f0605bb63b12ae1a36a1}{content\+Of\+Screens}} \mbox{[}10\mbox{]}\mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struktura zarządzająca całym urządzeniem. 
+
+Zawiera wszystkie zmienne i flagi wykorzystywane przy zmianach ekranu LCD, połączeniu bluetooth, wifi itp. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structClocker_a6f39291958d16d557a89b53beaacd196}\label{structClocker_a6f39291958d16d557a89b53beaacd196}} 
+\index{Clocker@{Clocker}!alarm@{alarm}}
+\index{alarm@{alarm}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{alarm}{alarm}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::alarm}
+
+Zmienna określająca kiedy ekran LCD się zmieni \mbox{\Hypertarget{structClocker_adc4d89023e8de30af664c9782afd18f5}\label{structClocker_adc4d89023e8de30af664c9782afd18f5}} 
+\index{Clocker@{Clocker}!alarmTimer@{alarmTimer}}
+\index{alarmTimer@{alarmTimer}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{alarmTimer}{alarmTimer}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::alarm\+Timer}
+
+Zmienna określająca kiedy ekran LCD się zmieni \mbox{\Hypertarget{structClocker_a18f540bbd8a96ebef50fccbabb9b4f78}\label{structClocker_a18f540bbd8a96ebef50fccbabb9b4f78}} 
+\index{Clocker@{Clocker}!alarmTimerOn@{alarmTimerOn}}
+\index{alarmTimerOn@{alarmTimerOn}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{alarmTimerOn}{alarmTimerOn}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::alarm\+Timer\+On}
+
+Zmienna określająca kiedy ekran LCD się zmieni \mbox{\Hypertarget{structClocker_a7bd65feb5b2337414d7c20b896f792ae}\label{structClocker_a7bd65feb5b2337414d7c20b896f792ae}} 
+\index{Clocker@{Clocker}!city@{city}}
+\index{city@{city}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{city}{city}}
+{\footnotesize\ttfamily char Clocker\+::city\mbox{[}250\mbox{]}}
+
+Zmienna przechowująca nazwe miasta \mbox{\Hypertarget{structClocker_ac96e558ed4d8f0605bb63b12ae1a36a1}\label{structClocker_ac96e558ed4d8f0605bb63b12ae1a36a1}} 
+\index{Clocker@{Clocker}!contentOfScreens@{contentOfScreens}}
+\index{contentOfScreens@{contentOfScreens}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{contentOfScreens}{contentOfScreens}}
+{\footnotesize\ttfamily char Clocker\+::content\+Of\+Screens\mbox{[}10\mbox{]}\mbox{[}16\mbox{]}}
+
+Zmienna pomocnicza przechowująca zawartość ekranu LCD \mbox{\Hypertarget{structClocker_a2effc9005263723ffa08043bf8d0fa5c}\label{structClocker_a2effc9005263723ffa08043bf8d0fa5c}} 
+\index{Clocker@{Clocker}!currentScreen@{currentScreen}}
+\index{currentScreen@{currentScreen}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{currentScreen}{currentScreen}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::current\+Screen}
+
+Obecnie wybrany ekran/informacja wyświetlana na LCD \mbox{\Hypertarget{structClocker_a3f5785b7c1ab404b5e895937aa9038b4}\label{structClocker_a3f5785b7c1ab404b5e895937aa9038b4}} 
+\index{Clocker@{Clocker}!dateTime@{dateTime}}
+\index{dateTime@{dateTime}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{dateTime}{dateTime}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::date\+Time}
+
+Flaga decydująca czy data ma być ustawiana po wifi; 1 -\/ wifi, 0 -\/ uzytkownik \mbox{\Hypertarget{structClocker_a9772b05c50ec7e4f4a1829589585586f}\label{structClocker_a9772b05c50ec7e4f4a1829589585586f}} 
+\index{Clocker@{Clocker}!login@{login}}
+\index{login@{login}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{login}{login}}
+{\footnotesize\ttfamily char Clocker\+::login\mbox{[}250\mbox{]}}
+
+Zmienna przechowująca login do wifi \mbox{\Hypertarget{structClocker_a45c1991c932adcb39bdf030632028742}\label{structClocker_a45c1991c932adcb39bdf030632028742}} 
+\index{Clocker@{Clocker}!maxScreen@{maxScreen}}
+\index{maxScreen@{maxScreen}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{maxScreen}{maxScreen}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::max\+Screen}
+
+Maksymalna liczba ekranów LCD \mbox{\Hypertarget{structClocker_a85df905016e68e0a1db7594a06616b4e}\label{structClocker_a85df905016e68e0a1db7594a06616b4e}} 
+\index{Clocker@{Clocker}!password@{password}}
+\index{password@{password}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily char Clocker\+::password\mbox{[}250\mbox{]}}
+
+Zmienna przechowująca hasło do wifi \mbox{\Hypertarget{structClocker_a9db44fdeb311231e0865aa4e70be2545}\label{structClocker_a9db44fdeb311231e0865aa4e70be2545}} 
+\index{Clocker@{Clocker}!rtcHandle@{rtcHandle}}
+\index{rtcHandle@{rtcHandle}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{rtcHandle}{rtcHandle}}
+{\footnotesize\ttfamily RTC\+\_\+\+Handle\+Type\+Def$\ast$ Clocker\+::rtc\+Handle}
+
+Wskażnik na strukture RTC \mbox{\Hypertarget{structClocker_ade3e8bccd49deb35b1c02ca4e4c4dfc4}\label{structClocker_ade3e8bccd49deb35b1c02ca4e4c4dfc4}} 
+\index{Clocker@{Clocker}!sAlarm@{sAlarm}}
+\index{sAlarm@{sAlarm}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{sAlarm}{sAlarm}}
+{\footnotesize\ttfamily RTC\+\_\+\+Alarm\+Type\+Def$\ast$ Clocker\+::s\+Alarm}
+
+Struktura przechowująca alarm RTC \mbox{\Hypertarget{structClocker_ae0f170f9ad82e57ec1bad73a66e0f2ab}\label{structClocker_ae0f170f9ad82e57ec1bad73a66e0f2ab}} 
+\index{Clocker@{Clocker}!screenTimeChanging@{screenTimeChanging}}
+\index{screenTimeChanging@{screenTimeChanging}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{screenTimeChanging}{screenTimeChanging}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::screen\+Time\+Changing}
+
+Czas zmiany ekranu LCD w sekundach; ustawiany przed użytkownika \mbox{\Hypertarget{structClocker_ac9eb1f341b6dce40c9f444eaf3715c23}\label{structClocker_ac9eb1f341b6dce40c9f444eaf3715c23}} 
+\index{Clocker@{Clocker}!screenTimer@{screenTimer}}
+\index{screenTimer@{screenTimer}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{screenTimer}{screenTimer}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::screen\+Timer}
+
+Zmienna określająca kiedy ekran LCD się zmieni \mbox{\Hypertarget{structClocker_aa985e763652879d380ddd1b8ec632de1}\label{structClocker_aa985e763652879d380ddd1b8ec632de1}} 
+\index{Clocker@{Clocker}!sDate@{sDate}}
+\index{sDate@{sDate}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{sDate}{sDate}}
+{\footnotesize\ttfamily RTC\+\_\+\+Date\+Type\+Def$\ast$ Clocker\+::s\+Date}
+
+Struktura przechowująca date RTC \mbox{\Hypertarget{structClocker_ac4ab4aafadd52a9be9ac921b508f46f5}\label{structClocker_ac4ab4aafadd52a9be9ac921b508f46f5}} 
+\index{Clocker@{Clocker}!sTime@{sTime}}
+\index{sTime@{sTime}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{sTime}{sTime}}
+{\footnotesize\ttfamily RTC\+\_\+\+Time\+Type\+Def$\ast$ Clocker\+::s\+Time}
+
+Struktura przechowująca czas RTC \mbox{\Hypertarget{structClocker_ada2797f88ef016133159e96f7067e4ac}\label{structClocker_ada2797f88ef016133159e96f7067e4ac}} 
+\index{Clocker@{Clocker}!tableOfScreens@{tableOfScreens}}
+\index{tableOfScreens@{tableOfScreens}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{tableOfScreens}{tableOfScreens}}
+{\footnotesize\ttfamily char Clocker\+::table\+Of\+Screens\mbox{[}10\mbox{]}\mbox{[}2\mbox{]}\mbox{[}16\mbox{]}}
+
+Tabela zawartośći ekranu LCD \mbox{\Hypertarget{structClocker_ac3e49d7e1b64ff06d0f49435208584ef}\label{structClocker_ac3e49d7e1b64ff06d0f49435208584ef}} 
+\index{Clocker@{Clocker}!weather@{weather}}
+\index{weather@{weather}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{weather}{weather}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::weather}
+
+Flaga decydująca czy pogoda jest włączona \mbox{\Hypertarget{structClocker_ae1c72ea6975009b83e5bb334cef7323a}\label{structClocker_ae1c72ea6975009b83e5bb334cef7323a}} 
+\index{Clocker@{Clocker}!wifi@{wifi}}
+\index{wifi@{wifi}!Clocker@{Clocker}}
+\doxysubsubsection{\texorpdfstring{wifi}{wifi}}
+{\footnotesize\ttfamily uint8\+\_\+t Clocker\+::wifi}
+
+Flaga decydująca czy wifi jest włączone 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Devices/\+Inc/\mbox{\hyperlink{Clocker_8h}{Clocker.\+h}}\end{DoxyCompactItemize}
