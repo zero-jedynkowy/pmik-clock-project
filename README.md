@@ -6,7 +6,7 @@ A simple unfinished and abandoned project for a weather clock station with an An
 
 I'm a co-maintener of this project with Jakub Jastrzębski.
 
-![](readme-files/pmik-clock-app-example.gif)
+<img src="readme-files/pmik-clock-app-example.gif" width="540" height="1170"/>
 
 ## Project's assumptions:
 
